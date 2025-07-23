@@ -1,0 +1,100 @@
+/* ===== Reset base styles ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  -webkit-tap-highlight-color: transparent; /* removes blue flash on tap */
+}
+
+/* ===== Body and HTML defaults ===== */
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #121212;
+  color: #ffffff;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  overflow-x: hidden;
+}
+
+/* ===== Default button, input, a, textarea cleanup ===== */
+button,
+input,
+textarea,
+select {
+  outline: none;
+  border: none;
+  box-shadow: none;
+  background: none;
+  font-family: inherit;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+/* Optional: Give buttons some base styling */
+button {
+  padding: 10px 16px;
+  border-radius: 6px;
+  background-color: #1e1e1e;
+  color: #ffffff;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #2c2c2c;
+}
+
+button:active {
+  background-color: #3a3a3a;
+}
+
+/* Remove blue outline on focus (including keyboard) */
+button:focus,
+button:active,
+input:focus,
+textarea:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove text-decoration and color change on link clicks */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Scrollbar style (optional) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+/* Layout containers for main app and library */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.library-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}

@@ -1,0 +1,79 @@
+/* === Dark Theme Header === */
+.header {
+  width: 100vw; /* Full screen width */
+  max-width: 100%;
+  background-color: #121212;
+  color: #ffffff;
+  padding: 10px 16px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* === User Section (Username + Logout) === */
+.header__user-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex: 1;
+  width: 100%;
+  flex-wrap: nowrap;
+}
+
+/* === Username and Icons === */
+.header__username,
+.header__loading,
+.header__no-username {
+  font-weight: 500;
+  font-size: 14px;
+  color: #e0e0e0;
+  display: flex;
+  align-items: center;
+}
+
+.header__icon {
+  margin-right: 6px;
+}
+
+/* === Logout Button === */
+.header__logout-btn {
+  background-color: #1f1f1f;
+  color: #ffffff;
+  border: 1px solid #333;
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.header__logout-btn:hover {
+  background-color: #333;
+}
+
+/* === Responsive Design === */
+@media (max-width: 480px) {
+  .header {
+    padding: 12px;
+  }
+
+  .header__user-section {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    flex-wrap: wrap; /* Wrap only if very narrow */
+  }
+
+  .header__logout-btn {
+    width: auto;
+    text-align: center;
+  }
+}
