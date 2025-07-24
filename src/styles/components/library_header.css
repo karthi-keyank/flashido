@@ -6,7 +6,8 @@
   justify-content: space-between;
   padding: 1.2rem 1.5rem 0.5rem 1.5rem;
   background: transparent;
-  width: 100%;
+  width: 100vw;
+  min-width: 0;
   box-sizing: border-box;
   border-bottom: 2.5px solid #4f8cff;
 }

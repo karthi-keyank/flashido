@@ -1,0 +1,52 @@
+/* styles/components/card_grid.css */
+
+.card-grid {
+  margin-bottom: 1.2rem;
+}
+
+.card-grid__button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: transparent;      /* 🔴 No background */
+  border: none;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.card-grid__icon-wrapper {
+  background-color: #2e2b5c;
+  border-radius: 12px;
+  padding: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  min-width: 48px;
+  min-height: 48px;
+}
+
+.card-grid__icon {
+  font-size: 1.5rem;
+  color: #4ea5ff;
+}
+
+.card-grid__info {
+  flex: 1;
+}
+
+.card-grid__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  color: #ffffff;
+}
+
+.card-grid__meta {
+  font-size: 0.9rem;
+  color: #cccccc;
+  margin-top: 0.4rem;
+}
+

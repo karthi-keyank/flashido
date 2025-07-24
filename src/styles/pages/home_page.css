@@ -2,18 +2,18 @@
 
 .home-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #08062b 60%, #1a174d 100%);
+  min-width: 0;
+  background: #08062b;
   width: 100vw;
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
   color: #f5f6fa;
-  animation: fadeInBg 1.2s ease;
   padding-top: 60px; /* Adjust this value to match your header height */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
-@keyframes fadeInBg {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
+
 
 
 .home-hero {
@@ -22,9 +22,11 @@
   text-align: center;
   width: 100%;
   min-height: 220px;
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
 }
 
 @keyframes popIn {
@@ -97,9 +99,16 @@
 
 
 @media (max-width: 600px) {
+  .home-page {
+    min-width: 0;
+    width: 100vw;
+    box-sizing: border-box;
+  }
   .home-hero {
     padding: 2rem 0.5rem;
     min-height: 120px;
+    min-width: 0;
+    box-sizing: border-box;
   }
   .home-title {
     font-size: 1.5rem;

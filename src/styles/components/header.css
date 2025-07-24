@@ -4,8 +4,8 @@
   position: sticky;
   top: 0;
   left: 0;
-  width: 100vw; /* Full screen width */
-  max-width: 100%;
+  width: 100vw;
+  min-width: 0;
   height: 60px;
   background: #18182f;
   background-color: #121212;

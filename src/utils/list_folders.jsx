@@ -5,10 +5,10 @@ import { useAppData } from "../context/app_data";
 function FolderList() {
   const { folders, loading } = useAppData();
 
-  if (loading) return <p>Loading folders...</p>;
+  if (loading) return <p className="folder-list__loading">Loading folders...</p>;
 
   return (
-    <div>
+    <div className="folder-list">
       {folders.length > 0 ? (
         folders.map((folder) => (
           <FolderGrid
@@ -21,7 +21,7 @@ function FolderList() {
           />
         ))
       ) : (
-        <p>No folders found.</p>
+        <p className="folder-list__empty">No folders found.</p>
       )}
     </div>
   );

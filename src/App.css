@@ -18,6 +18,8 @@ html, body {
   -moz-user-select: none;
   user-select: none;
   overflow-x: hidden;
+  touch-action: pan-x pan-y;
+  overscroll-behavior: contain;
 }
 
 /* ===== Default button, input, a, textarea cleanup ===== */
