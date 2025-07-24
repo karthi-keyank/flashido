@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 import SearchBar from "../../components/library/search_bar";
 import FolderList from "../../utils/list_folders";
 import LibraryHeader from "../../components/library/Library_header";
+import "../../styles/pages/library_page.css"
 
-const tabs = ["Flashcard sets", "Folders"];
+const TABS = ["Flashcard sets", "Folders"];
 
 function Library() {
   const navigate = useNavigate();
-
   const [activeTab, setActiveTab] = useState(() => {
-    return localStorage.getItem("libraryActiveTab") || "Flashcard sets";
+    return localStorage.getItem("libraryActiveTab") || TABS[0];
   });
 
   useEffect(() => {
@@ -26,41 +26,39 @@ function Library() {
   };
 
   const renderTabContent = () => {
-    switch (activeTab) {
-      case "Flashcard sets":
-        return (
-          <div className="tab-content">
-            <SearchBar />
-          </div>
-        );
-      case "Folders":
-        return (
-          <div className="tab-content">
-            <h3>Folders</h3>
-            <FolderList />
-          </div>
-        );
-      default:
-        return <div className="tab-content">No content available.</div>;
+    if (activeTab === "Flashcard sets") {
+      return (
+        <div className="library-tab-content">
+          <SearchBar />
+        </div>
+      );
     }
+    if (activeTab === "Folders") {
+      return (
+        <div className="library-tab-content">
+          <h3 className="library-tab-title">Folders</h3>
+          <FolderList />
+        </div>
+      );
+    }
+    return <div className="library-tab-content">No content available.</div>;
   };
 
   return (
-    <div className="library-container">
+    <div className="library">
       <LibraryHeader onAddClick={handleAddClick} />
-
-      <div className="tab-buttons">
-        {tabs.map((tab) => (
+      <div className="library-tabs">
+        {TABS.map((tab) => (
           <button
             key={tab}
-            className={`tab-button ${activeTab === tab ? "active" : ""}`}
+            className={`library-tab-button${activeTab === tab ? " library-tab-button--active" : ""}`}
             onClick={() => setActiveTab(tab)}
+            type="button"
           >
             {tab}
           </button>
         ))}
       </div>
-
       {renderTabContent()}
     </div>
   );

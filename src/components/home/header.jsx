@@ -1,6 +1,7 @@
 import { useAuth } from "../../context/auth_context";
 import LogoutButton from "./log_out";
-import "../../styles/components/header.css";
+import "../../styles/components/header.css"
+import { FaSignOutAlt } from "react-icons/fa"; // Icon for logout
 
 function Header() {
   const { username, authLoading } = useAuth();
@@ -26,7 +27,9 @@ function Header() {
     <header className="header">
       <div className="header__user-section">
         {userSectionContent}
-        <LogoutButton className="header__logout-btn" />
+         <LogoutButton>
+          <FaSignOutAlt />
+        </LogoutButton>
       </div>
     </header>
   );

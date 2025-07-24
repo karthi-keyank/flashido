@@ -1,17 +1,20 @@
 import PropTypes from 'prop-types';
+import "../../styles/components/library_header.css"
+import { FiPlus } from "react-icons/fi";
 
 function LibraryHeader({ onAddClick }) {
   return (
-    <div className="library-header">
-      <h3>Library</h3>
+    <header className="library-header">
+      <h3 className="library-header-title">Library</h3>
       <button
-        onClick={onAddClick} // make sure this is a function
+        type="button"
+        onClick={onAddClick}
         className="library-header-add-btn"
-        aria-label="Add"
+        aria-label="Add item to library"
       >
-        +
+        <FiPlus size={20} aria-hidden="true" />
       </button>
-    </div>
+    </header>
   );
 }
 

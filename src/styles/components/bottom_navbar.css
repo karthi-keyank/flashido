@@ -1,15 +1,25 @@
+
+
+
+
+
+
+
+
 .navbar {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    background: #181818;
-    box-shadow: 0 -2px 8px rgba(0,0,0,0.5);
+    background: linear-gradient(90deg, #08062b 60%, #1a174d 100%);
+    box-shadow: 0 -2px 16px 0 #08062b99;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 10px 0;
+    padding: 12px 0 10px 0;
     z-index: 100;
+    border-top: 3px solid #4f8cff;
+    font-size: 1.08rem;
 }
 
 .navbar-home,
@@ -20,27 +30,43 @@
 
 .navbar a {
     display: inline-block;
-    color: #f1f1f1;
+    color: #f5f6fa;
     font-size: 1.1rem;
     text-decoration: none;
-    padding: 8px 0;
-    transition: color 0.2s, background 0.2s;
-    border-radius: 6px;
+    padding: 10px 22px;
+    border-radius: 18px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    background: none;
+    transition: color 0.12s, background 0.12s, transform 0.12s;
+    box-shadow: none;
+    position: relative;
 }
 
-.navbar a:active,
+.navbar a:hover,
 .navbar a:focus {
-    color: #90caf9;
-    background: #23272f;
+    /* No hover/focus effect */
+}
+
+.navbar a:active {
+    background: #23234a;
+    color: #7c5cff;
+    transform: scale(0.96);
+}
+/* Make nav icons larger and centered */
+.nav-icon {
+    font-size: 1.7em;
+    display: block;
+    margin: 0 auto;
 }
 
 @media (max-width: 600px) {
     .navbar {
         font-size: 1rem;
-        padding: 8px 0;
+        padding: 8px 0 6px 0;
     }
     .navbar a {
         font-size: 1rem;
-        padding: 10px 0;
+        padding: 10px 10px;
     }
 }

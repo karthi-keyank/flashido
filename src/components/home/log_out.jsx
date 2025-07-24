@@ -1,7 +1,8 @@
 import { useAuth } from "../../context/auth_context";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
-function LogoutButton() {
+function LogoutButton({ children }) {
   const { logout } = useAuth();
   const navigate = useNavigate();
 
@@ -20,10 +21,13 @@ function LogoutButton() {
   };
 
   return (
-    <button onClick={handleLogout}>
-      Logout
+    <button onClick={handleLogout} className="header__logout-btn">
+      {children ?? 'Logout'}
     </button>
   );
 }
+LogoutButton.propTypes = {
+  children: PropTypes.node
+};
 
 export default LogoutButton;
