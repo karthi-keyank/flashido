@@ -3,7 +3,13 @@ import PropTypes from "prop-types";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useAuth } from "../../context/auth_context";
-import { AddSetIntoFolder, deleteSetFromFolder } from "../../utils/add_delete_sets_from_folder";
+import {
+  AddSetIntoFolder,
+  deleteSetFromFolder,
+} from "../../utils/add_delete_sets_from_folder";
+import { FaPlus, FaMinus } from "react-icons/fa";
+import { ClipLoader } from "react-spinners";
+import "../../styles/components/toggle_btn.css";
 
 function ToggleButton({ setId, folderId }) {
   const { user, authLoading } = useAuth();
@@ -22,7 +28,10 @@ function ToggleButton({ setId, folderId }) {
 
         if (folderSnap.exists()) {
           const folderData = folderSnap.data();
-          setIsToggled(Array.isArray(folderData.Sets) && folderData.Sets.includes(setId));
+          setIsToggled(
+            Array.isArray(folderData.Sets) &&
+              folderData.Sets.includes(setId)
+          );
         }
       } catch (error) {
         console.error("Error reading folder for toggle:", error);
@@ -51,16 +60,27 @@ function ToggleButton({ setId, folderId }) {
       }
     } catch (error) {
       console.error("Toggle failed:", error);
-      setIsToggled(!nextToggleState); // Revert toggle on error
+      setIsToggled(!nextToggleState); // Revert on error
     }
   };
 
-  if (authLoading || !userId) return <span>Loading user...</span>;
-  if (loading) return <span>Loading toggle...</span>;
+  if (authLoading || !userId)
+    return <span className="toggle-btn__loading-text">Loading user...</span>;
+
+  if (loading)
+    return (
+      <span className="toggle-btn__loading">
+        <ClipLoader size={14} color="#a58fff" />
+      </span>
+    );
 
   return (
     <button onClick={handleToggle} className="toggle-btn">
-      {isToggled ? "-" : "+"}
+      {isToggled ? (
+        <FaMinus className="toggle-btn__icon toggle-btn__icon--remove" />
+      ) : (
+        <FaPlus className="toggle-btn__icon toggle-btn__icon--add" />
+      )}
     </button>
   );
 }

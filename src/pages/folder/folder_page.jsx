@@ -6,6 +6,8 @@ import { useAppData } from "../../context/app_data";
 import { useAuth } from "../../context/auth_context";
 import FolderPageHeader from "../../components/folder/folder_page_header";
 import FlashcardList from "../../utils/FlashcardList";
+import LoadingSpinner from "../../components/loading_spinner";
+import "../../styles/pages/folder_page.css";
 
 function FolderPage() {
   const { id: folderId } = useParams();
@@ -39,20 +41,22 @@ function FolderPage() {
     fetchFolder();
   }, [folderId, user?.uid]);
 
-  if (globalLoading || folderLoading) return <p>⏳ Loading folder...</p>;
-  if (!folder) return <p>❌ Folder not found.</p>;
+   if (globalLoading || folderLoading) return <LoadingSpinner />;
+   if (!folder) return <p className="folder-page__error">❌ Folder not found.</p>;
 
   const folderSetIds = folder.Sets || [];
   const filteredSets = sets.filter(set => folderSetIds.includes(set.id));
 
   return (
-    <div>
+    <div className="folder-page">
       <FolderPageHeader
         id={folder.id}
         title={folder.title || folder.name}
         description={folder.description || "No description"}
       />
-      <FlashcardList sets={filteredSets} />
+      <div className="flashcard__list">
+        <FlashcardList sets={filteredSets} />
+      </div>
     </div>
   );
 }

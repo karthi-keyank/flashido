@@ -59,7 +59,7 @@ function ThreeDotMenu({ onDelete, deleting }) {
                     background: "transparent",
                     border: "none",
                     cursor: "pointer",
-                    fontSize: "20px",
+                    fontSize: "25px",
                     padding: "4px 8px",
                     color: "#e0e0e0", // light color for dark theme
                 }}

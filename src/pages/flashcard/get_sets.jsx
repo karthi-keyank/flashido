@@ -4,19 +4,26 @@ import PropTypes from "prop-types";
 import { useAppData } from "../../context/app_data";
 import SearchInput from "../../components/library/SearchInput";
 import ToggleButton from "../../components/buttons/toggle_btn";
-
+import { FaLayerGroup, FaArrowLeft } from "react-icons/fa";
+import ClipLoader from "react-spinners/ClipLoader"; // Add this import
+import "../../styles/pages/get_sets.css";
 // ✅ Flashcard set list UI component
 function SetList({ sets, folderId }) {
   if (!sets.length) return <p>No flashcard sets found.</p>;
 
   return (
-    <div className="cards-grid">
+    <div className="list-sets__container">
       {sets.map((set) => (
-        <div
-          key={set.id}
-          className="card"
-        >
-          <h4>{set.title}</h4>
+        <div key={set.id} className="list-set__card">
+          <div className="list-set__icon">
+            <FaLayerGroup size={20} color="#a58fff" />
+          </div>
+          <div className="list-set__content">
+            <h4 className="list-set__title">{set.title}</h4>
+            <p className="list-set__desc">
+              Flashcard set • 0 terms • by unknown
+            </p>
+          </div>
           <ToggleButton setId={set.id} folderId={folderId} />
         </div>
       ))}
@@ -41,16 +48,25 @@ function ListSets() {
   );
 
   return (
-    <div className="search-bar">
-      <button onClick={() => navigate(-1)}>⬅ Back</button>
-
+    <div className="page__wrapper" >
+      <button className="back-button" onClick={() => navigate(-1)}>
+        <FaArrowLeft size={14} style={{ marginRight: "8px" }} />
+      </button>
       <SearchInput
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         onSubmit={(e) => e.preventDefault()}
       />
 
-      {loading ? <p>Loading...</p> : <SetList sets={filteredSets} folderId={folderId} />}
+      {loading ? (
+        <div className="list-sets__loading">
+          <ClipLoader size={24} color="#a58fff" />
+        </div>
+      ) : (
+        <div className="list_wrapper">
+        <SetList sets={filteredSets} folderId={folderId} />
+        </div>
+      )}
     </div>
   );
 }

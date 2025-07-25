@@ -1,57 +1,71 @@
 import PropTypes from "prop-types";
-import ThreeDotMenu from "./ThreeDotMenu";
-import PopupModal from "../buttons/PopupModal";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useAuth } from "../../context/auth_context";
-import { useState } from "react";
+import { FaArrowLeft, FaPlus, FaFolder } from "react-icons/fa";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import ThreeDotMenu from "./ThreeDotMenu";
+import PopupModal from "../buttons/PopupModal";
+import "../../styles/components/folder_page_header.css";
 
 function FolderPageHeader({ title, id }) {
   const navigate = useNavigate();
   const { user } = useAuth();
   const [deleting, setDeleting] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleDelete = async () => {
     if (!user?.uid) {
-      setShowSuccess(true); // show error popup instead of alert
       return;
     }
-
-    const confirmDelete = window.confirm(`Delete folder "${title}"?`);
-    if (!confirmDelete) return;
 
     setDeleting(true);
     try {
       const folderRef = doc(db, `users/${user.uid}/folders/${id}`);
+      navigate(-1)
       await deleteDoc(folderRef);
-      setShowSuccess(true);
     } catch (err) {
       console.error("❌ Failed to delete folder:", err);
-      setShowSuccess(true); // show error
     } finally {
       setDeleting(false);
     }
   };
 
   return (
-    <div className="folder-page-header">
-      <button onClick={() => navigate(-1)}>⬅</button>
-      <h2>📁 {title}</h2>
-
-      <div style={{ position: "relative" }}>
-        <button onClick={() => navigate(`/Library/folder/${id}/getsets`)}>
-          +
+    <div className="folder-header">
+      <div className="folder-header__left">
+        <button
+          className="folder-header__icon-button"
+          onClick={() => navigate(-1)}
+          aria-label="Go back"
+        >
+          <FaArrowLeft className="folder-header__icon" />
         </button>
+
+        <h2 className="folder-header__title">
+          <FaFolder className="folder-header__folder-icon" />
+          {title}
+        </h2>
+      </div>
+
+      <div className="folder-header__right">
+        <button
+          className="folder-header__icon-button"
+          onClick={() => navigate(`/Library/folder/${id}/getsets`)}
+          aria-label="Add sets"
+        >
+          <FaPlus className="folder-header__icon" />
+        </button>
+
         <ThreeDotMenu
           onDelete={() => setShowConfirm(true)}
           deleting={deleting}
+          icon={<BsThreeDotsVertical className="folder-header__icon" />}
         />
       </div>
 
-      {/* Confirmation Popup */}
       <PopupModal
         isOpen={showConfirm}
         title="Confirm Deletion"
@@ -61,20 +75,6 @@ function FolderPageHeader({ title, id }) {
           handleDelete();
         }}
         onCancel={() => setShowConfirm(false)}
-      />
-
-      {/* Success Popup */}
-      <PopupModal
-        isOpen={showSuccess}
-        title="Deleted"
-        message={`Folder "${title}" deleted successfully.`}
-        onConfirm={() => {
-          setShowSuccess(false);
-          navigate(-1);
-        }}
-        onCancel={() => setShowSuccess(false)}
-        confirmText="OK"
-        cancelText=""
       />
     </div>
   );
