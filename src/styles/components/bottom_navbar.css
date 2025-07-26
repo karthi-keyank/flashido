@@ -1,11 +1,4 @@
 
-
-
-
-
-
-
-
 .navbar {
     position: fixed;
     bottom: 0;
@@ -59,7 +52,7 @@
 }
 /* Make nav icons larger and centered */
 .nav-icon {
-    font-size: 1.7em;
+    font-size: 1.7rem;
     display: block;
     margin: 0 auto;
     min-width: 0;
@@ -78,7 +71,7 @@
         min-width: 0;
     }
     .nav-icon {
-        font-size: 1.3em;
+        font-size: 1.7rem;
         min-width: 0;
         max-width: 100%;
     }

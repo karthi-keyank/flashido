@@ -14,13 +14,14 @@ html, body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #08062b;
   color: #ffffff;
+  overflow-y: auto;           /* ✅ allow vertical scroll */
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
-  overflow-x: hidden;
   touch-action: pan-x pan-y;
-  overscroll-behavior: contain;
+  overscroll-behavior: none;  /* ✅ allow scrolling freely */
 }
+
 
 /* ===== Default button, input, a, textarea cleanup ===== */
 button,
@@ -91,12 +92,11 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
+  height: 100%;
   width: 100%;
 }
 
 .library-container {
   width: 100%;
-  max-width: 600px;
   margin: 0;
 }

@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import SearchBar from "../../components/library/search_bar";
 import FolderList from "../../utils/list_folders";
 import LibraryHeader from "../../components/library/Library_header";
-import "../../styles/pages/library_page.css"
+import CreateFolderModal from "../../components/folder/CreateFolderModal"; // Make sure path is correct
+import "../../styles/pages/library_page.css";
 
 const TABS = ["Flashcard sets", "Folders"];
 
@@ -13,6 +14,8 @@ function Library() {
     return localStorage.getItem("libraryActiveTab") || TABS[0];
   });
 
+  const [showFolderModal, setShowFolderModal] = useState(false); // Modal state
+
   useEffect(() => {
     localStorage.setItem("libraryActiveTab", activeTab);
   }, [activeTab]);
@@ -21,7 +24,7 @@ function Library() {
     if (activeTab === "Flashcard sets") {
       navigate("/Library/createSet");
     } else if (activeTab === "Folders") {
-      navigate("/Library/createfolder");
+      setShowFolderModal(true); // Open modal instead of navigating
     }
   };
 
@@ -47,6 +50,7 @@ function Library() {
   return (
     <div className="library">
       <LibraryHeader onAddClick={handleAddClick} />
+      
       <div className="library-tabs">
         {TABS.map((tab) => (
           <button
@@ -59,7 +63,14 @@ function Library() {
           </button>
         ))}
       </div>
+
       {renderTabContent()}
+
+      {/* Add the modal component here */}
+      <CreateFolderModal
+        isOpen={showFolderModal}
+        onClose={() => setShowFolderModal(false)}
+      />
     </div>
   );
 }

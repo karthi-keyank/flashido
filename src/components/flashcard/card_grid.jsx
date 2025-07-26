@@ -23,7 +23,7 @@ function CardGrid({ card }) {
         <div className="card-grid__info">
           <h3 className="card-grid__title">{card.name}</h3>
           <p className="card-grid__meta">
-            Flashcard set &bull; {card.termCount} terms &bull; by {card.author}
+            Flashcard set &bull; {card.termCount} terms
           </p>
         </div>
       </button>

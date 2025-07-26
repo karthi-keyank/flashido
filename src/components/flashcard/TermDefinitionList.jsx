@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import CardInput from "../library/CardInput";
+import "../../styles/components/TermDefinitionList.css";
 
-function TermDefinitionList({ cards, updateCard , deleteCard}) {
+function TermDefinitionList({ cards, updateCard, deleteCard }) {
   return (
-    <div>
+    <div className="term-definition-list">
       {cards.map((card, index) => (
         <CardInput
-          key={card.id} // ✅ Use stable unique key
+          key={card.id}
           index={index}
           term={card.term}
           definition={card.definition}
@@ -18,6 +19,7 @@ function TermDefinitionList({ cards, updateCard , deleteCard}) {
     </div>
   );
 }
+
 TermDefinitionList.propTypes = {
   cards: PropTypes.arrayOf(
     PropTypes.shape({

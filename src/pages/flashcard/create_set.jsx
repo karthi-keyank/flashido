@@ -8,6 +8,7 @@ import TopBar from "../../components/flashcard/TopBar";
 import TitleInput from "../../components/flashcard/TitleInput";
 import TermDefinitionList from "../../components/flashcard/TermDefinitionList";
 import AddCardButton from "../../components/buttons/AddCardButton";
+import "../../styles/pages/create_set.css";
 
 function CreateSetPage() {
   const { setId } = useParams();
@@ -44,7 +45,11 @@ function CreateSetPage() {
             definition: card.A || "",
           }));
 
-          setCards(cardsArray.length ? cardsArray : [{ id: uuidv4(), term: "", definition: "" }]);
+          setCards(
+            cardsArray.length
+              ? cardsArray
+              : [{ id: uuidv4(), term: "", definition: "" }]
+          );
         } else {
           console.warn("Set not found.");
         }
@@ -73,51 +78,75 @@ function CreateSetPage() {
   };
 
   const handleSave = async () => {
-  if (!userId) {
-    alert("User not identified. Please re-login.");
-    return;
-  }
+    if (!userId) {
+      alert("User not identified. Please re-login.");
+      return;
+    }
 
-  if (!title.trim()) {
-    alert("Title is required");
-    return;
-  }
+    if (!title.trim()) {
+      alert("Title is required");
+      return;
+    }
 
-  const newSetId = setId || title.trim().replace(/\s+/g, "_").toLowerCase();
+    const newSetId = setId || title.trim().replace(/\s+/g, "_").toLowerCase();
+    const docRef = doc(db, `users/${userId}/flashcardSets/${newSetId}`);
 
-  const docRef = doc(db, `users/${userId}/flashcardSets/${newSetId}`);
-
-  const cardMap = {};
-  cards.forEach((card, index) => {
-    cardMap[`card${index + 1}`] = {
-      Q: card.term,
-      A: card.definition,
-    };
-  });
-
-  try {
-    await setDoc(docRef, {
-      title,
-      description,
-      Cards: cardMap,
+    const cardMap = {};
+    cards.forEach((card, index) => {
+      cardMap[`card${index + 1}`] = {
+        Q: card.term,
+        A: card.definition,
+      };
     });
-    alert("✅ Set saved successfully");
-    navigate("/Library");
-  } catch (error) {
-    console.error("Error saving set:", error);
-    alert("❌ Failed to save set");
-  }
-};
 
+    try {
+      await setDoc(docRef, {
+        title,
+        description,
+        termCount: cards.length, // ✅ Save total number of terms
+        Cards: cardMap,
+      });
+      alert("✅ Set saved successfully");
+      navigate("/Library");
+    } catch (error) {
+      console.error("Error saving set:", error);
+      alert("❌ Failed to save set");
+    }
+  };
 
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div>
-      <TopBar onSave={handleSave} />
-      <TitleInput title={title} setTitle={setTitle} description={description} setDescription={setDescription} />
-      <TermDefinitionList cards={cards} updateCard={updateCard} deleteCard={deleteCard} />
-      <AddCardButton onClick={addNewCard} />
+    <div className="create-set-page">
+      <TopBar className="create-set-topbar" onSave={handleSave} />
+
+      <div className="create-set-page__content">
+        <div className="create-set-title-section">
+          <TitleInput
+            title={title}
+            setTitle={setTitle}
+            description={description}
+            setDescription={setDescription}
+            className="create-set-title-input"
+          />
+        </div>
+
+        <div className="create-set-terms">
+          <TermDefinitionList
+            cards={cards}
+            updateCard={updateCard}
+            deleteCard={deleteCard}
+            className="create-set-term-list"
+          />
+        </div>
+
+        <div className="create-set-add-button-wrapper">
+          <AddCardButton
+            onClick={addNewCard}
+            className="create-set-add-button"
+          />
+        </div>
+      </div>
     </div>
   );
 }

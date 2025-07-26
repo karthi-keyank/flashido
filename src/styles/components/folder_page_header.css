@@ -3,11 +3,10 @@
   justify-content: space-between;
   align-items: center;
   background-color: #0b0b3b;
-  margin-top: 20px;
-  padding: 20px 16px; /* Small inner spacing */
+  padding: 21px 16px 19px; /* Small inner spacing */
   border-bottom: 2px solid #3644cc;
+  margin-top: 15px;
   width: 100%;
-  max-width: 100vw;
   box-sizing: border-box;
 }
 
@@ -29,7 +28,7 @@
 }
 
 .folder-header__folder-icon {
-  color: #a58fff; /* light purple */
+  color: #56cefd; /* light purple */
 }
 
 .folder-header__right {
@@ -55,6 +54,6 @@
 }
 
 .folder-header__icon {
-  color: #a58fff; /* same light purple */
+  color: #ffffff; /* same light purple */
   font-size: 1.2rem;
 }

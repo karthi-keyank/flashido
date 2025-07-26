@@ -8,16 +8,21 @@
   display: flex;
   align-items: center;
   width: 100%;
-  background: transparent;      /* 🔴 No background */
   border: none;
+  background-color: transparent;
   padding: 0;
   text-align: left;
   cursor: pointer;
   color: #ffffff;
+  transition: background 0.2s ease;
+}
+
+.card-grid__button:active{
+   background: #23234a;
 }
 
 .card-grid__icon-wrapper {
-  background-color: #2e2b5c;
+  background-color: #2f3857;
   border-radius: 12px;
   padding: 0.6rem;
   display: flex;
@@ -30,7 +35,7 @@
 
 .card-grid__icon {
   font-size: 1.5rem;
-  color: #4ea5ff;
+  color: #56cefd;
 }
 
 .card-grid__info {

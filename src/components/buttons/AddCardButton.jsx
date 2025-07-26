@@ -1,9 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { FaPlus } from "react-icons/fa";
+import "../../styles/components/AddCardButton.css"
 
 function AddCardButton({ onClick }) {
   return (
-    <button onClick={onClick}>＋</button>
+    <button className="add-card-button" onClick={onClick}>
+      <FaPlus />
+    </button>
   );
 }
 
