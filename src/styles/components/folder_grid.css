@@ -1,0 +1,55 @@
+.folder-grid {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.folder-grid:hover {
+  background-color: transparent; /* no hover effect background */
+}
+
+.folder-grid__icon {
+  width: 50px;
+  height: 50px;
+  background-color: #2f3857; /* blue-toned rounded square behind icon */
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+}
+
+.folder-grid__icon svg {
+  color: #56cefd;
+  font-size: 24px;
+}
+
+.folder-grid__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.folder-grid__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.folder-grid__meta {
+  font-size: 14px;
+  color: #c7c7d7;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Remove any outer card styles if exists */
+.folder-grid-container {
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}

@@ -1,0 +1,117 @@
+/* Home Page Styles */
+
+.home-page {
+  min-height: 100vh;
+  min-width: 0;
+  background: #08062b;
+  width: 100vw;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  color: #f5f6fa;
+  padding-top: 60px; /* Adjust this value to match your header height */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+
+.home-hero {
+  background: transparent;
+  padding: 3rem 0;
+  text-align: center;
+  width: 100%;
+  min-height: 220px;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.92) translateY(40px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.home-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 0;
+  letter-spacing: 1px;
+  width: 100%;
+  text-align: center;
+  background: linear-gradient(90deg, #f5f6fa 60%, #7c5cff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: fadeInTitle 1.1s cubic-bezier(.68,-0.55,.27,1.55), gradientMove 2.5s ease-in-out infinite alternate;
+  position: relative;
+}
+
+.home-title::after {
+  content: "";
+  display: block;
+  margin: 18px auto 0 auto;
+  width: 80px;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #7c5cff 0%, #4f8cff 100%);
+  opacity: 0.85;
+  animation: underlineGrow 1.2s cubic-bezier(.68,-0.55,.27,1.55) 0.7s both;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes underlineGrow {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  100% {
+    width: 80px;
+    opacity: 0.85;
+  }
+}
+
+@keyframes fadeInTitle {
+  0% { opacity: 0; transform: translateY(30px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.home-subtitle {
+  font-size: 1.2rem;
+  color: #b2b6e0;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+
+
+
+
+@media (max-width: 600px) {
+  .home-page {
+    min-width: 0;
+    width: 100vw;
+    box-sizing: border-box;
+  }
+  .home-hero {
+    padding: 2rem 0.5rem;
+    min-height: 120px;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+  .home-title {
+    font-size: 1.5rem;
+    width: 100%;
+  }
+}

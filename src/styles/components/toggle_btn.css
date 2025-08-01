@@ -1,0 +1,40 @@
+.toggle-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.toggle-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.toggle-btn__icon {
+  font-size: 1rem;
+}
+
+.toggle-btn__icon--add {
+  color: #7be97b; /* green */
+}
+
+.toggle-btn__icon--remove {
+  color: #ff8080; /* red */
+}
+
+.toggle-btn__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  width: 32px;
+}
+
+.toggle-btn__loading-text {
+  font-size: 0.9rem;
+  color: #ccc;
+}

@@ -1,0 +1,128 @@
+/* Header Styles */
+
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  min-width: 0;
+  height: 60px;
+  background: #18182f;
+  background-color: #121212;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+  box-shadow: 0 2px 12px 0 #08062b33, 0 2px 4px rgba(0, 0, 0, 0.6);
+  padding: 10px 16px;
+  box-sizing: border-box;
+  border-bottom: 2px solid #4f8cff;
+}
+
+.header__user-section {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.header__username {
+  font-weight: 600;
+  font-size: 1.08rem;
+  color: #b2b6e0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.header__icon {
+  font-size: 1.2em;
+  color: #7c5cff;
+}
+
+.header__logout-btn {
+  background: linear-gradient(90deg, #4f8cff 60%, #7c5cff 100%);
+  background-color: #1f1f1f;
+  color: #fff;
+  border: 1px solid #333;
+  border-radius: 1.2rem;
+  padding: 0.5rem 1.2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.15s, background-color 0.2s ease;
+  box-shadow: 0 2px 8px 0 #4f8cff22;
+}
+
+.header__logout-btn:active {
+  background: #23234a;
+  color: #7c5cff;
+}
+
+.header__loading,
+.header__no-username {
+  color: #b2b6e0;
+  font-size: 1.08rem;
+}
+
+@media (max-width: 600px) {
+  .header {
+    height: 48px;
+    padding: 0 0.7rem;
+  }
+  .header__username, .header__loading, .header__no-username {
+    font-size: 0.98rem;
+  }
+  .header__logout-btn {
+    font-size: 0.95rem;
+/* === Dark Theme Header === */
+/* merged into the main .header selector above */
+  top: 0;
+  z-index: 1000;
+}
+
+/* === User Section (Username + Logout) === */
+.header__user-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex: 1;
+  width: 100%;
+  flex-wrap: nowrap;
+}
+
+/* === Username and Icons === */
+/* Removed duplicate selector block inside media query */
+
+.header__icon {
+  margin-right: 6px;
+}
+
+/* Removed duplicate .header__logout-btn block */
+}
+
+.header__logout-btn:hover {
+  background-color: #333;
+}
+
+/* === Responsive Design === */
+@media (max-width: 480px) {
+  .header {
+    padding: 12px;
+  }
+
+  .header__user-section {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    flex-wrap: wrap; /* Wrap only if very narrow */
+  }
+
+  .header__logout-btn {
+    width: auto;
+    text-align: center;
+  }
+}

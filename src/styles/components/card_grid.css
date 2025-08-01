@@ -1,0 +1,62 @@
+/* styles/components/card_grid.css */
+
+.card-grid {
+  margin-bottom: 0rem; /* Reduced vertical gap between cards */
+}
+
+.card-grid__button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 8px 0px;
+  border: none;
+  background-color: transparent;
+  text-align: left;
+  cursor: pointer;
+  color: #ffffff;
+  transition: background 0.2s ease;
+}
+
+
+.card-grid__button:active{
+   background: #23234a;
+}
+
+.card-grid__icon-wrapper {
+  width: 50px;
+  height: 50px;
+  background-color: #2f3857;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+}
+
+
+
+.card-grid__icon {
+  font-size: 24px; /* increased from 1.5rem for better visibility */
+  color: #56cefd;
+}
+
+
+
+.card-grid__info {
+  flex: 1;
+}
+
+.card-grid__title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.2;
+  color: #ffffff;
+}
+
+.card-grid__meta {
+  font-size: 0.85rem;
+  color: #cccccc;
+  margin: 4px 0 0 0;
+}
+

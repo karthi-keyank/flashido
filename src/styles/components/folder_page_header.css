@@ -1,0 +1,58 @@
+.folder-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0b0b3b;
+  padding: 5px 10px 5px; /* Small inner spacing */
+  border-bottom: 2px solid #3644cc;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+
+.folder-header__left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.folder-header__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.folder-header__folder-icon {
+  color: #56cefd; /* light purple */
+}
+
+.folder-header__right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.folder-header__icon-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.folder-header__icon-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.folder-header__icon {
+  color: #ffffff; /* same light purple */
+  font-size: 1.2rem;
+}

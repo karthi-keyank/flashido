@@ -1,0 +1,20 @@
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px 10px;
+  background-color: #10102c;
+  color: white;
+  font-size: 20px;
+  width: 100%;
+  border-bottom: 1px solid #2c2c54;
+}
+
+.topbar-back-btn,
+.topbar-save-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+}

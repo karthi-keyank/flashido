@@ -1,0 +1,91 @@
+/* Wrapper stays the same */
+.page__wrapper {
+  width: 95%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 16px 0;
+}
+
+/* Flashcard list container */
+.list-sets__container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+/* Each flashcard set item */
+.list-set__card {
+  display: flex;
+  align-items: flex-start; /* ensures top alignment of icon and text */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 8px 0;
+}
+
+/* Icon container */
+.list-set__icon {
+  width: 44px;
+  height: 44px;
+  background-color: #2f3857;
+  border-radius: 10px;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Icon itself */
+.FiLayer-icon {
+  font-size: 24px;
+  color: #4daed9;
+}
+
+/* Content beside icon */
+.list-set__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 1px; /* slight push to center text visually */
+}
+
+/* Title of the flashcard set */
+.list-set__title {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0px 0 0 0;
+}
+
+/* Description below title */
+.list-set__desc {
+  color: #bbbbbb;
+  font-size: 0.85rem;
+  margin: 2px 0 0 0;
+}
+
+/* Align toggle button to right */
+.list-set__card > button {
+  margin-left: auto;
+}
+
+/* Back button */
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 1px solid #3644cc;
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease, border 0.2s ease;
+  margin-bottom: 12px;
+}
+
+.back-button:hover {
+  background-color: #1c1c5a;
+  border-color: #4a54e1;
+}

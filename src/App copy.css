@@ -1,0 +1,51 @@
+html, body {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -ms-user-select: none;  
+  -moz-user-select: none; 
+  -webkit-user-select: none;
+   user-select: none;
+   background-color: #08062b;
+}
+
+button,
+input,
+textarea,
+select {
+  outline: none;
+  border: none;
+  box-shadow: none;
+  background: none;
+  font-family: inherit;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+/* Optional: Give buttons some base styling */
+button {
+  padding: 10px 16px;
+  border-radius: 6px;
+  color: #ffffff;
+}
+
+/* Remove blue outline on focus (including keyboard) */
+button:focus,
+button:active,
+input:focus,
+textarea:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.app-container{
+   width: 100%;
+  min-height: 100vh;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  background-color: #08062b; /* Customize as needed */
+  color: #f5f6fa;
+}

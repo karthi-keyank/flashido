@@ -1,0 +1,23 @@
+.title-input-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px 0px;
+}
+
+.title-input,
+.description-input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #5555ff;
+  padding: 8px;
+  font-size: 16px;
+  color: white;
+  outline: none;
+}
+
+.title-input::placeholder,
+.description-input::placeholder {
+  color: #999;
+}

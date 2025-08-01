@@ -1,0 +1,96 @@
+/* Library Page Styles */
+
+.library {
+  min-height: 100vh;
+  min-width: 0;
+  background: #08062b;
+  color: #f5f6fa;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  padding: 20px 0 60px 0; /* top padding for header */
+  box-sizing: border-box;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.library-tabs {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  padding: 0.2rem 1.2rem;
+  overflow-x: auto;
+}
+
+.library-tab-button {
+  background: #2e3756;
+  color: #ffffff;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.7rem 2.2rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  outline: none;
+  letter-spacing: 0.5px;
+}
+
+.library-tab-button--active {
+  background-color: #08062b;
+  color: #ffffff;
+  border: 2px solid #ffffff; /* ✅ White border */
+  font-weight: 700;
+}
+
+.library-tab-button:active {
+  color: #ffffff;
+
+}
+
+.library-tab-content {
+  background: rgba(20, 18, 60, 0.92);
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 24px 0 #08062b44;
+  padding: 2rem 1.5rem 2.5rem 1.5rem;
+  margin: 0;
+  min-height: 220px;
+  min-width: 0;
+  width: 100%;
+  animation: fadeInTab 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+  box-sizing: border-box;
+}
+
+@keyframes fadeInTab {
+  0% { opacity: 0; transform: translateY(30px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.library-tab-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 600px) {
+  .library {
+    min-width: 0;
+    width: 100vw;
+    box-sizing: border-box;
+  }
+  .library-tab-content {
+    padding: 1.2rem 0.5rem 1.5rem 0.5rem;
+    width: 100vw;
+    min-width: 0;
+    border-radius: 0;
+    box-sizing: border-box;
+  }
+  .library-tabs {
+    gap: 0.5rem;
+    margin: 1.2rem 0 1rem 0;
+  }
+  .library-tab-button {
+    font-size: 1rem;
+    padding: 0.5rem 1.1rem;
+  }
+}
