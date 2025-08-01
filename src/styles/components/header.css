@@ -1,24 +1,18 @@
-/* Header Styles */
-
 .header {
   position: sticky;
-  top: 0;
-  left: 0;
   width: 100vw;
-  min-width: 0;
   height: 60px;
-  background: #18182f;
   background-color: #121212;
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: space-between;
   z-index: 1000;
-  box-shadow: 0 2px 12px 0 #08062b33, 0 2px 4px rgba(0, 0, 0, 0.6);
   padding: 10px 16px;
   box-sizing: border-box;
-  border-bottom: 2px solid #4f8cff;
+  border-bottom: 1px solid #4f8cff;
 }
+
 
 .header__user-section {
   display: flex;
@@ -41,23 +35,23 @@
 }
 
 .header__logout-btn {
-  background: linear-gradient(90deg, #4f8cff 60%, #7c5cff 100%);
-  background-color: #1f1f1f;
-  color: #fff;
-  border: 1px solid #333;
+  background: none;
+  background-color: transparent;
+  color: #ffffff;
   border-radius: 1.2rem;
   padding: 0.5rem 1.2rem;
-  font-weight: 600;
-  font-size: 1rem;
+  font-weight: 500;
+  font-size: 3rem;
   cursor: pointer;
-  transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.15s, background-color 0.2s ease;
-  box-shadow: 0 2px 8px 0 #4f8cff22;
+  transition: color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .header__logout-btn:active {
-  background: #23234a;
+  background-color: rgba(79, 140, 255, 0.15);
   color: #7c5cff;
+  border-color: #7c5cff;
 }
+
 
 .header__loading,
 .header__no-username {

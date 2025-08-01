@@ -1,95 +1,56 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import { deleteSetFromDatabase } from '../../utils/deleteSetFromDatabase';
-import { useAuth } from '../../context/auth_context';
-import CardList from '../../utils/list_cards';
-import { pushSetToPublic } from '../../utils/pushToPublic';
-import {
-  FiArrowLeft,
-  FiUpload,
-  FiTrash2,
-  FiEdit3,
-  FiBookOpen,
-  FiCpu,
-  FiFileText,
-} from "react-icons/fi";
+import { useNavigate, useParams } from "react-router-dom";
+import { useAuth } from "../../context/auth_context";
+import CardList from "../../utils/list_cards";
+import FlashcardPageHeader from "../../components/flashcard/flashcard_page_header";
+import "../../styles/pages/flashcard_page.css";
+import { useAppData } from "../../context/app_data";
+import { FiBookOpen, FiCpu, FiFileText } from "react-icons/fi";
 
 function FlashCardPage() {
   const { id: setId } = useParams();
-  const { user } = useAuth();
+  const { user, username } = useAuth();
+  const { sets } = useAppData();
+  const currentSet = sets.find((set) => set.id === setId);
+  const termCount = currentSet?.termCount;
   const navigate = useNavigate();
 
-  const handleDelete = async () => {
-    if (!user?.uid) {
-      alert("User not authenticated. Please log in.");
-      return;
-    }
-
-    const confirm = window.confirm(`Are you sure you want to delete "${setId}"?`);
-    if (!confirm) return;
-
-    try {
-      await deleteSetFromDatabase(user.uid, setId);
-      alert("✅ Set deleted successfully");
-      navigate(-1);
-    } catch (error) {
-      console.error("❌ Failed to delete set:", error);
-      alert("❌ Could not delete the set. Please try again.");
-    }
-  };
-
-  const handlePushToPublic = async () => {
-    if (!user || !setId) {
-      alert("User not authenticated or set ID missing.");
-      return;
-    }
-
-    const confirm = window.confirm(`Are you sure you want to publish "${setId}" to public?`);
-    if (!confirm) return;
-
-    const success = await pushSetToPublic(user.uid, setId);
-    if (success) {
-      alert("✅ Set pushed to public successfully!");
-    } else {
-      alert("❌ Failed to push set to public.");
-    }
-  };
-
   return (
-    <div className="flashcard-page">
-      <div className="set-options">
-        <button className="btn-back" onClick={() => navigate(-1)} title="Back">
-          <FiArrowLeft />
-        </button>
-        <button className="btn-push" onClick={handlePushToPublic} title="Push to Public">
-          <FiUpload />
-        </button>
-        <button className="btn-delete" onClick={handleDelete} title="Delete">
-          <FiTrash2 />
-        </button>
-        <button
-          className="btn-edit"
-          onClick={() => navigate(`/flashcard/edit-set/${setId}`)}
-          title="Edit"
-        >
-          <FiEdit3 />
-        </button>
-      </div>
-
-      <h3 className="set-title">{setId}</h3>
-
-      <div className="study-mode-tabs">
-        <button className="tab-button">
-          <FiBookOpen className="tab-icon" /> Flashcard
-        </button>
-        <button className="tab-button">
-          <FiCpu className="tab-icon" /> Learn
-        </button>
-        <button className="tab-button">
-          <FiFileText className="tab-icon" /> Test
-        </button>
-      </div>
-
+    <div className="flashcard-page-container">
+      <FlashcardPageHeader navigate={navigate} user={user} setId={setId} />
       <CardList setId={setId} />
+      <div className="contents">
+        <div className="flashcard-set-info">
+          <h3 className="set-title-heading">{setId}</h3>
+          <div className="set-meta">
+            <span className="username-text">{username}</span>
+            <span className="divider">|</span>
+            <span className="term-count">{termCount} terms</span>
+          </div>
+        </div>
+
+        <div className="study-mode-button-group">
+          <button className="study-mode-button">
+            <span className="study-mode-icon">
+              <FiBookOpen />
+            </span>
+            <span className="study-mode-label">Flashcards</span>
+          </button>
+
+          <button className="study-mode-button">
+            <span className="study-mode-icon">
+              <FiCpu />
+            </span>
+            <span className="study-mode-label">Learn</span>
+          </button>
+
+          <button className="study-mode-button">
+            <span className="study-mode-icon">
+              <FiFileText />
+            </span>
+            <span className="study-mode-label">Test</span>
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

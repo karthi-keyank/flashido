@@ -1,0 +1,80 @@
+.flashcard-page-container {
+  background-color: #0a082b; /* Matches the dark background in your image */
+  min-height: 100vh;
+}
+
+.contents{
+    padding: 1rem;
+}
+.flashcard-set-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0.5rem 0 0.5rem 0;
+}
+
+.study-mode-button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.study-mode-button {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: #202140;
+  padding: 1rem 1.2rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.study-mode-button:hover {
+  background-color: #2c2c5a;
+  transform: translateY(-2px);
+}
+
+.study-mode-icon {
+  font-size: 1.4rem;
+}
+
+.flashcard-set-info {
+  background-color: #0a0a2c;
+  color: white;
+}
+
+.set-title-heading {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+
+.set-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.username-text {
+  color: #ffffff;
+}
+
+.divider {
+  color: #444466;
+  padding: 0 0.5rem;
+}
+
+.term-count {
+  color: #ffffff;
+  font-weight: 600;
+}

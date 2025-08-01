@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { fetchCards } from "./fetch_cards";
 import { useAuth } from "../context/auth_context";
 import Card from "../components/flashcard/Card";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function CardList({ setId }) {
   const { user } = useAuth();
@@ -30,7 +31,16 @@ function CardList({ setId }) {
   };
 
   const renderCards = () => {
-    if (loading) return <p>Loading...</p>;
+    if (loading) {
+      return (
+        <div
+          style={{ display: "flex", justifyContent: "center", padding: "2rem" }}
+        >
+          <ClipLoader color="#4f8cff" size={50} />
+        </div> 
+      );
+    }
+
     if (cards.length === 0) return <p>No cards found.</p>;
 
     return (
