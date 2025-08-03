@@ -46,6 +46,7 @@ function App() {
         
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/Library" element={<Library />} />
           <Route path="/flashcard/:id" element={<FlashCardPage />} />
           <Route path="/Library/folder/:id" element={<FolderPage />} />
