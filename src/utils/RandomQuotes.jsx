@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { db } from "../firebase"; // adjust the path if needed
+import React, { useEffect, useState, useRef } from "react";
+import { db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
-import ClipLoader from "react-spinners/ClipLoader"; // Spinner import
+import ClipLoader from "react-spinners/ClipLoader";
 
 function RandomQuote() {
   const [quote, setQuote] = useState("");
-  const [loading, setLoading] = useState(true); // loading state
+  const [loading, setLoading] = useState(true);
+  const lastIndexRef = useRef(null); // store last index to avoid repeat
 
   useEffect(() => {
     const fetchQuotes = async () => {
@@ -15,8 +16,16 @@ function RandomQuote() {
         if (docSnap.exists()) {
           const data = docSnap.data();
           const quotes = data.quotes;
+
           if (Array.isArray(quotes) && quotes.length > 0) {
-            const randomIndex = Math.floor(Math.random() * quotes.length);
+            let randomIndex;
+
+            // Ensure the same quote is not picked consecutively
+            do {
+              randomIndex = Math.floor(Math.random() * quotes.length);
+            } while (randomIndex === lastIndexRef.current && quotes.length > 1);
+
+            lastIndexRef.current = randomIndex;
             setQuote(quotes[randomIndex]);
           } else {
             setQuote("No quotes available.");
@@ -28,7 +37,7 @@ function RandomQuote() {
         console.error("Error fetching quote:", error);
         setQuote("Error loading quote.");
       } finally {
-        setLoading(false); // loading complete
+        setLoading(false);
       }
     };
 
