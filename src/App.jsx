@@ -10,13 +10,14 @@ import ListSet from "./pages/flashcard/get_sets";
 import CreateSetPage from "./pages/flashcard/create_set";
 import LoginPage from "./pages/user/login_page";
 import UsernamePage from "./pages/user/username_page";
+import LoadingSpinner from "./components/loading_spinner";
 import "./App.css";
 
 function App() {
   const location = useLocation();
   const { user, username, authLoading } = useAuth();
 
-  if (authLoading) return <p>Loading...</p>;
+  if (authLoading) return <LoadingSpinner/>;
 
   if (!user) {
     return (
