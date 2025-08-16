@@ -1,0 +1,12 @@
+.card-container {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 10px 0;
+
+  /* FIXES */
+  min-height: 220px;   /* ensures area doesn’t collapse */
+  flex-shrink: 0;      /* prevents shrinking */
+
+}

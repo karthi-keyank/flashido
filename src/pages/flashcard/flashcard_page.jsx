@@ -11,45 +11,45 @@ function FlashCardPage() {
   const { user, username } = useAuth();
   const { sets } = useAppData();
   const currentSet = sets.find((set) => set.id === setId);
-  const termCount = currentSet?.termCount;
+  const termCount = currentSet?.termCount ?? 0;
   const navigate = useNavigate();
 
   return (
-    <div className="flashcard-page-container">
+    <div className="flashcard-page">
+      {/* Header */}
       <FlashcardPageHeader navigate={navigate} user={user} setId={setId} />
-      <CardList setId={setId} />
-      <div className="contents">
-        <div className="flashcard-set-info">
-          <h3 className="set-title-heading">{setId}</h3>
+
+      {/* Flashcard List */}
+      <div className="flashcard-page__content">
+        <CardList setId={setId} />
+
+        {/* Set info */}
+        <section className="set-info">
+          <h2 className="set-title">{setId}</h2>
           <div className="set-meta">
-            <span className="username-text">{username}</span>
+            <span className="username">{username}</span>
             <span className="divider">|</span>
             <span className="term-count">{termCount} terms</span>
           </div>
-        </div>
+        </section>
 
-        <div className="study-mode-button-group">
-          <button className="study-mode-button">
-            <span className="study-mode-icon">
-              <FiBookOpen />
-            </span>
-            <span className="study-mode-label">Flashcards</span>
+        {/* Study mode buttons */}
+        <section className="study-modes">
+          <button className="study-mode">
+            <FiBookOpen className="icon" />
+            <span>Flashcards</span>
           </button>
 
-          <button className="study-mode-button">
-            <span className="study-mode-icon">
-              <FiCpu />
-            </span>
-            <span className="study-mode-label">Learn</span>
+          <button className="study-mode">
+            <FiCpu className="icon" />
+            <span>Learn</span>
           </button>
 
-          <button className="study-mode-button">
-            <span className="study-mode-icon">
-              <FiFileText />
-            </span>
-            <span className="study-mode-label">Test</span>
+          <button className="study-mode">
+            <FiFileText className="icon" />
+            <span>Test</span>
           </button>
-        </div>
+        </section>
       </div>
     </div>
   );

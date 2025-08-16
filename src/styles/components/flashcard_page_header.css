@@ -1,37 +1,45 @@
-.set-options {
+.flashcard-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  background-color: #0a0a2c;
+  border-bottom: 1px solid #1d1d40;
+  box-sizing: border-box;
+}
+
+.header-btn {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.3rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 1rem 1rem;
-  background-color: #0b0b3b;
-  border-bottom: 1px solid #3644cc;
-  top: 0;
-  z-index: 10;
-}
-
-.btn-back {
-  color: #ffffff;
-  font-size: 1.3rem;
-  background: transparent;
-  border: none;
+  justify-content: center;
+  padding: 0.6rem;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background 0.2s ease;
 }
 
-.action-buttons {
+.header-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.header-actions {
   display: flex;
-  gap: 1rem;
+  gap: 0.6rem;
 }
 
-.action-buttons button {
-  background: transparent;
-  border: none;
+.delete-btn {
+  color: #ff4d4d;
+}
+
+.edit-btn {
+  color: #4da6ff;
+}
+
+.back-btn {
   color: #ffffff;
-  font-size: 1.3rem;
-  cursor: pointer;
-  transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.action-buttons button:hover {
-  color: #00bfff;
-  transform: scale(1.2);
 }

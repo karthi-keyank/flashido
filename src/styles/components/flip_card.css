@@ -12,15 +12,16 @@
 }
 
 .flip-card {
-  flex: 0 0 95%; /* 95% of the scroll area */
-  height: 200px;
+  flex: 0 0 95%;
+  height: 220px;        /* match min-height above */
+  max-height: 220px;    /* don’t let it grow */
   perspective: 1000px;
   cursor: pointer;
   scroll-snap-align: center;
   background: transparent;
   border: none;
-  -webkit-tap-highlight-color: transparent;
 }
+
 
 
 /* Avoid outline flicker on tap/click */
@@ -28,6 +29,8 @@
   outline: none;
   box-shadow: none;
 }
+
+
 
 
 /* Flip Animation Layer */

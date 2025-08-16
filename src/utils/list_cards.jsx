@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { fetchCards } from "./fetch_cards";
 import { useAuth } from "../context/auth_context";
 import Card from "../components/flashcard/Card";
+import "../styles/components/list_cards.css";
 import ClipLoader from "react-spinners/ClipLoader";
 
 function CardList({ setId }) {

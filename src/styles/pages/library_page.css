@@ -8,7 +8,6 @@
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
   padding: 20px 0 60px 0; /* top padding for header */
   box-sizing: border-box;
-  width: 100vw;
   display: flex;
   flex-direction: column;
 }

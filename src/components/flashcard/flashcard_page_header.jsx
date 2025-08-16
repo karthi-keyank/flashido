@@ -12,10 +12,7 @@ function FlashcardPageHeader({ navigate, user, setId }) {
       return;
     }
 
-    const confirm = window.confirm(
-      `Are you sure you want to delete "${setId}"?`
-    );
-    if (!confirm) return;
+    if (!window.confirm(`Are you sure you want to delete "${setId}"?`)) return;
 
     try {
       await deleteSetFromDatabase(user.uid, setId);
@@ -28,15 +25,12 @@ function FlashcardPageHeader({ navigate, user, setId }) {
   };
 
   const handlePushToPublic = async () => {
-    if (!user || !setId) {
+    if (!user?.uid || !setId) {
       alert("User not authenticated or set ID missing.");
       return;
     }
 
-    const confirm = window.confirm(
-      `Are you sure you want to publish "${setId}" to public?`
-    );
-    if (!confirm) return;
+    if (!window.confirm(`Publish "${setId}" to public?`)) return;
 
     const success = await pushSetToPublic(user.uid, setId);
     if (success) {
@@ -47,35 +41,44 @@ function FlashcardPageHeader({ navigate, user, setId }) {
   };
 
   return (
-    <div className="set-options">
-      <button className="btn-back" onClick={() => navigate(-1)} title="Back">
+    <header className="flashcard-header">
+      {/* Back button (left side) */}
+      <button
+        className="header-btn back-btn"
+        onClick={() => navigate(-1)}
+        title="Back"
+      >
         <FiArrowLeft />
       </button>
 
-      <div className="action-buttons">
+      {/* Action buttons (right side) */}
+      <div className="header-actions">
         <button
-          className="btn-push"
+          className="header-btn"
           onClick={handlePushToPublic}
           title="Push to Public"
         >
           <FiUpload />
         </button>
-        <button className="btn-delete" onClick={handleDelete} title="Delete">
+        <button
+          className="header-btn delete-btn"
+          onClick={handleDelete}
+          title="Delete"
+        >
           <FiTrash2 />
         </button>
         <button
-          className="btn-edit"
+          className="header-btn edit-btn"
           onClick={() => navigate(`/flashcard/edit-set/${setId}`)}
           title="Edit"
         >
           <FiEdit3 />
         </button>
       </div>
-    </div>
+    </header>
   );
 }
 
-// ✅ Prop types validation for SonarQube & best practice
 FlashcardPageHeader.propTypes = {
   navigate: PropTypes.func.isRequired,
   user: PropTypes.shape({
