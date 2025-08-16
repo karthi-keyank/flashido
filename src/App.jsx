@@ -1,5 +1,7 @@
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "./context/auth_context";
+import { AnimatePresence } from "framer-motion";
+
 import Home from "./pages/home/home_page";
 import Header from "./components/home/header";
 import Library from "./pages/library/library_page";
@@ -11,13 +13,15 @@ import CreateSetPage from "./pages/flashcard/create_set";
 import LoginPage from "./pages/user/login_page";
 import UsernamePopup from "./pages/user/username_popup";
 import LoadingSpinner from "./components/loading_spinner";
+import PageWrapper from "./utils/PageWrapper";
+
 import "./App.css";
 
 function App() {
   const location = useLocation();
   const { user, username, authLoading } = useAuth();
 
-  if (authLoading) return <LoadingSpinner/>;
+  if (authLoading) return <LoadingSpinner />;
 
   if (!user) {
     return (
@@ -27,29 +31,91 @@ function App() {
       </Routes>
     );
   }
-  // Only show Header and NavBar on these paths
-  const showLayout = location.pathname === "/" || location.pathname === "/Library";
+
+  // ✅ Show Header + NavBar only on certain routes
+  const showLayout =
+    location.pathname === "/" || location.pathname === "/Library";
 
   return (
     <div>
       <main className="app-container">
         {showLayout && <Header />}
-        
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/Library" element={<Library />} />
-          <Route path="/flashcard/:id" element={<FlashCardPage />} />
-          <Route path="/Library/folder/:id" element={<FolderPage />} />
-          <Route path="/Library/folder/:id/getsets" element={<ListSet />} />
-          <Route path="/Library/createSet" element={<CreateSetPage />} />
-          <Route path="/flashcard/edit-set/:setId?" element={<CreateSetPage />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+
+        {/* ✅ AnimatePresence + PageWrapper for smooth transitions */}
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route
+              path="/"
+              element={
+                <PageWrapper>
+                  <Home />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path="/home"
+              element={
+                <PageWrapper>
+                  <Home />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path="/Library"
+              element={
+                <PageWrapper>
+                  <Library />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path="/flashcard/:id"
+              element={
+                <PageWrapper>
+                  <FlashCardPage />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path="/Library/folder/:id"
+              element={
+                <PageWrapper>
+                  <FolderPage />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path="/Library/folder/:id/getsets"
+              element={
+                <PageWrapper>
+                  <ListSet />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path="/Library/createSet"
+              element={
+                <PageWrapper>
+                  <CreateSetPage />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path="/flashcard/edit-set/:setId?"
+              element={
+                <PageWrapper>
+                  <CreateSetPage />
+                </PageWrapper>
+              }
+            />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </AnimatePresence>
 
         {showLayout && <NavBar />}
       </main>
-       {/* ✅ Force show popup if user has no username */}
+
+      {/* ✅ Username Popup if user has no username */}
       {user && !username && <UsernamePopup />}
     </div>
   );

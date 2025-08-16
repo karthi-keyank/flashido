@@ -13,15 +13,14 @@
 
 .flip-card {
   flex: 0 0 95%;
-  height: 220px;        /* match min-height above */
-  max-height: 220px;    /* don’t let it grow */
+  height: 220px;
+  max-height: 220px;
   perspective: 1000px;
   cursor: pointer;
   scroll-snap-align: center;
   background: transparent;
   border: none;
 }
-
 
 
 /* Avoid outline flicker on tap/click */
@@ -31,15 +30,13 @@
 }
 
 
-
-
 /* Flip Animation Layer */
 .flip-card-inner {
   width: 100%;
   height: 100%;
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 0.4s ease-out; /* Slightly faster for snappier UX */
+  transition: transform 0.4s ease-out;
   will-change: transform;
 }
 
@@ -56,20 +53,32 @@
   backface-visibility: hidden;
   background-color: #202140;
   color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px;
   border-radius: 10px;
+
+  /* ✨ Center text */
+  display: flex;
+  align-items: center;   /* vertical center */
+  justify-content: center; /* horizontal center */
   text-align: center;
+
   word-break: break-word;
   overflow-wrap: break-word;
-  will-change: transform, opacity; /* extra hint */
+  padding: 12px;
+
+  overflow-y: auto;
 }
 
 .flip-card-back {
   transform: rotateX(180deg);
 }
+
+
+/* Hide scrollbar for cleaner UI (optional) */
+.flip-card-front::-webkit-scrollbar,
+.flip-card-back::-webkit-scrollbar {
+  display: none;
+}
+
 
 /* Mobile Responsive */
 @media (max-width: 480px) {
