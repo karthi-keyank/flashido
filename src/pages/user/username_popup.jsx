@@ -16,10 +16,11 @@ import "../../styles/pages/username_popup.css";
 function UsernamePopup() {
   const { user, setUsername: setCtxUsername } = useAuth();
   const [username, setUsername] = useState("");
+  const [error, setError] = useState(""); // ⚡ real-time warning
   const [saving, setSaving] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
 
-  // ✅ Check if user already has username
+  // ✅ Force popup if no username in Firestore
   useEffect(() => {
     const checkUsername = async () => {
       if (!user?.uid) return;
@@ -29,7 +30,6 @@ function UsernamePopup() {
       );
 
       if (existing.empty) {
-        // No username yet → force popup
         setShowPopup(true);
       }
     };
@@ -37,9 +37,28 @@ function UsernamePopup() {
     checkUsername();
   }, [user]);
 
+  const validateUsername = (value) => {
+    const regex = /^[a-zA-Z0-9_-]*$/;
+
+    if (!value.trim()) {
+      return "⚠️ Please enter a username.";
+    }
+    if (!regex.test(value)) {
+      return "❌ Only letters, numbers, _ and - allowed.";
+    }
+    if (value.length < 3) {
+      return "⚠️ Username must be at least 3 characters.";
+    }
+    if (value.length > 20) {
+      return "⚠️ Username cannot exceed 20 characters.";
+    }
+    return "";
+  };
+
   const handleSave = async () => {
-    if (!username.trim()) {
-      alert("⚠️ Please enter a username.");
+    const validationError = validateUsername(username);
+    if (validationError) {
+      setError(validationError);
       return;
     }
 
@@ -51,17 +70,17 @@ function UsernamePopup() {
     setSaving(true);
 
     try {
-      // Check duplicate usernames
+      // 🔎 Check duplicate usernames
       const existingUsernameSnap = await getDocs(
         query(collection(db, "usernames"), where("__name__", "==", username))
       );
       if (!existingUsernameSnap.empty) {
-        alert("❌ Username already taken.");
+        setError("❌ Username already taken.");
         setSaving(false);
         return;
       }
 
-      // Delete old username (if any)
+      // 🗑️ Delete old username if any
       const oldUsernames = await getDocs(
         query(collection(db, "usernames"), where("uid", "==", user.uid))
       );
@@ -70,7 +89,7 @@ function UsernamePopup() {
       );
       await Promise.all(deletePromises);
 
-      // Save new username
+      // 💾 Save new username
       await setDoc(doc(db, "usernames", username), {
         uid: user.uid,
         email: user.email,
@@ -81,10 +100,8 @@ function UsernamePopup() {
         email: user.email,
       });
 
-      // ✅ Update context immediately (so Header updates instantly)
-      setCtxUsername(username);
-
-      setShowPopup(false); // Close modal
+      setCtxUsername(username); // update context
+      setShowPopup(false); // close popup
     } catch (error) {
       console.error("Error saving username:", error.message);
       alert("❌ Failed to save username. Try again.");
@@ -93,7 +110,7 @@ function UsernamePopup() {
     }
   };
 
-  if (!showPopup) return null; // Don’t render if user already has username
+  if (!showPopup) return null;
 
   return (
     <div className="username-popup__overlay">
@@ -112,21 +129,21 @@ function UsernamePopup() {
             value={username}
             onChange={(e) => {
               const value = e.target.value;
+              setUsername(value);
 
-              // ✅ Allow only letters, numbers, underscore, hyphen
-              const regex = /^[a-zA-Z0-9_-]*$/;
-
-              if (regex.test(value)) {
-                setUsername(value);
-              }
+              const validationMsg = validateUsername(value);
+              setError(validationMsg);
             }}
             disabled={saving}
           />
         </div>
 
+        {/* ⚡ Show real-time error */}
+        {error && <p className="username-popup__error">{error}</p>}
+
         <button
           onClick={handleSave}
-          disabled={saving}
+          disabled={saving || !!error || !username.trim()}
           className="username-popup__button"
         >
           <FiSave className="username-popup__button-icon" />{" "}
