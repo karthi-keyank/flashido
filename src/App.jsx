@@ -43,7 +43,7 @@ function App() {
   return (
     <div>
       <main className="app-container">
-        {/* {<Header />} */}
+        {showLayout && <Header />}
         
         <Routes>
           <Route path="/" element={<Home />} />
