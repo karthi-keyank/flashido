@@ -110,7 +110,16 @@ function UsernamePopup() {
             className="username-popup__input"
             placeholder="Enter a unique username"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => {
+              const value = e.target.value;
+
+              // ✅ Allow only letters, numbers, underscore, hyphen
+              const regex = /^[a-zA-Z0-9_-]*$/;
+
+              if (regex.test(value)) {
+                setUsername(value);
+              }
+            }}
             disabled={saving}
           />
         </div>
