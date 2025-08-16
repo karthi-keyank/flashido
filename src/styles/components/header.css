@@ -59,6 +59,33 @@
   font-size: 1.08rem;
 }
 
+/* shimmer loading style */
+.shimmer {
+  display: inline-block;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.2) 25%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.2) 75%
+  );
+  background-size: 200% 100%;
+  color: transparent; /* hide text */
+  animation: shimmer 1.5s infinite;
+  border-radius: 6px;
+  height: 1rem;
+  width: 100px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+
 @media (max-width: 600px) {
   .header {
     height: 48px;

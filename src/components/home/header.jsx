@@ -1,6 +1,6 @@
 import { useAuth } from "../../context/auth_context";
 import LogoutButton from "./log_out";
-import "../../styles/components/header.css"
+import "../../styles/components/header.css";
 import { FaSignOutAlt } from "react-icons/fa"; // Icon for logout
 
 function Header() {
@@ -9,7 +9,7 @@ function Header() {
   let userSectionContent;
   if (authLoading) {
     userSectionContent = (
-      <span className="header__loading">Loading user...</span>
+      <span className="header__loading shimmer">Loading...</span>
     );
   } else if (username) {
     userSectionContent = (
@@ -27,7 +27,7 @@ function Header() {
     <header className="header">
       <div className="header__user-section">
         {userSectionContent}
-         <LogoutButton>
+        <LogoutButton>
           <FaSignOutAlt />
         </LogoutButton>
       </div>

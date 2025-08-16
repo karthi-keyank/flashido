@@ -1,7 +1,13 @@
+// src/context/auth_context.jsx
 import { createContext, useContext, useEffect, useState, useMemo } from "react";
 import PropTypes from "prop-types";
 import { auth, db } from "../firebase";
-import { GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  onAuthStateChanged,
+  signOut,
+} from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 
 const AuthContext = createContext();
@@ -53,13 +59,18 @@ export function AuthProvider({ children }) {
 
   const logout = () => signOut(auth);
 
-  const contextValue = useMemo(() => ({
-    user,
-    username,
-    authLoading,
-    loginWithGoogle,
-    logout,
-  }), [user, username, authLoading]);
+  // ✅ include setUsername in context so components can update instantly
+  const contextValue = useMemo(
+    () => ({
+      user,
+      username,
+      setUsername, // <-- important
+      authLoading,
+      loginWithGoogle,
+      logout,
+    }),
+    [user, username, authLoading]
+  );
 
   return (
     <AuthContext.Provider value={contextValue}>

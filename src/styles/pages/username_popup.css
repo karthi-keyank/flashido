@@ -1,38 +1,43 @@
-/* styles/pages/username_page.css */
+/* styles/components/username_popup.css */
 
-.username-page {
+.username-popup__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7); /* Dark blur background */
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-
-  width: 100vw;         /* Ensure full width */
-  height: 100vh;
-
-  background: linear-gradient(to bottom right, #0c0b28, #12102f);
-  font-family: 'Inter', sans-serif;
-  padding: 0 20px;
-  box-sizing: border-box;
+  align-items: center;
+  z-index: 9999;
 }
 
+.username-popup {
+  background: linear-gradient(to bottom right, #0c0b28, #12102f);
+  border-radius: 16px;
+  padding: 32px 24px;
+  width: 90%;
+  max-width: 380px;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+  text-align: center;
+}
 
-.username-page__title {
+.username-popup__title {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: #ffffff;
   margin-bottom: 24px;
   gap: 10px;
 }
 
-.username-page__icon {
-  font-size: 1.5rem;
+.username-popup__icon {
+  font-size: 1.4rem;
   color: #00bfff;
 }
 
-.username-page__input-wrapper {
+.username-popup__input-wrapper {
   display: flex;
   align-items: center;
   background-color: #1c1a3d;
@@ -40,16 +45,15 @@
   border-radius: 10px;
   margin-bottom: 20px;
   width: 100%;
-  max-width: 320px;
 }
 
-.username-page__input-icon {
+.username-popup__input-icon {
   color: #bbb;
   margin-right: 10px;
   font-size: 1.1rem;
 }
 
-.username-page__input {
+.username-popup__input {
   background: transparent;
   border: none;
   outline: none;
@@ -58,11 +62,11 @@
   width: 100%;
 }
 
-.username-page__input::placeholder {
+.username-popup__input::placeholder {
   color: #888;
 }
 
-.username-page__button {
+.username-popup__button {
   background: linear-gradient(to right, #00c6ff, #0072ff);
   color: #fff;
   border: none;
@@ -73,14 +77,13 @@
   cursor: pointer;
   transition: all 0.3s ease;
   width: 100%;
-  max-width: 320px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
 }
 
-.username-page__button:hover {
+.username-popup__button:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(0, 114, 255, 0.3);
 }

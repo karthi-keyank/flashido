@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   doc,
   setDoc,
@@ -10,14 +10,32 @@ import {
 } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useAuth } from "../../context/auth_context";
-import { FiUser, FiEdit3, FiSave, FiArrowRightCircle } from "react-icons/fi";
-import "../../styles/pages/username_page.css";
+import { FiUser, FiEdit3, FiSave } from "react-icons/fi";
+import "../../styles/pages/username_popup.css";
 
-function UsernamePage() {
-  const { user } = useAuth();
+function UsernamePopup() {
+  const { user, setUsername: setCtxUsername } = useAuth();
   const [username, setUsername] = useState("");
   const [saving, setSaving] = useState(false);
-  const [saved, setSaved] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+
+  // ✅ Check if user already has username
+  useEffect(() => {
+    const checkUsername = async () => {
+      if (!user?.uid) return;
+
+      const existing = await getDocs(
+        query(collection(db, "users"), where("__name__", "==", user.uid))
+      );
+
+      if (existing.empty) {
+        // No username yet → force popup
+        setShowPopup(true);
+      }
+    };
+
+    checkUsername();
+  }, [user]);
 
   const handleSave = async () => {
     if (!username.trim()) {
@@ -33,25 +51,26 @@ function UsernamePage() {
     setSaving(true);
 
     try {
+      // Check duplicate usernames
       const existingUsernameSnap = await getDocs(
         query(collection(db, "usernames"), where("__name__", "==", username))
       );
-
       if (!existingUsernameSnap.empty) {
         alert("❌ Username already taken.");
         setSaving(false);
         return;
       }
 
+      // Delete old username (if any)
       const oldUsernames = await getDocs(
         query(collection(db, "usernames"), where("uid", "==", user.uid))
       );
-
       const deletePromises = oldUsernames.docs.map((docSnap) =>
         deleteDoc(doc(db, "usernames", docSnap.id))
       );
       await Promise.all(deletePromises);
 
+      // Save new username
       await setDoc(doc(db, "usernames", username), {
         uid: user.uid,
         email: user.email,
@@ -62,7 +81,10 @@ function UsernamePage() {
         email: user.email,
       });
 
-      setSaved(true);
+      // ✅ Update context immediately (so Header updates instantly)
+      setCtxUsername(username);
+
+      setShowPopup(false); // Close modal
     } catch (error) {
       console.error("Error saving username:", error.message);
       alert("❌ Failed to save username. Try again.");
@@ -71,61 +93,39 @@ function UsernamePage() {
     }
   };
 
-  const handleGoHome = () => {
-    window.location.reload();
-  };
-
-  let buttonContent;
-  if (saving) {
-    buttonContent = (
-      <>
-        <FiSave className="username-page__button-icon" /> Saving...
-      </>
-    );
-  } else if (saved) {
-    buttonContent = (
-      <>
-        <FiArrowRightCircle className="username-page__button-icon" /> Go Home
-      </>
-    );
-  } else {
-    buttonContent = (
-      <>
-        <FiSave className="username-page__button-icon" /> Save Username
-      </>
-    );
-  }
+  if (!showPopup) return null; // Don’t render if user already has username
 
   return (
-    <div className="username-page">
-      <div className="username-page__title">
-        <FiUser className="username-page__icon" />
-        <span>Set Your Username</span>
-      </div>
+    <div className="username-popup__overlay">
+      <div className="username-popup">
+        <div className="username-popup__title">
+          <FiUser className="username-popup__icon" />
+          <span>Set Your Username</span>
+        </div>
 
-      {!saved && (
-        <div className="username-page__input-wrapper">
-          <FiEdit3 className="username-page__input-icon" />
+        <div className="username-popup__input-wrapper">
+          <FiEdit3 className="username-popup__input-icon" />
           <input
             type="text"
-            className="username-page__input"
+            className="username-popup__input"
             placeholder="Enter a unique username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             disabled={saving}
           />
         </div>
-      )}
 
-      <button
-        onClick={saved ? handleGoHome : handleSave}
-        disabled={saving}
-        className="username-page__button"
-      >
-        {buttonContent}
-      </button>
+        <button
+          onClick={handleSave}
+          disabled={saving}
+          className="username-popup__button"
+        >
+          <FiSave className="username-popup__button-icon" />{" "}
+          {saving ? "Saving..." : "Save Username"}
+        </button>
+      </div>
     </div>
   );
 }
 
-export default UsernamePage;
+export default UsernamePopup;

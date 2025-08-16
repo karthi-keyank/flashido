@@ -9,7 +9,7 @@ import FolderPage from "./pages/folder/folder_page";
 import ListSet from "./pages/flashcard/get_sets";
 import CreateSetPage from "./pages/flashcard/create_set";
 import LoginPage from "./pages/user/login_page";
-import UsernamePage from "./pages/user/username_page";
+import UsernamePopup from "./pages/user/username_popup";
 import LoadingSpinner from "./components/loading_spinner";
 import "./App.css";
 
@@ -27,16 +27,6 @@ function App() {
       </Routes>
     );
   }
-
-  if (user && !username) {
-    return (
-      <Routes>
-        <Route path="/username" element={<UsernamePage />} />
-        <Route path="*" element={<Navigate to="/username" replace />} />
-      </Routes>
-    );
-  }
-
   // Only show Header and NavBar on these paths
   const showLayout = location.pathname === "/" || location.pathname === "/Library";
 
@@ -59,6 +49,8 @@ function App() {
 
         {showLayout && <NavBar />}
       </main>
+       {/* ✅ Force show popup if user has no username */}
+      {user && !username && <UsernamePopup />}
     </div>
   );
 }
