@@ -1,7 +1,6 @@
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "./context/auth_context";
 import { AnimatePresence } from "framer-motion";
-
 import Home from "./pages/home/home_page";
 import Header from "./components/home/header";
 import Library from "./pages/library/library_page";
@@ -12,7 +11,7 @@ import ListSet from "./pages/flashcard/get_sets";
 import CreateSetPage from "./pages/flashcard/create_set";
 import LoginPage from "./pages/user/login_page";
 import UsernamePopup from "./pages/user/username_popup";
-import LoadingSpinner from "./components/loading_spinner";
+import { ClipLoader } from "react-spinners";
 import PageWrapper from "./utils/PageWrapper";
 
 import "./App.css";
@@ -21,7 +20,6 @@ function App() {
   const location = useLocation();
   const { user, username, authLoading } = useAuth();
 
-  if (authLoading) return <LoadingSpinner />;
 
   if (!user) {
     return (
@@ -113,9 +111,23 @@ function App() {
         </AnimatePresence>
 
         {showLayout && <NavBar />}
+
+        {/* ✅ Only one spinner (center top fixed) */}
+        {authLoading && (
+          <div
+            style={{
+              position: "fixed",
+              top: "20px",
+              left: "50%",
+              transform: "translateX(-50%)",
+              zIndex: 9999,
+            }}
+          >
+            <ClipLoader color="#007bff" size={30} />
+          </div>
+        )}
       </main>
 
-      {/* ✅ Username Popup if user has no username */}
       {user && !username && <UsernamePopup />}
     </div>
   );

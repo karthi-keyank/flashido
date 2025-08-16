@@ -4,7 +4,7 @@ import { fetchCards } from "./fetch_cards";
 import { useAuth } from "../context/auth_context";
 import Card from "../components/flashcard/Card";
 import "../styles/components/list_cards.css";
-import ClipLoader from "react-spinners/ClipLoader";
+
 
 function CardList({ setId }) {
   const { user } = useAuth();
@@ -33,12 +33,15 @@ function CardList({ setId }) {
 
   const renderCards = () => {
     if (loading) {
+      // 👇 shimmer placeholders (same size as cards)
       return (
-        <div
-          style={{ display: "flex", justifyContent: "center", padding: "2rem" }}
-        >
-          <ClipLoader color="#4f8cff" size={50} />
-        </div> 
+        <div className="card-container">
+          {[1].map((n) => (
+            <div key={n} className="flip-card shimmer-card">
+              <div className="shimmer-box" />
+            </div>
+          ))}
+        </div>
       );
     }
 
