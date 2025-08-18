@@ -22,12 +22,17 @@ function CreateSetPage() {
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(!!setId);
 
+  // ✅ New states for popup messages
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+
   useEffect(() => {
     if (!userId) return;
 
     const loadSet = async () => {
       if (!setId) {
         setCards([{ id: uuidv4(), term: "", definition: "" }]);
+        setLoading(false);
         return;
       }
 
@@ -52,10 +57,11 @@ function CreateSetPage() {
               : [{ id: uuidv4(), term: "", definition: "" }]
           );
         } else {
-          console.warn("Set not found.");
+          setErrorMessage("⚠️ Set not found.");
         }
       } catch (error) {
         console.error("Error loading set:", error);
+        setErrorMessage("❌ Failed to load set.");
       } finally {
         setLoading(false);
       }
@@ -63,6 +69,17 @@ function CreateSetPage() {
 
     loadSet();
   }, [setId, userId]);
+
+  // ✅ Auto-dismiss popup messages
+  useEffect(() => {
+    if (errorMessage || successMessage) {
+      const timer = setTimeout(() => {
+        setErrorMessage("");
+        setSuccessMessage("");
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [errorMessage, successMessage]);
 
   const addNewCard = () => {
     setCards([...cards, { id: uuidv4(), term: "", definition: "" }]);
@@ -80,12 +97,12 @@ function CreateSetPage() {
 
   const handleSave = async () => {
     if (!userId) {
-      alert("User not identified. Please re-login.");
+      setErrorMessage("⚠️ User not identified. Please re-login.");
       return;
     }
 
     if (!title.trim()) {
-      alert("Title is required");
+      setErrorMessage("⚠️ Title is required.");
       return;
     }
 
@@ -104,21 +121,30 @@ function CreateSetPage() {
       await setDoc(docRef, {
         title,
         description,
-        termCount: cards.length, // ✅ Save total number of terms
+        termCount: cards.length,
         Cards: cardMap,
       });
-      alert("✅ Set saved successfully");
-      navigate("/Library");
+
+      setSuccessMessage("✅ Set saved successfully!");
+      setTimeout(() => navigate("/Library"), 1500); // Delay for UX
     } catch (error) {
       console.error("Error saving set:", error);
-      alert("❌ Failed to save set");
+      setErrorMessage("❌ Failed to save set. Try again.");
     }
   };
 
-  if (loading) return <LoadingSpinner/>;
+  if (loading) return <LoadingSpinner />;
 
   return (
     <div className="create-set-page">
+      {/* ✅ Popup messages */}
+      {errorMessage && (
+        <div className="popup-message error">{errorMessage}</div>
+      )}
+      {successMessage && (
+        <div className="popup-message success">{successMessage}</div>
+      )}
+
       <TopBar className="create-set-topbar" onSave={handleSave} />
 
       <div className="create-set-page__content">
@@ -144,10 +170,7 @@ function CreateSetPage() {
 
       {/* Floating add button outside scrollable area */}
       <div className="create-set-add-button-wrapper">
-        <AddCardButton
-          onClick={addNewCard}
-          className="create-set-add-button"
-        />
+        <AddCardButton onClick={addNewCard} className="create-set-add-button" />
       </div>
     </div>
   );

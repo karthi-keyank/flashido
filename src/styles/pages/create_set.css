@@ -45,3 +45,32 @@ input, textarea {
   right: 24px;
   z-index: 999; /* Ensure it stays above other content */
 }
+
+.popup-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: white;
+  z-index: 1000;
+  opacity: 0;
+  animation: fadeInOut 3s forwards;
+}
+
+.popup-message.error {
+  background: #e74c3c; /* red */
+}
+
+.popup-message.success {
+  background: #27ae60; /* green */
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(-10px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
