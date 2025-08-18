@@ -69,3 +69,19 @@
   font-size: 1.2rem;
   cursor: pointer;
 }
+
+.error-popup {
+  margin: 10px 0;
+  padding: 10px 16px;
+  background: #ff4d4f;
+  color: white;
+  font-size: 14px;
+  border-radius: 6px;
+  animation: fadeOut 3s ease-out forwards;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; transform: translateY(0); }
+  80% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-10px); }
+}

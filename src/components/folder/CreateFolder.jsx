@@ -1,26 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useAuth } from "../../context/auth_context";
 import { FaPlus, FaTimes } from "react-icons/fa";
-import "../../styles/components/create_folder_model.css";
+import "../../styles/components/create_folder.css";
 
-function CreateFolderModal({ isOpen, onClose }) {
+function CreateFolder({ isOpen, onClose }) {
   const [folderName, setFolderName] = useState("");
   const [folderDescription, setFolderDescription] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false); // ✅ loading state
   const { user } = useAuth();
+
+  useEffect(() => {
+    if (errorMessage) {
+      const timer = setTimeout(() => setErrorMessage(""), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [errorMessage]);
 
   const handleAddFolder = async () => {
     if (!folderName.trim()) {
-      alert("Folder name is required");
+      setErrorMessage("⚠️ Folder name is required");
       return;
     }
 
     if (!user?.uid) {
-      alert("User not found. Please log in again.");
+      setErrorMessage("⚠️ User not found. Please log in again.");
       return;
     }
+
+    setLoading(true); // start loading
 
     try {
       const folderDocRef = doc(db, `users/${user.uid}/folders/${folderName}`);
@@ -32,10 +43,13 @@ function CreateFolderModal({ isOpen, onClose }) {
 
       setFolderName("");
       setFolderDescription("");
-      onClose();
-      alert(`✅ Folder "${folderName}" created successfully`);
+      setErrorMessage("");
+      setLoading(false);
+      onClose(); // ✅ close only after success
     } catch (error) {
-      console.error("❌ Error adding folder:", error);
+      console.error("Error while adding folder:", error);
+      setErrorMessage("❌ Error adding folder. Try again.");
+      setLoading(false);
     }
   };
 
@@ -44,11 +58,13 @@ function CreateFolderModal({ isOpen, onClose }) {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <button className="modal-close" onClick={onClose}>
+        <button className="modal-close" onClick={onClose} disabled={loading}>
           <FaTimes />
         </button>
 
         <h2 className="modal-title">Create New Folder</h2>
+
+        {errorMessage && <div className="error-popup">{errorMessage}</div>}
 
         <input
           className="folder-input"
@@ -56,6 +72,7 @@ function CreateFolderModal({ isOpen, onClose }) {
           placeholder="Folder name"
           value={folderName}
           onChange={(e) => setFolderName(e.target.value)}
+          disabled={loading}
         />
         <input
           className="folder-input"
@@ -63,19 +80,24 @@ function CreateFolderModal({ isOpen, onClose }) {
           placeholder="Description"
           value={folderDescription}
           onChange={(e) => setFolderDescription(e.target.value)}
+          disabled={loading}
         />
 
-        <button className="create-button" onClick={handleAddFolder}>
-          <FaPlus /> Create
+        <button
+          className="create-button"
+          onClick={handleAddFolder}
+          disabled={loading}
+        >
+          {loading ? "⏳ Creating..." : <><FaPlus /> Create</>}
         </button>
       </div>
     </div>
   );
 }
 
-CreateFolderModal.propTypes = {
+CreateFolder.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
 };
 
-export default CreateFolderModal;
+export default CreateFolder;

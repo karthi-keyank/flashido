@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import SearchBar from "../../components/library/search_bar";
 import FolderList from "../../utils/list_folders";
 import LibraryHeader from "../../components/library/Library_header";
-import CreateFolderModal from "../../components/folder/CreateFolderModal"; // Make sure path is correct
+import CreateFolder from "../../components/folder/CreateFolder"; // Make sure path is correct
 import "../../styles/pages/library_page.css";
 
 const TABS = ["Flashcard sets", "Folders"];
@@ -67,7 +67,7 @@ function Library() {
       {renderTabContent()}
 
       {/* Add the modal component here */}
-      <CreateFolderModal
+      <CreateFolder
         isOpen={showFolderModal}
         onClose={() => setShowFolderModal(false)}
       />
