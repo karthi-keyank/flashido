@@ -1,3 +1,4 @@
+// src/App.jsx
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "./context/auth_context";
 import { AnimatePresence } from "framer-motion";
@@ -20,7 +21,23 @@ function App() {
   const location = useLocation();
   const { user, username, authLoading } = useAuth();
 
+  // ⏳ While Firebase is still checking auth state → show centered spinner
+  if (authLoading) {
+    return (
+      <div
+        style={{
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <ClipLoader color="#007bff" size={50} />
+      </div>
+    );
+  }
 
+  // 🔒 If not logged in → only allow login route
   if (!user) {
     return (
       <Routes>
@@ -39,7 +56,7 @@ function App() {
       <main className="app-container">
         {showLayout && <Header />}
 
-        {/* ✅ AnimatePresence + PageWrapper for smooth transitions */}
+        {/* Page transitions */}
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route
@@ -106,28 +123,15 @@ function App() {
                 </PageWrapper>
               }
             />
+            {/* Default → redirect home */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </AnimatePresence>
 
         {showLayout && <NavBar />}
-
-        {/* ✅ Only one spinner (center top fixed) */}
-        {authLoading && (
-          <div
-            style={{
-              position: "fixed",
-              top: "20px",
-              left: "50%",
-              transform: "translateX(-50%)",
-              zIndex: 9999,
-            }}
-          >
-            <ClipLoader color="#007bff" size={30} />
-          </div>
-        )}
       </main>
 
+      {/* If logged in but username not set → popup */}
       {user && !username && <UsernamePopup />}
     </div>
   );

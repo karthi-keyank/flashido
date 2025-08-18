@@ -15,37 +15,35 @@ const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [username, setUsername] = useState(null);
-  const [authLoading, setAuthLoading] = useState(true);
+  const [authLoading, setAuthLoading] = useState(true); // 👈 added loading flag
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-      setUser(firebaseUser);
-
       if (firebaseUser) {
+        setUser(firebaseUser);
+
         try {
           const userDocRef = doc(db, "users", firebaseUser.uid);
           const userDocSnap = await getDoc(userDocRef);
 
           if (userDocSnap.exists()) {
             const data = userDocSnap.data();
-            if (data.username) {
-              setUsername(data.username);
-            } else {
-              console.warn("Username not set in user document.");
-              setUsername(null);
-            }
+            setUsername(data.username || null);
           } else {
-            console.warn("User document does not exist.");
+            console.warn("⚠️ User document does not exist in Firestore.");
             setUsername(null);
           }
         } catch (err) {
-          console.error("Error fetching user document:", err.code, err.message);
+          console.error("❌ Error fetching user document:", err.code, err.message);
           setUsername(null);
         }
       } else {
+        // No user signed in
+        setUser(null);
         setUsername(null);
       }
 
+      // ✅ finish auth init
       setAuthLoading(false);
     });
 
@@ -59,13 +57,12 @@ export function AuthProvider({ children }) {
 
   const logout = () => signOut(auth);
 
-  // ✅ include setUsername in context so components can update instantly
   const contextValue = useMemo(
     () => ({
       user,
       username,
-      setUsername, // <-- important
-      authLoading,
+      setUsername,
+      authLoading, // 👈 expose loading to app
       loginWithGoogle,
       logout,
     }),
