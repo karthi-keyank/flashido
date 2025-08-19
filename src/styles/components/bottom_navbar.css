@@ -13,7 +13,7 @@
     align-items: center;
     padding: 12px 0 10px 0;
     z-index: 100;
-    border-top: 3px solid #2d3253;
+    border-top: 1px solid #2d3253;
     font-size: 1.08rem;
     box-sizing: border-box;
 }

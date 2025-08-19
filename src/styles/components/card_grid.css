@@ -25,7 +25,7 @@
 .card-grid__icon-wrapper {
   width: 50px;
   height: 50px;
-  background-color: #2f3857;
+  background-color: #2e3756;
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -37,7 +37,7 @@
 
 .card-grid__icon {
   font-size: 24px; /* increased from 1.5rem for better visibility */
-  color: #56cefd;
+  color: #929bb4;
 }
 
 
