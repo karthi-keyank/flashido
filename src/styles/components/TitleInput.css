@@ -21,3 +21,25 @@
 .description-input::placeholder {
   color: #999;
 }
+
+.char-count {
+  font-size: 12px;
+  margin-top: 1px;
+  text-align: right;
+  color: #888; /* default grey */
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.char-count.over-limit {
+  color: #e63946; /* red warning */
+  font-weight: 600;
+  animation: shake 0.2s ease-in-out;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  50% { transform: translateX(2px); }
+  75% { transform: translateX(-2px); }
+  100% { transform: translateX(0); }
+}

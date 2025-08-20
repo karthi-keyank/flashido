@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
-import { FaFolderOpen } from "react-icons/fa";
+import { FiFolder } from "react-icons/fi";
 import "../../styles/components/folder_grid.css";
 
 function FolderGrid({ folder }) {
@@ -13,7 +13,7 @@ function FolderGrid({ folder }) {
   return (
     <div className="folder-grid" onClick={onFolderClick}>
       <div className="folder-grid__icon">
-        <FaFolderOpen />
+        <FiFolder />
       </div>
       <div className="folder-grid__content">
         <div className="folder-grid__title">{folder.name}</div>

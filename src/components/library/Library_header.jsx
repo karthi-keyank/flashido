@@ -5,7 +5,7 @@ import { FiPlus } from "react-icons/fi";
 function LibraryHeader({ onAddClick }) {
   return (
     <header className="library-header">
-      <h3 className="library-header-title">Library</h3>
+      <h1 className="library-header-title">Library</h1>
       <button
         type="button"
         onClick={onAddClick}

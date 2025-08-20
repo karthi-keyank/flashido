@@ -1,7 +1,7 @@
 /* styles/components/search_bar.css */
 
 .search-bar {
-  background-color: transparent; /* No inner background */
+  background-color: transparent;
   width: 100%;
   padding: 0;
 }
@@ -26,7 +26,7 @@
   align-items: center;
   background-color: #1a183a;
   padding: 0.5rem 1rem;
-  border-radius: 8px;
+  border-radius: 15px;
   border: 1px solid #2e2c57;
 }
 

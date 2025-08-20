@@ -54,7 +54,7 @@ function App() {
   return (
     <div>
       <main className="app-container">
-        {showLayout && <Header />}
+        {showLayout && location.pathname !== "/Library"&& <Header />}
 
         {/* Page transitions */}
         <AnimatePresence mode="wait">

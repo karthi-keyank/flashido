@@ -80,6 +80,33 @@
   animation: fadeOut 3s ease-out forwards;
 }
 
+.char-count {
+  font-size: 12px;
+  margin-top: 1px;
+  text-align: right;
+  color: #888; /* normal grey */
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.char-count.over-limit,
+.char-count span {
+  color: #e63946; /* bright red for warning */
+  font-weight: 600;
+}
+
+.char-count.over-limit {
+  animation: shake 0.2s ease-in-out;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  50% { transform: translateX(2px); }
+  75% { transform: translateX(-2px); }
+  100% { transform: translateX(0); }
+}
+
+
 @keyframes fadeOut {
   0% { opacity: 1; transform: translateY(0); }
   80% { opacity: 1; }

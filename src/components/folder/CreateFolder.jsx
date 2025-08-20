@@ -10,8 +10,11 @@ function CreateFolder({ isOpen, onClose }) {
   const [folderName, setFolderName] = useState("");
   const [folderDescription, setFolderDescription] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [loading, setLoading] = useState(false); // ✅ loading state
+  const [loading, setLoading] = useState(false);
   const { user } = useAuth();
+
+  const MAX_NAME = 16;
+  const MAX_DESC = 30;
 
   useEffect(() => {
     if (errorMessage) {
@@ -23,6 +26,16 @@ function CreateFolder({ isOpen, onClose }) {
   const handleAddFolder = async () => {
     if (!folderName.trim()) {
       setErrorMessage("⚠️ Folder name is required");
+      return;
+    }
+
+    if (folderName.length > MAX_NAME) {
+      setErrorMessage(`⚠️ Folder name must be under ${MAX_NAME} chars`);
+      return;
+    }
+
+    if (folderDescription.length > MAX_DESC) {
+      setErrorMessage(`⚠️ Description must be under ${MAX_DESC} chars`);
       return;
     }
 
@@ -66,29 +79,66 @@ function CreateFolder({ isOpen, onClose }) {
 
         {errorMessage && <div className="error-popup">{errorMessage}</div>}
 
+        {/* Folder Name */}
         <input
           className="folder-input"
           type="text"
           placeholder="Folder name"
           value={folderName}
-          onChange={(e) => setFolderName(e.target.value)}
+          onChange={(e) => {
+            const value = e.target.value;
+            if (value.length <= MAX_NAME) {
+              setFolderName(value);
+            }
+          }}
           disabled={loading}
         />
+        <div
+          className={`char-count ${
+            folderName.length >= MAX_NAME ? "over-limit" : ""
+          }`}
+        >
+          {folderName.length}/{MAX_NAME}
+          {folderName.length === MAX_NAME && <span> ⚠️ Max limit reached</span>}
+        </div>
+
+        {/* Folder Description */}
         <input
           className="folder-input"
           type="text"
           placeholder="Description"
           value={folderDescription}
-          onChange={(e) => setFolderDescription(e.target.value)}
+          onChange={(e) => {
+            const value = e.target.value;
+            if (value.length <= MAX_DESC) {
+              setFolderDescription(value);
+            }
+          }}
           disabled={loading}
         />
+        <div
+          className={`char-count ${
+            folderDescription.length >= MAX_DESC ? "over-limit" : ""
+          }`}
+        >
+          {folderDescription.length}/{MAX_DESC}
+          {folderDescription.length === MAX_DESC && (
+            <span> ⚠️ Max limit reached</span>
+          )}
+        </div>
 
         <button
           className="create-button"
           onClick={handleAddFolder}
           disabled={loading}
         >
-          {loading ? "⏳ Creating..." : <><FaPlus /> Create</>}
+          {loading ? (
+            "⏳ Creating..."
+          ) : (
+            <>
+              <FaPlus /> Create
+            </>
+          )}
         </button>
       </div>
     </div>

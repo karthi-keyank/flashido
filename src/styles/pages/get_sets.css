@@ -26,7 +26,7 @@
 .list-set__icon {
   width: 44px;
   height: 44px;
-  background-color: #2f3857;
+  background-color: #2e3756;
   border-radius: 10px;
   margin-right: 12px;
   display: flex;
@@ -37,7 +37,7 @@
 /* Icon itself */
 .FiLayer-icon {
   font-size: 24px;
-  color: #4daed9;
+  color: #ffffff;
 }
 
 /* Content beside icon */

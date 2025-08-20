@@ -1,78 +1,75 @@
-
 .navbar {
-    position: fixed;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;              /* full width */
+  background: rgba(8, 6, 43, 0.9);
+  border-top: 2px solid #292e4f;
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px 0;
+  z-index: 100;
+}
+
+/* nav items */
+.nav-item {
+  flex: 1;
+  text-align: center;
+  color: #d1d1f0;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  position: relative;
+  padding: 10px 0;
+  transition: all 0.25s ease;
+}
+
+.nav-item:hover {
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* active tab highlight */
+.nav-item.active {
+  color: #fff;
+  font-weight: 600;
+}
+/* icons */
+.nav-icon {
+  font-size: 1.6rem;
+  display: block;
+  margin: 0 auto 2px;
+}
+
+.nav-item.active .nav-icon {
+  filter: brightness(1.6) drop-shadow(0 0 6px rgba(122, 88, 255, 0.9));
+}
+
+/* labels */
+.nav-label {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.4px;
+}
+
+
+/* Desktop layout → stick to bottom full width */
+@media (min-width: 768px) {
+  .navbar {
+    width: 100%;
+    border-radius: 0;
     bottom: 0;
     left: 0;
-    width: 100vw;
-    min-width: 0;
-    background: #08062b;
-    box-shadow: 0 -2px 16px 0 #08062b99;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    padding: 12px 0 10px 0;
-    z-index: 100;
-    border-top: 1px solid #2d3253;
-    font-size: 1.08rem;
-    box-sizing: border-box;
-}
+    transform: none;
+    padding: 10px 0;
 
-.navbar-home,
-.navbar-library {
-    flex: 1 1 0;
-    min-width: 0;
-    text-align: center;
-    box-sizing: border-box;
-}
-
-.navbar a {
-    display: inline-block;
-    color: #f5f6fa;
-    font-size: 1.1rem;
-    text-decoration: none;
-    padding: 10px 4vw;
-    border-radius: 18px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    background: none;
-    transition: color 0.12s, background 0.12s, transform 0.12s;
-    box-shadow: none;
-    position: relative;
-    min-width: 0;
-    box-sizing: border-box;
-}
-
-/* No hover/focus effect for .navbar a:hover and .navbar a:focus */
-
-.navbar a:active {
-    background: #23234a;
-    color: #7c5cff;
-    transform: scale(0.96);
-}
-/* Make nav icons larger and centered */
-.nav-icon {
-    font-size: 1.7rem;
-    display: block;
-    margin: 0 auto;
-    min-width: 0;
-    max-width: 100%;
-}
-
-@media (max-width: 600px) {
-    .navbar {
-        font-size: 1rem;
-        padding: 8px 0 6px 0;
-        width: 100vw;
-    }
-    .navbar a {
-        font-size: 1rem;
-        padding: 10px 2vw;
-        min-width: 0;
-    }
-    .nav-icon {
-        font-size: 1.7rem;
-        min-width: 0;
-        max-width: 100%;
-    }
+  }
+  .nav-item {
+    font-size: 1rem;
+  }
+  .nav-label {
+    font-size: 0.8rem;
+  }
 }
