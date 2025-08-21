@@ -74,10 +74,12 @@ function Library() {
       {renderTabContent()}
 
       {/* Add the modal component here */}
+<PageWrapper>
       <CreateFolder
         isOpen={showFolderModal}
         onClose={() => setShowFolderModal(false)}
       />
+<PageWrapper/>
     </div>
   );
 }
