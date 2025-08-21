@@ -1,0 +1,125 @@
+/* src/styles/components/folder_list_horizontal.css */
+
+/* --- Row (horizontal list) --- */
+.folder-row {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 12px;
+  margin: 0;
+  padding: 4px 8px 10px;
+  list-style: none;
+
+  overflow-x: auto;   /* horizontal scroll */
+  overflow-y: hidden;
+
+  /* smooth-ish snapping while scrolling */
+  scroll-snap-type: x proximity;
+}
+
+/* subtle, thin scrollbar */
+.folder-row::-webkit-scrollbar { height: 6px; }
+.folder-row::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+.folder-row::-webkit-scrollbar-track { background: transparent; }
+
+/* --- Card (compact) --- */
+.folder-card {
+  scroll-snap-align: start;
+
+  flex: 0 0 auto;
+  width: 200px;           /* compact width */
+  min-height: 88px;       /* reduced height */
+  padding: 10px 12px;     /* compact padding */
+
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.03);
+  color: #e8eaf3;
+
+  /* place icon + text side-by-side to cut height */
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  column-gap: 10px;
+  row-gap: 4px;
+
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.folder-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* --- Icon + Meta --- */
+.folder-card__icon {
+  font-size: 20px;       /* a bit smaller */
+  line-height: 1;
+  color: #cfd3ff;
+  align-self: start;
+}
+
+.folder-card__meta {
+  display: grid;
+  row-gap: 4px;
+  min-width: 0;          /* enables ellipsis */
+}
+
+.folder-card__title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.folder-card__desc {
+  font-size: 0.82rem;
+  color: #a3a8b8;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.folder-card__stats {
+  font-size: 0.78rem;
+  color: #8b90a4;
+}
+
+/* --- States / Heading --- */
+.folder-row__heading {
+  margin: 6px 8px 2px;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.folder-row__empty,
+.folder-row__error {
+  margin: 8px 12px;
+  color: #a3a8b8;
+}
+
+/* --- Loading skeletons (same compact size) --- */
+.skeleton {
+  min-height: 88px;
+  width: 200px;
+  border-radius: 10px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04),
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.04)
+  );
+  background-size: 200% 100%;
+  animation: folder-skel 1.2s ease-in-out infinite;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+@keyframes folder-skel {
+  0% { background-position: 0% 0; }
+  100% { background-position: -200% 0; }
+}
