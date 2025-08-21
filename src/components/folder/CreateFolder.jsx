@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useAuth } from "../../context/auth_context";
 import { FaPlus, FaTimes } from "react-icons/fa";
@@ -52,6 +52,7 @@ function CreateFolder({ isOpen, onClose }) {
         title: folderName,
         description: folderDescription,
         Sets: [],
+        createdAt: serverTimestamp(),
       });
 
       setFolderName("");

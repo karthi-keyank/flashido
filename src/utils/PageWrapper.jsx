@@ -8,7 +8,7 @@ function PageWrapper({ children }) {
       initial={{ opacity: 0, y: 5 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -5 }}
-      transition={{ duration: 0.15, ease: "linear" }}  // ⚡ faster
+      transition={{ duration: 0.20, ease: "linear" }}
     >
       {children}
     </motion.div>

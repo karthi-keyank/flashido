@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth_context";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 import { db } from "../../firebase";
 import TopBar from "../../components/flashcard/TopBar";
@@ -123,6 +123,7 @@ function CreateSetPage() {
         description,
         termCount: cards.length,
         Cards: cardMap,
+        updatedAt: serverTimestamp()
       });
 
       setSuccessMessage("✅ Set saved successfully!");

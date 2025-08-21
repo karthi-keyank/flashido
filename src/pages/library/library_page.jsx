@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import SearchBar from "../../components/library/search_bar";
 import FolderList from "../../utils/list_folders";
 import LibraryHeader from "../../components/library/Library_header";
-import CreateFolder from "../../components/folder/CreateFolder"; // Make sure path is correct
+import CreateFolder from "../../components/folder/CreateFolder";
+import PageWrapper from "../../utils/PageWrapper";
 import "../../styles/pages/library_page.css";
 
 const TABS = ["Flashcard sets", "Folders"];
@@ -32,7 +33,9 @@ function Library() {
     if (activeTab === "Flashcard sets") {
       return (
         <div className="library-tab-content">
-          <SearchBar />
+          <PageWrapper>
+            <SearchBar />
+          </PageWrapper>
         </div>
       );
     }
@@ -40,7 +43,9 @@ function Library() {
       return (
         <div className="library-tab-content">
           <h3 className="library-tab-title">Folders</h3>
-          <FolderList />
+          <PageWrapper>
+            <FolderList />
+          </PageWrapper>
         </div>
       );
     }
@@ -50,12 +55,14 @@ function Library() {
   return (
     <div className="library">
       <LibraryHeader onAddClick={handleAddClick} />
-      
+
       <div className="library-tabs">
         {TABS.map((tab) => (
           <button
             key={tab}
-            className={`library-tab-button${activeTab === tab ? " library-tab-button--active" : ""}`}
+            className={`library-tab-button${
+              activeTab === tab ? " library-tab-button--active" : ""
+            }`}
             onClick={() => setActiveTab(tab)}
             type="button"
           >
