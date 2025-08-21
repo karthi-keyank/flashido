@@ -4,7 +4,8 @@ import { useState } from "react";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useAuth } from "../../context/auth_context";
-import { FaArrowLeft, FaPlus, FaFolder } from "react-icons/fa";
+import { FaArrowLeft, FaPlus} from "react-icons/fa";
+import { FiFolder } from "react-icons/fi";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import ThreeDotMenu from "./ThreeDotMenu";
 import PopupModal from "../buttons/PopupModal";
@@ -45,7 +46,7 @@ function FolderPageHeader({ title, id }) {
         </button>
 
         <h2 className="folder-header__title">
-          <FaFolder className="folder-header__folder-icon" />
+          <FiFolder className="folder-header__folder-icon" />
           {title}
         </h2>
       </div>
