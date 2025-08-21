@@ -7,7 +7,9 @@ import "../../styles/components/folder_list_horizontal.css";
 
 function HomeFolderList() {
   const { folders, loading, error } = useAppData();
+
   const navigate = useNavigate();
+
 
   const normalized = useMemo(() => {
     const arr = Array.isArray(folders) ? folders : [];
@@ -58,22 +60,25 @@ function HomeFolderList() {
       <h3 className="folder-row__heading">Recent</h3>
       <ul className="folder-row" aria-label="Recent folders">
         {normalized.map((folder) => (
-          <li key={folder.id} className="folder-card">
-            <button
-              type="button"
-              className="folder-card__btn"
-              title={folder.name}
-              onClick={() => navigate(`/Library/folder/${folder.id}`)}
-            >
-              <div className="folder-card__icon">
-                <FiFolder />
-              </div>
-              <div className="folder-card__meta">
-                <div className="folder-card__title">{folder.name}</div>
-                <div className="folder-card__desc">{folder.description}</div>
-                <div className="folder-card__stats">{folder.setsCount} sets</div>
-              </div>
-            </button>
+          <li
+            key={folder.id}
+            className="folder-card"
+            title={folder.name}
+            onClick={() => navigate(`/Library/folder/${folder.id}`)}
+            role="button"
+            tabIndex={0}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") navigate(`/Library/folder/${folder.id}`);
+            }}
+          >
+            <div className="folder-card__icon">
+              <FiFolder />
+            </div>
+            <div className="folder-card__meta">
+              <div className="folder-card__title">{folder.name}</div>
+              <div className="folder-card__desc">{folder.description}</div>
+              <div className="folder-card__stats">{folder.setsCount} sets</div>
+            </div>
           </li>
         ))}
       </ul>
