@@ -79,7 +79,7 @@ function Library() {
         isOpen={showFolderModal}
         onClose={() => setShowFolderModal(false)}
       />
-<PageWrapper/>
+</PageWrapper>
     </div>
   );
 }
