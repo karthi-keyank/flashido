@@ -4,18 +4,30 @@
   background: #08062b;
   color: #f5f6fa;
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-  padding: 20px 0 60px 0; /* leave space for navbar */
+
+  /* ✅ side padding so content doesn't hug edges */
+  padding: 20px var(--page-inline) 70px var(--page-inline); /* extra bottom for navbar */
   box-sizing: border-box;
+
   display: flex;
   flex-direction: column;
 }
 
+/* ✅ center all direct children and limit max width (no JSX change needed) */
+.library > * {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+}
+
+/* Tabs row */
 .library-tabs {
   display: flex;
   justify-content: flex-start;
   gap: 1rem;
-  padding: 0.5rem 1.2rem;
+  padding: 0.5rem 0;        
   overflow-x: auto;
+  margin-bottom: 12px;    /* ✅ spacing below tabs */
 }
 
 .library-tab-button {
@@ -30,6 +42,7 @@
   outline: none;
   letter-spacing: 0.5px;
   transition: all 0.25s ease;
+  white-space: nowrap;      
 }
 
 .library-tab-button--active {
@@ -39,27 +52,31 @@
   font-weight: 700;
 }
 
+/* Search bar wrapper */
+.library-search {
+  margin: 8px 0 16px 0;   /* ✅ breathing room around search bar */
+}
+
+/* Tab content card */
 .library-tab-content {
-  position: relative;        /* Needed for absolute children */
-  border-radius: 1.5rem;
+  position: relative;
   box-shadow: 0 4px 24px 0 #08062b44;
   padding: 2rem 1.5rem 2.5rem 1.5rem;
   border-top: 2px solid #2d3253;
-  margin: 0;
-  min-height: 220px;         /* stable height */
+  margin: 0.8rem 0; 
+  min-height: 220px;         
   width: 100%;
   box-sizing: border-box;
-  overflow: hidden;          /* hide sliding children */
+  overflow: hidden;          
 }
 
-/* Motion children → stacked absolute so they don’t push layout */
+/* Motion children (framer) → stack, no layout push, no overflow rounding */
 .tab-motion {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  inset: 0;
 }
 
+/* Titles */
 .library-tab-title {
   font-size: 1.3rem;
   font-weight: 700;
@@ -68,24 +85,36 @@
   letter-spacing: 0.5px;
 }
 
+/* Mobile */
 @media (max-width: 600px) {
+  :root {
+    --page-inline: 12px;     
+    --container: 100%;       
+  }
+
   .library {
     min-width: 0;
-    width: 100vw;
+    width: 100%;             
     box-sizing: border-box;
+    padding: 16px var(--page-inline) 70px var(--page-inline);
   }
+
   .library-tab-content {
-    padding: 1.2rem 0.5rem 1.5rem 0.5rem;
-    width: 100vw;
-    border-radius: 1.5rem;
-    box-sizing: border-box;
+    padding: 1.2rem 0.8rem 1.5rem 0.8rem;
+    margin: 0.6rem 0;
   }
+
   .library-tabs {
     gap: 0.5rem;
     margin: 1.2rem 0 1rem 0;
   }
+
   .library-tab-button {
     font-size: 1rem;
     padding: 0.5rem 1.1rem;
+  }
+
+  .library-search {
+    margin: 6px 0 12px 0;   /* tighter spacing on small screens */
   }
 }

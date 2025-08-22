@@ -64,40 +64,44 @@ function Library() {
 
       {/* Animate only tab content */}
       <div className="library-tab-content">
-        <AnimatePresence mode="wait">
-          {activeTab === TAB_FLASHCARDS && (
-            <motion.div
-              key="flashcards"
-              className="tab-motion"
-              variants={tabVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              transition={{ duration: 0.25 }}
-            >
-              <PageWrapper disableAnimation>
-                <SearchBar />
-              </PageWrapper>
-            </motion.div>
-          )}
+        <div className="library-tab-content-inner">
+          <AnimatePresence mode="wait">
+            {activeTab === TAB_FLASHCARDS && (
+              <motion.div
+                key="flashcards"
+                className="tab-motion"
+                variants={tabVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                transition={{ duration: 0.25 }}
+              >
+                <PageWrapper disableAnimation>
+                  <div className="library-search">
+                    <SearchBar />
+                  </div>
+                </PageWrapper>
+              </motion.div>
+            )}
 
-          {activeTab === TAB_FOLDERS && (
-            <motion.div
-              key="folders"
-              className="tab-motion"
-              variants={tabVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              transition={{ duration: 0.25 }}
-            >
-              <h3 className="library-tab-title">Folders</h3>
-              <PageWrapper disableAnimation>
-                <FolderList />
-              </PageWrapper>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            {activeTab === TAB_FOLDERS && (
+              <motion.div
+                key="folders"
+                className="tab-motion"
+                variants={tabVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                transition={{ duration: 0.25 }}
+              >
+                <h3 className="library-tab-title">Folders</h3>
+                <PageWrapper disableAnimation>
+                  <FolderList />
+                </PageWrapper>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
 
       {/* Folder Create Modal */}
