@@ -5,6 +5,8 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
+import "katex/dist/katex.min.css";
+
 import "../../styles/components/CardInput.css";
 
 function CardInput({ index, term, definition, updateCard, deleteCard }) {
@@ -12,6 +14,7 @@ function CardInput({ index, term, definition, updateCard, deleteCard }) {
 
   return (
     <div className="card-input">
+      {/* Header buttons */}
       <div className="card-input__header">
         <button
           className="card-input-toggle-btn"
@@ -27,6 +30,7 @@ function CardInput({ index, term, definition, updateCard, deleteCard }) {
         </button>
       </div>
 
+      {/* Preview Mode */}
       {showPreview ? (
         <div className="markdown-preview">
           <ReactMarkdown
@@ -37,17 +41,18 @@ function CardInput({ index, term, definition, updateCard, deleteCard }) {
           </ReactMarkdown>
         </div>
       ) : (
+        // Edit Mode
         <>
           <input
             type="text"
             className="card-input-term"
-            placeholder="TERM (markdown/LaTeX supported)"
+            placeholder="TERM (Markdown + LaTeX supported)"
             value={term}
             onChange={(e) => updateCard(index, "term", e.target.value)}
           />
           <textarea
             className="card-input-definition"
-            placeholder="DEFINITION (markdown/LaTeX supported)"
+            placeholder="DEFINITION (Markdown + LaTeX supported)"
             value={definition}
             onChange={(e) => updateCard(index, "definition", e.target.value)}
             rows={3}

@@ -64,11 +64,11 @@ function HomeFolderList() {
             key={folder.id}
             className="folder-card"
             title={folder.name}
-            onClick={() => navigate(`/Library/folder/${folder.id}`)}
+            onClick={() => navigate(`/library/folder/${folder.id}`)}
             role="button"
             tabIndex={0}
             onKeyPress={(e) => {
-              if (e.key === "Enter") navigate(`/Library/folder/${folder.id}`);
+              if (e.key === "Enter") navigate(`/library/folder/${folder.id}`);
             }}
           >
             <div className="folder-card__icon">

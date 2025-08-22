@@ -92,7 +92,7 @@ function App() {
               }
             />
             <Route
-              path="/Library/folder/:id"
+              path="/library/folder/:id"
               element={
                 <PageWrapper>
                   <FolderPage />
@@ -100,7 +100,7 @@ function App() {
               }
             />
             <Route
-              path="/Library/folder/:id/getsets"
+              path="/library/folder/:id/getsets"
               element={
                 <PageWrapper>
                   <ListSet />
@@ -108,7 +108,7 @@ function App() {
               }
             />
             <Route
-              path="/Library/createSet"
+              path="/library/createSet"
               element={
                 <PageWrapper>
                   <CreateSetPage />

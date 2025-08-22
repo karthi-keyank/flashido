@@ -7,7 +7,7 @@ function FolderGrid({ folder }) {
   const navigate = useNavigate();
 
   function onFolderClick() {
-    navigate(`/Library/folder/${folder.id}`);
+    navigate(`/library/folder/${folder.id}`);
   }
 
   return (

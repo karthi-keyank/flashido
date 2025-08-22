@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { collection, doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useAuth } from "../../context/auth_context";
 import { FaPlus, FaTimes } from "react-icons/fa";
@@ -47,7 +47,7 @@ function CreateFolder({ isOpen, onClose }) {
     setLoading(true); // start loading
 
     try {
-      const folderDocRef = doc(db, `users/${user.uid}/folders/${folderName}`);
+      const folderDocRef = doc(collection(db, `users/${user.uid}/folders`));
       await setDoc(folderDocRef, {
         title: folderName,
         description: folderDescription,

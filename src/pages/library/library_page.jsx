@@ -23,7 +23,7 @@ function Library() {
 
   const handleAddClick = () => {
     if (activeTab === "Flashcard sets") {
-      navigate("/Library/createSet");
+      navigate("/library/createSet");
     } else if (activeTab === "Folders") {
       setShowFolderModal(true); // Open modal instead of navigating
     }

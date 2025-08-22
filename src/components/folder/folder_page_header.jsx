@@ -54,7 +54,7 @@ function FolderPageHeader({ title, id }) {
       <div className="folder-header__right">
         <button
           className="folder-header__icon-button"
-          onClick={() => navigate(`/Library/folder/${id}/getsets`)}
+          onClick={() => navigate(`/library/folder/${id}/getsets`)}
           aria-label="Add sets"
         >
           <FaPlus className="folder-header__icon" />

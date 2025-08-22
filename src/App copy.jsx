@@ -37,7 +37,7 @@ function App() {
   }
 
   // Only show Header and NavBar on these paths
-  const showLayout = location.pathname === "/" || location.pathname === "/Library";
+  const showLayout = location.pathname === "/" || location.pathname === "/library";
 
   return (
     <div>
@@ -46,11 +46,11 @@ function App() {
         
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Library" element={<Library />} />
+          <Route path="/library" element={<Library />} />
           <Route path="/flashcard/:id" element={<FlashCardPage />} />
-          <Route path="/Library/folder/:id" element={<FolderPage />} />
-          <Route path="/Library/folder/:id/getsets" element={<ListSet />} />
-          <Route path="/Library/createSet" element={<CreateSetPage />} />
+          <Route path="/library/folder/:id" element={<FolderPage />} />
+          <Route path="/library/folder/:id/getsets" element={<ListSet />} />
+          <Route path="/library/createSet" element={<CreateSetPage />} />
           <Route path="/flashcard/edit-set/:setId?" element={<CreateSetPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
