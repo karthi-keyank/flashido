@@ -8,16 +8,15 @@ import CreateFolder from "../../components/folder/CreateFolder";
 import PageWrapper from "../../utils/PageWrapper";
 import "../../styles/pages/library_page.css";
 
-// 🔧 Refactor: use constants instead of raw strings
 const TAB_FLASHCARDS = "Flashcard sets";
 const TAB_FOLDERS = "Folders";
 const TABS = [TAB_FLASHCARDS, TAB_FOLDERS];
 
-// ✨ Reusable animation variants
+// ✨ Animation variants
 const tabVariants = {
-  hidden: { opacity: 0, x: 50 },
+  hidden: { opacity: 0, x: 40 },
   visible: { opacity: 1, x: 0 },
-  exit: { opacity: 0, x: -50 },
+  exit: { opacity: 0, x: -40 },
 };
 
 function Library() {
@@ -63,19 +62,20 @@ function Library() {
         ))}
       </div>
 
-      {/* Tab content with Framer Motion animation */}
+      {/* Animate only tab content */}
       <div className="library-tab-content">
         <AnimatePresence mode="wait">
           {activeTab === TAB_FLASHCARDS && (
             <motion.div
               key="flashcards"
+              className="tab-motion"
               variants={tabVariants}
               initial="hidden"
               animate="visible"
               exit="exit"
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.25 }}
             >
-              <PageWrapper>
+              <PageWrapper disableAnimation>
                 <SearchBar />
               </PageWrapper>
             </motion.div>
@@ -84,14 +84,15 @@ function Library() {
           {activeTab === TAB_FOLDERS && (
             <motion.div
               key="folders"
+              className="tab-motion"
               variants={tabVariants}
               initial="hidden"
               animate="visible"
               exit="exit"
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.25 }}
             >
               <h3 className="library-tab-title">Folders</h3>
-              <PageWrapper>
+              <PageWrapper disableAnimation>
                 <FolderList />
               </PageWrapper>
             </motion.div>

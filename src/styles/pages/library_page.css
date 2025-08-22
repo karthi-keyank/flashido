@@ -1,11 +1,10 @@
-
 .library {
   min-height: 100vh;
   min-width: 0;
   background: #08062b;
   color: #f5f6fa;
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-  padding: 20px 0 60px 0;
+  padding: 20px 0 60px 0; /* leave space for navbar */
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -30,6 +29,7 @@
   cursor: pointer;
   outline: none;
   letter-spacing: 0.5px;
+  transition: all 0.25s ease;
 }
 
 .library-tab-button--active {
@@ -39,27 +39,25 @@
   font-weight: 700;
 }
 
-.library-tab-button:active {
-  color: #ffffff;
-
-}
-
 .library-tab-content {
+  position: relative;        /* Needed for absolute children */
   border-radius: 1.5rem;
   box-shadow: 0 4px 24px 0 #08062b44;
   padding: 2rem 1.5rem 2.5rem 1.5rem;
   border-top: 2px solid #2d3253;
   margin: 0;
-  min-height: 220px;
-  min-width: 0;
+  min-height: 220px;         /* stable height */
   width: 100%;
-  animation: fadeInTab 0.7s cubic-bezier(.68,-0.55,.27,1.55);
   box-sizing: border-box;
+  overflow: hidden;          /* hide sliding children */
 }
 
-@keyframes fadeInTab {
-  0% { opacity: 0; transform: translateY(30px) scale(0.98); }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
+/* Motion children → stacked absolute so they don’t push layout */
+.tab-motion {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
 .library-tab-title {
@@ -79,7 +77,6 @@
   .library-tab-content {
     padding: 1.2rem 0.5rem 1.5rem 0.5rem;
     width: 100vw;
-    min-width: 0;
     border-radius: 1.5rem;
     box-sizing: border-box;
   }
