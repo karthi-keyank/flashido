@@ -2,6 +2,7 @@ import { useAuth } from "../../context/auth_context";
 import LogoutButton from "./log_out";
 import "../../styles/components/header.css";
 import { FaSignOutAlt } from "react-icons/fa"; // Icon for logout
+import { HiUserCircle } from "react-icons/hi"; // Circle user icon ✅
 
 function Header() {
   const { username, authLoading } = useAuth();
@@ -14,7 +15,7 @@ function Header() {
   } else if (username) {
     userSectionContent = (
       <span className="header__username">
-        <i className="header__icon" aria-label="User">👤</i> {username}
+        <HiUserCircle className="header__icon" aria-label="User" /> {username}
       </span>
     );
   } else {

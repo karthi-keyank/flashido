@@ -1,7 +1,7 @@
-/* src/styles/components/folder_list_horizontal.css */
+/* src/styles/components/set_list_horizontal.css */
 
 /* --- Row (horizontal list) --- */
-.folder-row {
+.set-row {
   display: flex;
   flex-direction: row;
   align-items: stretch;
@@ -18,15 +18,15 @@
 }
 
 /* subtle, thin scrollbar */
-.folder-row::-webkit-scrollbar { height: 6px; }
-.folder-row::-webkit-scrollbar-thumb {
+.set-row::-webkit-scrollbar { height: 6px; }
+.set-row::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.15);
   border-radius: 3px;
 }
-.folder-row::-webkit-scrollbar-track { background: transparent; }
+.set-row::-webkit-scrollbar-track { background: transparent; }
 
 /* --- Card (compact) --- */
-.folder-card {
+.set-card {
   scroll-snap-align: start;
 
   flex: 0 0 auto;
@@ -39,7 +39,6 @@
   background: rgba(255, 255, 255, 0.03);
   color: #e8eaf3;
 
-  /* place icon + text side-by-side to cut height */
   display: grid;
   grid-template-columns: 24px 1fr;
   column-gap: 10px;
@@ -48,27 +47,27 @@
   transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
-.folder-card:hover {
+.set-card:hover {
   transform: translateY(-2px);
   border-color: rgba(255, 255, 255, 0.12);
   background: rgba(255, 255, 255, 0.06);
 }
 
 /* --- Icon + Meta --- */
-.folder-card__icon {
-  font-size: 20px;       /* a bit smaller */
+.set-card__icon {
+  font-size: 20px;
   line-height: 1;
   color: #cfd3ff;
   align-self: start;
 }
 
-.folder-card__meta {
+.set-card__meta {
   display: grid;
   row-gap: 4px;
-  min-width: 0;          /* enables ellipsis */
+  min-width: 0; /* enables ellipsis */
 }
 
-.folder-card__title {
+.set-card__title {
   font-weight: 600;
   font-size: 0.95rem;
   white-space: nowrap;
@@ -76,7 +75,7 @@
   text-overflow: ellipsis;
 }
 
-.folder-card__desc {
+.set-card__desc {
   font-size: 0.82rem;
   color: #a3a8b8;
   line-height: 1.2;
@@ -85,24 +84,23 @@
   text-overflow: ellipsis;
 }
 
-.folder-card__stats {
+.set-card__stats {
   font-size: 0.78rem;
   color: #8b90a4;
 }
 
 /* --- States / Heading --- */
-.folder-row__heading {
+.set-row__heading {
   margin: 6px 8px 2px;
   font-size: 1.5rem;
   font-weight: 700;
 }
 
-.folder-row__empty,
-.folder-row__error {
+.set-row__empty,
+.set-row__error {
   margin: 8px 12px;
   color: #a3a8b8;
 }
-
 
 /* --- Loading skeletons (same compact size) --- */
 .skeleton {
@@ -116,11 +114,11 @@
     rgba(255, 255, 255, 0.04)
   );
   background-size: 200% 100%;
-  animation: folder-skel 1.2s ease-in-out infinite;
+  animation: set-skel 1.2s ease-in-out infinite;
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-@keyframes folder-skel {
+@keyframes set-skel {
   0% { background-position: 0% 0; }
   100% { background-position: -200% 0; }
 }

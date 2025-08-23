@@ -57,7 +57,7 @@ function HomeFolderList() {
 
   return (
     <div className="home-folder-section">
-      <h3 className="folder-row__heading">Recent</h3>
+      <h3 className="folder-row__heading">Recent folders</h3>
       <ul className="folder-row" aria-label="Recent folders">
         {normalized.map((folder) => (
           <li

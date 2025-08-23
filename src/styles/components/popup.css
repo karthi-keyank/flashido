@@ -9,11 +9,11 @@
 }
 
 .popup-modal {
-  background: #1a1c2e; /* same dark card bg */
+  background: #1e1e2f; /* slightly lighter dark for contrast */
   padding: 20px 24px;
   border-radius: 12px;
   text-align: center;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
   min-width: 260px;
 }
 
@@ -33,31 +33,21 @@
 .popup-actions button {
   padding: 8px 20px;
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 500;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: transform 0.15s ease, opacity 0.15s ease;
+  background: #2a2a3d;  /* neutral dark button */
+  color: #e0e0e0;
+  transition: background 0.2s ease, transform 0.15s ease;
 }
 
-/* Yes button */
-.popup-actions button:first-of-type {
-  background: #2ecc71; /* bright green */
-  color: white;
+.popup-actions button:hover {
+  background: #3a3a55;
+  transform: scale(1.03);
 }
 
-.popup-actions button:first-of-type:hover {
-  background: #27ae60;
-  transform: scale(1.05);
-}
-
-/* No button */
-.popup-actions button:last-of-type {
-  background: #e74c3c; /* bright red */
-  color: white;
-}
-
-.popup-actions button:last-of-type:hover {
-  background: #c0392b;
-  transform: scale(1.05);
+.popup-actions button:active {
+  transform: scale(0.98);
+  opacity: 0.85;
 }
