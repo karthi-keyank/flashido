@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { FaTrash } from "react-icons/fa";
 import ReactMarkdown from "react-markdown";
@@ -9,11 +9,19 @@ import "katex/dist/katex.min.css";
 
 import "../../styles/components/CardInput.css";
 
-function CardInput({ index, term, definition, updateCard, deleteCard }) {
+function CardInput({ index, term, definition, updateCard, deleteCard, autoFocus }) {
   const [showPreview, setShowPreview] = useState(false);
+  const inputRef = useRef(null);
+
+  // when a card is added with autoFocus=true → focus input
+  useEffect(() => {
+    if (autoFocus && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [autoFocus]);
 
   return (
-    <div className="card-input">
+    <div className="card-input" id={`card-${index}`}>
       {/* Header buttons */}
       <div className="card-input__header">
         <button
@@ -41,9 +49,9 @@ function CardInput({ index, term, definition, updateCard, deleteCard }) {
           </ReactMarkdown>
         </div>
       ) : (
-        // Edit Mode
         <>
           <input
+            ref={inputRef}
             type="text"
             className="card-input-term"
             placeholder="TERM (Markdown + LaTeX supported)"
@@ -69,6 +77,7 @@ CardInput.propTypes = {
   definition: PropTypes.string.isRequired,
   updateCard: PropTypes.func.isRequired,
   deleteCard: PropTypes.func.isRequired,
+  autoFocus: PropTypes.bool,
 };
 
 export default CardInput;

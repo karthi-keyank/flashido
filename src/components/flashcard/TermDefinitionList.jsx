@@ -14,11 +14,13 @@ function TermDefinitionList({ cards, updateCard, deleteCard }) {
           definition={card.definition}
           updateCard={updateCard}
           deleteCard={deleteCard}
+          autoFocus={index === cards.length - 1} // focus only last
         />
       ))}
     </div>
   );
 }
+
 
 TermDefinitionList.propTypes = {
   cards: PropTypes.arrayOf(

@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../context/auth_context";
 import CardList from "../../utils/list_cards";
-import CardListVertical from "../../utils/list_cards_vertical";
 import FlashcardPageHeader from "../../components/flashcard/flashcard_page_header";
 import "../../styles/pages/flashcard_page.css";
 import { useAppData } from "../../context/app_data";
@@ -50,10 +49,6 @@ function FlashCardPage() {
             <FiFileText className="icon" />
             <span>Test</span>
           </button>
-        </section>
-
-        <section className="cards-list-vertical">
-          <CardListVertical setId={setId}/>
         </section>
       </div>
     </div>

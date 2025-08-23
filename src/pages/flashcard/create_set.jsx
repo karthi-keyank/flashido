@@ -22,7 +22,6 @@ function CreateSetPage() {
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(!!setId);
 
-  // ✅ New states for popup messages
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
@@ -70,7 +69,7 @@ function CreateSetPage() {
     loadSet();
   }, [setId, userId]);
 
-  // ✅ Auto-dismiss popup messages
+  // Auto-dismiss toasts
   useEffect(() => {
     if (errorMessage || successMessage) {
       const timer = setTimeout(() => {
@@ -81,18 +80,34 @@ function CreateSetPage() {
     }
   }, [errorMessage, successMessage]);
 
-  const addNewCard = () => {
-    setCards([...cards, { id: uuidv4(), term: "", definition: "" }]);
+  // ▶️ ADD CARD with smooth scroll-to-new & autofocus (CardInput already handles focus via autoFocus)
+  const handleAddCard = () => {
+    setCards((prev) => {
+      const newCards = [...prev, { id: uuidv4(), term: "", definition: "" }];
+
+      // wait till DOM updates, then scroll to the new card
+      requestAnimationFrame(() => {
+        const targetId = `card-${newCards.length - 1}`;
+        const newCardEl = document.getElementById(targetId);
+        if (newCardEl) {
+          newCardEl.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      });
+
+      return newCards;
+    });
   };
 
   const updateCard = (index, field, value) => {
-    const updated = [...cards];
-    updated[index][field] = value;
-    setCards(updated);
+    setCards((prev) => {
+      const updated = [...prev];
+      updated[index][field] = value;
+      return updated;
+    });
   };
 
   const deleteCard = (index) => {
-    setCards(cards.filter((_, i) => i !== index));
+    setCards((prev) => prev.filter((_, i) => i !== index));
   };
 
   const handleSave = async () => {
@@ -100,7 +115,6 @@ function CreateSetPage() {
       setErrorMessage("⚠️ User not identified. Please re-login.");
       return;
     }
-
     if (!title.trim()) {
       setErrorMessage("⚠️ Title is required.");
       return;
@@ -123,11 +137,11 @@ function CreateSetPage() {
         description,
         termCount: cards.length,
         Cards: cardMap,
-        updatedAt: serverTimestamp()
+        updatedAt: serverTimestamp(),
       });
 
       setSuccessMessage("✅ Set saved successfully!");
-      setTimeout(() => navigate("/Library"), 1500); // Delay for UX
+      setTimeout(() => navigate("/Library"), 1500);
     } catch (error) {
       console.error("Error saving set:", error);
       setErrorMessage("❌ Failed to save set. Try again.");
@@ -138,13 +152,8 @@ function CreateSetPage() {
 
   return (
     <div className="create-set-page">
-      {/* ✅ Popup messages */}
-      {errorMessage && (
-        <div className="popup-message error">{errorMessage}</div>
-      )}
-      {successMessage && (
-        <div className="popup-message success">{successMessage}</div>
-      )}
+      {errorMessage && <div className="popup-message error">{errorMessage}</div>}
+      {successMessage && <div className="popup-message success">{successMessage}</div>}
 
       <TopBar className="create-set-topbar" onSave={handleSave} />
 
@@ -169,9 +178,9 @@ function CreateSetPage() {
         </div>
       </div>
 
-      {/* Floating add button outside scrollable area */}
+      {/* Floating add button */}
       <div className="create-set-add-button-wrapper">
-        <AddCardButton onClick={addNewCard} className="create-set-add-button" />
+        <AddCardButton onClick={handleAddCard} className="create-set-add-button" />
       </div>
     </div>
   );

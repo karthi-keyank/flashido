@@ -13,6 +13,37 @@
   padding-left: 0.2rem;
 }
 
+/* --- Sorting controls --- */
+.flashcard-list__controls {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.flashcard-list__sort-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.flashcard-list__sort-btn:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.25);
+}
+
+.flashcard-list__sort-label {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* --- Grid and empty state --- */
 .flashcard-list__grid {
   display: flex;
   flex-direction: column;
