@@ -67,12 +67,13 @@
   min-height: 220px;         
   width: 100%;
   box-sizing: border-box;
-  overflow: hidden;          
+  overflow-y: auto;     
+  overflow-x: hidden;  
 }
 
 /* Motion children (framer) → stack, no layout push, no overflow rounding */
 .tab-motion {
-  position: absolute;
+  position: relative;
   inset: 0;
 }
 
