@@ -60,9 +60,14 @@
   animation: underlineGrow 1.2s cubic-bezier(.68,-0.55,.27,1.55) 0.7s both;
 }
 
-.recents{
+.recents {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;     /* fixed space between items */
   padding: 0px 12px;
 }
+
+
 @keyframes gradientMove {
   0% {
     background-position: 0% 50%;
