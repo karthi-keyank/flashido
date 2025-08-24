@@ -1,4 +1,3 @@
-// src/pages/home/home_set_list.jsx
 import React, { useMemo } from "react";
 import { useAppData } from "../../context/app_data";
 import { FiLayers } from "react-icons/fi";
@@ -67,6 +66,7 @@ function HomeSetList() {
             </div>
             <div className="set-card__meta">
               <div className="set-card__title">{set.title}</div>
+              <div className="set-card__desc">{set.description}</div>
               <div className="set-card__stats">{set.cardCount} cards</div>
             </div>
           </li>

@@ -1,11 +1,9 @@
-/* src/styles/components/folder_list_horizontal.css */
-
 /* --- Row (horizontal list) --- */
 .folder-row {
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  gap: 12px;
+  gap: 20px;
   margin: 0;
   padding: 12px 8px 12px;
   list-style: none;
@@ -25,90 +23,91 @@
 }
 .folder-row::-webkit-scrollbar-track { background: transparent; }
 
-/* --- Card (compact) --- */
+/* --- Folder Card --- */
 .folder-card {
   scroll-snap-align: start;
-
   flex: 0 0 auto;
-  width: 200px;           /* compact width */
-  min-height: 88px;       /* reduced height */
-  padding: 10px 12px;     /* compact padding */
 
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  background: rgba(255, 255, 255, 0.03);
-  color: #e8eaf3;
+  width: 260px;
+  min-height: 160px;
+  padding: 18px;
 
-  /* place icon + text side-by-side to cut height */
-  display: grid;
-  grid-template-columns: 24px 1fr;
-  column-gap: 10px;
-  row-gap: 4px;
+  border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.06);
+  background: #202140;
+  color: #fff;
 
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 8px;
+
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
 }
 
 .folder-card:hover {
-  transform: translateY(-2px);
+  background: #202140;
   border-color: rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.06);
 }
 
-/* --- Icon + Meta --- */
+/* --- Icon --- */
 .folder-card__icon {
-  font-size: 20px;       /* a bit smaller */
-  line-height: 1;
+  font-size: 28px;
   color: #cfd3ff;
-  align-self: start;
+  margin-bottom: 4px;
 }
 
-.folder-card__meta {
-  display: grid;
-  row-gap: 4px;
-  min-width: 0;          /* enables ellipsis */
-}
-
+/* --- Title (folder name) --- */
 .folder-card__title {
+  font-size: 1rem;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-family: cursive, sans-serif;  /* gives playful feel like screenshot */
+  color: #ffffff;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+/* --- Description (strike-through like screenshot) --- */
 .folder-card__desc {
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   color: #a3a8b8;
-  line-height: 1.2;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+/* --- Stats (cards + author) --- */
 .folder-card__stats {
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   color: #8b90a4;
 }
 
-/* --- States / Heading --- */
-.folder-row__heading {
-  margin: 6px 8px 2px;
-  font-size: 1.5rem;
-  font-weight: 700;
+.folder-card__author {
+  font-style: italic;
 }
 
+/* --- Heading --- */
+.folder-row__heading {
+  margin: 6px 8px 12px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* --- Empty / Error State --- */
 .folder-row__empty,
 .folder-row__error {
   margin: 8px 12px;
   color: #a3a8b8;
 }
 
-
-/* --- Loading skeletons (same compact size) --- */
+/* --- Loading skeleton --- */
 .skeleton {
-  min-height: 88px;
-  width: 200px;
-  border-radius: 10px;
+  min-height: 160px;
+  width: 260px;
+  border-radius: 16px;
   background: linear-gradient(
     90deg,
     rgba(255, 255, 255, 0.04),

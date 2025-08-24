@@ -1,18 +1,17 @@
-// src/pages/home/home_folder_list.jsx
+// src/pages/home/home_set_list.jsx
 import React, { useMemo } from "react";
 import { useAppData } from "../../context/app_data";
 import { FiFolder } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-import "../../styles/components/folder_list_horizontal.css";
+import "../../styles/components/set_list_horizontal.css";
 
-function HomeFolderList() {
-  const { folders, loading, error } = useAppData();
+function HomesetList() {
+  const { sets, loading, error } = useAppData();
 
   const navigate = useNavigate();
 
-
   const normalized = useMemo(() => {
-    const arr = Array.isArray(folders) ? folders : [];
+    const arr = Array.isArray(sets) ? sets : [];
     const toMillis = (ts) => {
       if (!ts) return 0;
       if (typeof ts.toMillis === "function") return ts.toMillis();
@@ -22,62 +21,64 @@ function HomeFolderList() {
     };
     const copy = [...arr];
     copy.sort((a, b) => toMillis(b.createdAt) - toMillis(a.createdAt));
-    return copy.map((folder) => ({
-      id: folder.id,
-      name: folder.title ?? "Untitled",
-      description: folder.description?.trim() || "No description",
-      setsCount: Array.isArray(folder.Sets) ? folder.Sets.length : 0,
+    return copy.map((set) => ({
+      id: set.id,
+      name: set.title ?? "Untitled",
+      description: set.description?.trim() || "No description",
+      setsCount: Array.isArray(set.Sets) ? set.Sets.length : 0,
     }));
-  }, [folders]);
+  }, [sets]);
 
   if (loading) {
     return (
-      <div aria-busy="true" className="folder-row folder-row--loading">
-        <output aria-live="polite" className="folder-row__status">
-          Loading folders…
+      <div aria-busy="true" className="set-row set-row--loading">
+        <output aria-live="polite" className="set-row__status">
+          Loading sets…
         </output>
-        <div className="folder-card skeleton" />
-        <div className="folder-card skeleton" />
-        <div className="folder-card skeleton" />
+        <div className="set-card skeleton" />
+        <div className="set-card skeleton" />
+        <div className="set-card skeleton" />
       </div>
     );
   }
 
   if (error) {
     return (
-      <div role="alert" className="folder-row__error">
-        Failed to load folders. Please try again.
+      <div role="alert" className="set-row__error">
+        Failed to load sets. Please try again.
       </div>
     );
   }
 
   if (!normalized.length) {
-    return <p className="folder-row__empty">No folders found.</p>;
+    return <p className="set-row__empty">No sets found.</p>;
   }
 
   return (
-    <div className="home-folder-section">
-      <h3 className="folder-row__heading">Recent folders</h3>
-      <ul className="folder-row" aria-label="Recent folders">
-        {normalized.map((folder) => (
+    <div className="home-set-section">
+      <h3 className="set-row__heading">Recent sets</h3>
+      <ul className="set-row" aria-label="Recent sets">
+        {normalized.map((set) => (
           <li
-            key={folder.id}
-            className="folder-card"
-            title={folder.name}
-            onClick={() => navigate(`/library/folder/${folder.id}`)}
+            key={set.id}
+            className="set-card"
+            onClick={() => navigate(`/library/set/${set.id}`)}
             role="button"
             tabIndex={0}
             onKeyPress={(e) => {
-              if (e.key === "Enter") navigate(`/library/folder/${folder.id}`);
+              if (e.key === "Enter") navigate(`/library/set/${set.id}`);
             }}
           >
-            <div className="folder-card__icon">
+            <div className="set-card__icon">
               <FiFolder />
             </div>
-            <div className="folder-card__meta">
-              <div className="folder-card__title">{folder.name}</div>
-              <div className="folder-card__desc">{folder.description}</div>
-              <div className="folder-card__stats">{folder.setsCount} sets</div>
+
+            <div className="set-card__content">
+              <div className="set-card__title">{set.name}</div>
+              <div className="set-card__desc">{set.description}</div>
+              <div className="set-card__stats">
+                {set.setsCount} sets
+              </div>
             </div>
           </li>
         ))}
@@ -86,4 +87,4 @@ function HomeFolderList() {
   );
 }
 
-export default HomeFolderList;
+export default HomesetList;
