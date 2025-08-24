@@ -2,7 +2,6 @@
 
 .home-page {
   position: relative;           /* for pseudo-element glow positioning */
-  overflow: hidden;
   min-height: 100vh;
   min-width: 0;
   background: #08062b;          /* fallback base color */
@@ -131,7 +130,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;     /* fixed space between items — good choice */
-  padding: 0px 12px;
+  padding: 0px 12px 80px;
   z-index: 2;    /* above glow */
   box-sizing: border-box;
 }

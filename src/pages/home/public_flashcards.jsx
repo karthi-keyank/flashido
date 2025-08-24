@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { FiLayers } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-import "../../styles/components/folder_list_horizontal.css"; 
-// 🔥 reuse same CSS as folders, not set_list_horizontal.css
+import "../../styles/components/set_list_horizontal.css"; 
+// 🔥 reuse same CSS as sets, not set_list_horizontal.css
 import { fetchPublicSetsPage, fetchPublicSetsNext } from "../../utils/fetch_public_sets";
 
 function toMillis(ts) {
@@ -68,44 +68,44 @@ export default function HomePublicSetList() {
 
   if (loading) {
     return (
-      <div aria-busy="true" className="folder-row folder-row--loading">
-        <output aria-live="polite" className="folder-row__status">
+      <div aria-busy="true" className="set-row set-row--loading">
+        <output aria-live="polite" className="set-row__status">
           Loading public sets…
         </output>
-        <div className="folder-card skeleton" />
-        <div className="folder-card skeleton" />
-        <div className="folder-card skeleton" />
+        <div className="set-card skeleton" />
+        <div className="set-card skeleton" />
+        <div className="set-card skeleton" />
       </div>
     );
   }
 
   if (error) {
-    return <div className="folder-row__error">Error: {error}</div>;
+    return <div className="set-row__error">Error: {error}</div>;
   }
 
   if (!normalized.length) {
-    return <p className="folder-row__empty">No public sets found.</p>;
+    return <p className="set-row__empty">No public sets found.</p>;
   }
 
   return (
-    <div className="home-folder-section">
-      <h3 className="folder-row__heading">Public Sets</h3>
-      <ul className="folder-row" aria-label="Public sets">
+    <div className="home-set-section">
+      <h3 className="set-row__heading">Public Sets</h3>
+      <ul className="set-row" aria-label="Public sets">
         {normalized.map((set) => (
           <li
             key={set.id}
-            className="folder-card"
+            className="set-card"
             title={set.title}
             onClick={() => navigate(`/flashcard/${set.id}`)}
             role="button"
             tabIndex={0}
             onKeyPress={(e) => { if (e.key === "Enter") navigate(`/flashcard/${set.id}`); }}
           >
-            <div className="folder-card__icon"><FiLayers /></div>
-            <div className="folder-card__meta">
-              <div className="folder-card__title">{set.title}</div>
-              <div className="folder-card__desc">{set.description}</div>
-              <div className="folder-card__stats">{set.cardCount} cards</div>
+            <div className="set-card__icon"><FiLayers /></div>
+            <div className="set-card__meta">
+              <div className="set-card__title">{set.title}</div>
+              <div className="set-card__desc">{set.description}</div>
+              <div className="set-card__stats">{set.cardCount} cards</div>
             </div>
           </li>
         ))}
