@@ -5,10 +5,11 @@ import { FiFolder } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import "../../styles/components/folder_list_horizontal.css";
 
-function HomefolderList() {
+function HomeFolderList() {
   const { folders, loading, error } = useAppData();
 
   const navigate = useNavigate();
+
 
   const normalized = useMemo(() => {
     const arr = Array.isArray(folders) ? folders : [];
@@ -25,7 +26,7 @@ function HomefolderList() {
       id: folder.id,
       name: folder.title ?? "Untitled",
       description: folder.description?.trim() || "No description",
-      foldersCount: Array.isArray(folder.folders) ? folder.folders.length : 0,
+      setsCount: Array.isArray(folder.Sets) ? folder.Sets.length : 0,
     }));
   }, [folders]);
 
@@ -62,6 +63,7 @@ function HomefolderList() {
           <li
             key={folder.id}
             className="folder-card"
+            title={folder.name}
             onClick={() => navigate(`/library/folder/${folder.id}`)}
             role="button"
             tabIndex={0}
@@ -72,13 +74,10 @@ function HomefolderList() {
             <div className="folder-card__icon">
               <FiFolder />
             </div>
-
-            <div className="folder-card__content">
+            <div className="folder-card__meta">
               <div className="folder-card__title">{folder.name}</div>
               <div className="folder-card__desc">{folder.description}</div>
-              <div className="folder-card__stats">
-                {folder.foldersCount} folders
-              </div>
+              <div className="folder-card__stats">{folder.setsCount} sets</div>
             </div>
           </li>
         ))}
@@ -87,4 +86,4 @@ function HomefolderList() {
   );
 }
 
-export default HomefolderList;
+export default HomeFolderList;
