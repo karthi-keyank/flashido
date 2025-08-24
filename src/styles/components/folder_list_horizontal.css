@@ -8,12 +8,14 @@
   padding: 12px 8px 12px;
   list-style: none;
 
-  overflow-x: auto;   /* horizontal scroll */
+  overflow-x: auto;
   overflow-y: hidden;
 
-  /* smooth-ish snapping while scrolling */
-  scroll-snap-type: x proximity;
+  scroll-snap-type: x mandatory;  /* proximity -> mandatory (smoother, less jank) */
+  scroll-behavior: smooth;        /* native smooth scroll */
+  will-change: transform;         /* hint GPU acceleration */
 }
+
 
 /* subtle, thin scrollbar */
 .folder-row::-webkit-scrollbar { height: 6px; }
