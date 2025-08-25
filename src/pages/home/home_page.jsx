@@ -3,7 +3,6 @@ import "../../styles/pages/home_page.css";
 import RandomQuote from "../../utils/RandomQuotes"; // adjust path accordingly
 import HomeSetList from "./home_set_list";
 import HomeFolderList from "./home_folder_list";
-import HomePublicSetList from "./public_flashcards";
 
 function Home() {
   return (
@@ -14,7 +13,6 @@ function Home() {
       <div className="recents">
         <HomeFolderList />
         <HomeSetList />
-        <HomePublicSetList/>
       </div>
     </main>
   );

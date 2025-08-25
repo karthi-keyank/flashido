@@ -2,22 +2,21 @@
 .folder-row {
   display: flex;
   flex-direction: row;
-  align-items: stretch;
+  align-items: flex-start;
+  justify-content: flex-start;   /* 🔑 always align left */
   gap: 20px;
+  padding: 12px 8px;
   margin: 0;
-  padding: 12px 8px 12px;
-  list-style: none;
+  width: 100%;
+  box-sizing: border-box;
 
   overflow-x: auto;
   overflow-y: hidden;
-
-  scroll-snap-type: x mandatory;  /* proximity -> mandatory (smoother, less jank) */
-  scroll-behavior: smooth;        /* native smooth scroll */
-  will-change: transform;         /* hint GPU acceleration */
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
 }
 
-
-/* subtle, thin scrollbar */
+/* Subtle, thin scrollbar */
 .folder-row::-webkit-scrollbar { height: 6px; }
 .folder-row::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.15);
@@ -25,11 +24,10 @@
 }
 .folder-row::-webkit-scrollbar-track { background: transparent; }
 
-/* --- Folder Card --- */
+/* --- folder Card --- */
 .folder-card {
   scroll-snap-align: start;
   flex: 0 0 auto;
-
   width: 260px;
   min-height: 160px;
   padding: 18px;
@@ -46,12 +44,11 @@
 
   cursor: pointer;
   transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-   will-change: transform;
 }
 
 .folder-card:hover {
-  background: #202140;
-  border-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-4px); /* lil lift on hover */
 }
 
 /* --- Icon --- */
@@ -65,14 +62,14 @@
 .folder-card__title {
   font-size: 1rem;
   font-weight: 600;
-  font-family: cursive, sans-serif;  /* gives playful feel like screenshot */
+  font-family: "Segoe UI", sans-serif;
   color: #ffffff;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* --- Description (strike-through like screenshot) --- */
+/* --- Description --- */
 .folder-card__desc {
   font-size: 0.85rem;
   color: #a3a8b8;
@@ -81,14 +78,10 @@
   text-overflow: ellipsis;
 }
 
-/* --- Stats (cards + author) --- */
+/* --- Stats --- */
 .folder-card__stats {
   font-size: 0.8rem;
   color: #8b90a4;
-}
-
-.folder-card__author {
-  font-style: italic;
 }
 
 /* --- Heading --- */
@@ -123,6 +116,6 @@
 }
 
 @keyframes folder-skel {
-  0% { background-position: 0% 0; }
+  0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
 }

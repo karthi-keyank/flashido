@@ -2,20 +2,21 @@
 .set-row {
   display: flex;
   flex-direction: row;
-  align-items: stretch;
+  align-items: flex-start;
+  justify-content: flex-start;   /* 🔑 always align left */
   gap: 20px;
+  padding: 12px 8px;
   margin: 0;
-  padding: 12px 8px 12px;
-  list-style: none;
+  width: 100%;
+  box-sizing: border-box;
 
-  overflow-x: auto;   /* horizontal scroll */
+  overflow-x: auto;
   overflow-y: hidden;
-
-  /* smooth-ish snapping while scrolling */
-  scroll-snap-type: x proximity;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
 }
 
-/* subtle, thin scrollbar */
+/* Subtle, thin scrollbar */
 .set-row::-webkit-scrollbar { height: 6px; }
 .set-row::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.15);
@@ -27,7 +28,6 @@
 .set-card {
   scroll-snap-align: start;
   flex: 0 0 auto;
-
   width: 260px;
   min-height: 160px;
   padding: 18px;
@@ -47,8 +47,8 @@
 }
 
 .set-card:hover {
-  background: #202140;
-  border-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-4px); /* lil lift on hover */
 }
 
 /* --- Icon --- */
@@ -62,14 +62,14 @@
 .set-card__title {
   font-size: 1rem;
   font-weight: 600;
-  font-family: cursive, sans-serif;  /* gives playful feel like screenshot */
+  font-family: "Segoe UI", sans-serif;
   color: #ffffff;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* --- Description (strike-through like screenshot) --- */
+/* --- Description --- */
 .set-card__desc {
   font-size: 0.85rem;
   color: #a3a8b8;
@@ -78,14 +78,10 @@
   text-overflow: ellipsis;
 }
 
-/* --- Stats (cards + author) --- */
+/* --- Stats --- */
 .set-card__stats {
   font-size: 0.8rem;
   color: #8b90a4;
-}
-
-.set-card__author {
-  font-style: italic;
 }
 
 /* --- Heading --- */
@@ -120,6 +116,6 @@
 }
 
 @keyframes set-skel {
-  0% { background-position: 0% 0; }
+  0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
 }

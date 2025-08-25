@@ -1,23 +1,22 @@
+// src/pages/flashcard/FlashcardPageHeader.jsx
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { FiArrowLeft, FiUpload, FiTrash2, FiEdit3 } from "react-icons/fi";
+import { FiArrowLeft, FiTrash2, FiEdit3 } from "react-icons/fi";
 import { deleteSetFromDatabase } from "../../utils/deleteSetFromDatabase";
-import { pushSetToPublic } from "../../utils/pushToPublic";
 import ClipLoader from "react-spinners/ClipLoader"; 
 import "../../styles/components/flashcard_page_header.css";
 
 function FlashcardPageHeader({ navigate, user, setId }) {
   const [loadingDelete, setLoadingDelete] = useState(false);
-  const [loadingPush, setLoadingPush] = useState(false);
   const [message, setMessage] = useState(null); // ✅ Toast message
   const [messageType, setMessageType] = useState("success"); // "success" | "error"
   const [confirmAction, setConfirmAction] = useState(null); // ✅ Modal confirm state
 
-  // Show toast message
+  // ✅ Toast message
   const showMessage = (msg, type = "success") => {
     setMessage(msg);
     setMessageType(type);
-    setTimeout(() => setMessage(null), 3000); // auto close after 3s
+    setTimeout(() => setMessage(null), 3000);
   };
 
   const handleDelete = async () => {
@@ -42,28 +41,6 @@ function FlashcardPageHeader({ navigate, user, setId }) {
     });
   };
 
-  const handlePushToPublic = async () => {
-    if (!user?.uid || !setId) {
-      showMessage("⚠️ User not authenticated.", "error");
-      return;
-    }
-
-    setConfirmAction(() => async () => {
-      try {
-        setLoadingPush(true);
-        const success = await pushSetToPublic(user.uid, setId);
-        if (success) {
-          showMessage("✅ Set pushed to public!");
-        } else {
-          showMessage("❌ Failed to push set to public.", "error");
-        }
-      } finally {
-        setLoadingPush(false);
-        setConfirmAction(null);
-      }
-    });
-  };
-
   return (
     <>
       {/* Header */}
@@ -77,14 +54,6 @@ function FlashcardPageHeader({ navigate, user, setId }) {
         </button>
 
         <div className="header-actions">
-          <button
-            className="header-btn"
-            onClick={handlePushToPublic}
-            title="Push to Public"
-            disabled={loadingPush}
-          >
-            {loadingPush ? <ClipLoader size={18} color="#000" /> : <FiUpload />}
-          </button>
           <button
             className="header-btn delete-btn"
             onClick={handleDelete}
