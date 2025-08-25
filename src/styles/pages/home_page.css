@@ -4,9 +4,9 @@
   position: relative;
   min-height: 100vh;
   min-width: 0;
-  background: #08062b;          /* solid background only */
+  background: #08062b; /* solid background only */
   width: 100vw;
-  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
   color: #f5f6fa;
   box-sizing: border-box;
   display: flex;
@@ -34,10 +34,19 @@
   letter-spacing: 0.6px;
   width: 100%;
   text-align: center;
-  color: #f5f6fa;   /* simple text color */
   position: relative;
   display: inline-block;
   padding: 0 12px;
+
+  /* Gradient Magic */
+  background: linear-gradient(90deg, #00c6ff, #0072ff, #2ecc71);
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* For Firefox */
+  background-clip: text;
+  color: transparent;
 }
 
 /* Optional underline */
@@ -63,7 +72,20 @@
 
 /* mobile adjustments */
 @media (max-width: 600px) {
-  .home-page { min-width: 0; width: 100vw; box-sizing: border-box; }
-  .home-hero { padding: 2rem 0.5rem; min-height: 120px; min-width: 0; box-sizing: border-box; }
-  .home-quote { font-size: 0.95rem; width: 100%; padding: 0 8px; }
+  .home-page {
+    min-width: 0;
+    width: 100vw;
+    box-sizing: border-box;
+  }
+  .home-hero {
+    padding: 2rem 0.5rem;
+    min-height: 120px;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+  .home-quote {
+    font-size: 0.95rem;
+    width: 100%;
+    padding: 0 8px;
+  }
 }
