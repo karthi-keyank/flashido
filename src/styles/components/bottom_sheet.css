@@ -1,0 +1,139 @@
+/* Wrapper covers whole screen */
+.bottom-sheet-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+/* Overlay */
+.bottom-sheet-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: default;
+  animation: overlayFadeIn 0.3s ease-out forwards;
+}
+
+.bottom-sheet-overlay:focus {
+  outline: none;
+}
+
+/* Dialog (sheet container) */
+.bottom-sheet {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  border: none;
+  border-radius: 20px 20px 0 0;
+  background: #09062c;
+  color: #fff;
+  padding: 16px 20px;
+}
+
+/* Opening animation */
+.bottom-sheet.opening {
+  animation: slideUp 0.1s ease-out forwards;
+}
+
+/* Closing animation */
+.bottom-sheet.closing {
+  animation: slideDown 0.1s ease-in forwards;
+}
+
+/* Slide-up animation */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Slide-down animation */
+@keyframes slideDown {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+/* Overlay fade animations */
+@keyframes overlayFadeIn {
+  from {
+    background: rgba(0, 0, 0, 0);
+  }
+  to {
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+
+@keyframes overlayFadeOut {
+  from {
+    background: rgba(0, 0, 0, 0.5);
+  }
+  to {
+    background: rgba(0, 0, 0, 0);
+  }
+}
+
+/* Content items */
+.sheet-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Each item */
+.sheet-item {
+  display: flex; /* icon + text alignment */
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 16px;
+  background: #1a1938; /* little darker for contrast */
+  border-radius: 12px;
+  text-decoration: none;
+  color: #e4e4f5;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.sheet-item:hover {
+  background: #2a2850;
+  transform: translateY(-2px); /* small lift on hover */
+}
+
+/* Icon styles */
+.sheet-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+  color: #7aa2f7; /* default accent (blue) */
+  transition: color 0.25s ease;
+}
+
+.sheet-item:hover .sheet-icon {
+  color: #a5b4fc; /* lighter blue on hover */
+}
+
+/* Variant colors if you want different icons styled */
+.sheet-item.flashcard .sheet-icon {
+  color: #7aa2f7; /* bluish */
+}
+.sheet-item.folder .sheet-icon {
+  color: #fbc531; /* yellowish for folder */
+}
