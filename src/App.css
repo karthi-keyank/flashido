@@ -6,6 +6,7 @@ html, body {
   -webkit-user-select: none;
    user-select: none;
    background-color: #08062b;
+   font-family: "Inter", "Roboto", "Segoe UI", Arial, sans-serif;
 }
 
 button,

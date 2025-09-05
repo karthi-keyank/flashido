@@ -55,7 +55,7 @@ function HomeFolderList() {
 
   if (!normalized.length) {
     return (
-      <div className="folder-list__empty">
+      <div className="folder-list-empty">
         <p>Organise your flashcards sets by subject, topic, etc.</p>
         <button
           className="folder-list__create-btn"

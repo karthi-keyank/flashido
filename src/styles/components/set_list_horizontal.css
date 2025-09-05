@@ -62,7 +62,6 @@
 .set-card__title {
   font-size: 1rem;
   font-weight: 600;
-  font-family: "Segoe UI", sans-serif;
   color: #ffffff;
   white-space: nowrap;
   overflow: hidden;
@@ -92,12 +91,6 @@
   color: #fff;
 }
 
-/* --- Empty / Error State --- */
-.set-row__empty,
-.set-row__error {
-  margin: 8px 12px;
-  color: #a3a8b8;
-}
 
 /* --- Loading skeleton --- */
 .skeleton {
@@ -114,6 +107,47 @@
   animation: set-skel 1.2s ease-in-out infinite;
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
+
+.set-list-empty {
+  display: flex;                /* Needed for flex properties to work */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;           /* Center text inside <p> */
+  margin: 0 15px;
+  padding: 40px 20px;           /* Slightly more balanced padding */
+  border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.06);
+  background: linear-gradient(145deg, #202140, #2a2a50); /* subtle gradient for depth */
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);  /* soft shadow for depth */
+}
+
+.set-list-empty p {
+  font-size: 1.25rem;           /* slightly bigger */
+  font-weight: 700;
+  margin-bottom: 25px;          /* spacing before button */
+}
+
+.set-list-empty button {
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #4b6efc;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.set-list-empty button:hover {
+  background-color: #3a54d1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(75, 110, 252, 0.4);
+}
+
+
 
 @keyframes set-skel {
   0% { background-position: 200% 0; }

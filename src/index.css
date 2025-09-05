@@ -23,6 +23,7 @@ a:hover {
 }
 
 body {
+font-family: "Inter", "Roboto", "Segoe UI", Arial, sans-serif;
   margin: 0;
   min-width: 320px;
   min-height: 100vh;

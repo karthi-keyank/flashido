@@ -43,13 +43,13 @@ function HomeSetList() {
 
   if (!normalized.length) {
     return (
-    <div className="flashcard-list__empty">
+    <div className="set-list-empty">
       <p>
-        <span>Take the first step towards better marks.</span> <br />
-        <span>Create a flashcard set</span>
+        <span>Take the first step towards better marks.</span>
+
       </p>
       <button
-        className="flashcard-list__create-btn"
+        className="set-list__create-btn"
         onClick={() => navigate("/library/createSet")}
       >
         Create a set
