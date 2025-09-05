@@ -7,9 +7,6 @@
   scroll-behavior: smooth;
 }
 
-.card-container::-webkit-scrollbar {
-  display: none; /* hide scrollbar for cleaner UI */
-}
 
 .flip-card {
   flex: 0 0 95%;
@@ -60,23 +57,12 @@
   align-items: center;   /* vertical center */
   justify-content: center; /* horizontal center */
   text-align: center;
-
-  word-break: break-word;
-  overflow-wrap: break-word;
   padding: 12px;
-
-  overflow-y: auto;
+  overflow-y: scroll;
 }
 
 .flip-card-back {
   transform: rotateX(180deg);
-}
-
-
-/* Hide scrollbar for cleaner UI (optional) */
-.flip-card-front::-webkit-scrollbar,
-.flip-card-back::-webkit-scrollbar {
-  display: none;
 }
 
 
