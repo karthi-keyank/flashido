@@ -1,0 +1,70 @@
+/* full_flip_card.css */
+
+/* FULL variant flip card */
+.flip-card.full {
+  flex: 0 0 100%;
+  height: 80vh;
+  max-height: 100vh;
+  perspective: 1000px;
+  cursor: pointer;
+  scroll-snap-align: center;
+  background: transparent;
+}
+
+/* Remove outline flicker */
+.flip-card.full:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Inner animation */
+.flip-card.full .flip-card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease-out;
+  will-change: transform;
+}
+
+.flip-card.full.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Front & Back Faces (no scrolling, content fills card) */
+.flip-card.full .flip-card-front,
+.flip-card.full .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background-color: #202140;
+  color: #ffffff;
+  border-radius: 20px;
+  border: 2px solid #39425f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  word-break: break-word;
+  overflow-wrap: scroll;
+  padding: 24px;
+}
+
+.flip-card.full .flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* No scrollbars needed at all */
+.flip-card.full .flip-card-front::-webkit-scrollbar,
+.flip-card.full .flip-card-back::-webkit-scrollbar {
+  display: none;
+}
+
+/* Responsive tweak */
+@media (max-width: 480px) {
+  .flip-card.full {
+    height: 80vh;
+  }
+}

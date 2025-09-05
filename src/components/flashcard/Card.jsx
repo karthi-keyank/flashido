@@ -6,29 +6,36 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import "katex/dist/katex.min.css";
 import "../../styles/components/flip_card.css";
+import "../../styles/components/full_flip_card.css";
 
-const Card = React.memo(function Card({ card, flipped, onFlip }) {
-  const frontContent = useMemo(() => (
-    <ReactMarkdown
-      remarkPlugins={[remarkGfm, remarkMath]}
-      rehypePlugins={[rehypeKatex]}
-    >
-      {card.Q}
-    </ReactMarkdown>
-  ), [card.Q]);
+const Card = React.memo(function Card({ card, flipped, onFlip, variant }) {
+  const frontContent = useMemo(
+    () => (
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm, remarkMath]}
+        rehypePlugins={[rehypeKatex]}
+      >
+        {card.Q}
+      </ReactMarkdown>
+    ),
+    [card.Q]
+  );
 
-  const backContent = useMemo(() => (
-    <ReactMarkdown
-      remarkPlugins={[remarkGfm, remarkMath]}
-      rehypePlugins={[rehypeKatex]}
-    >
-      {card.A}
-    </ReactMarkdown>
-  ), [card.A]);
+  const backContent = useMemo(
+    () => (
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm, remarkMath]}
+        rehypePlugins={[rehypeKatex]}
+      >
+        {card.A}
+      </ReactMarkdown>
+    ),
+    [card.A]
+  );
 
   return (
     <button
-      className={`flip-card ${flipped ? "flipped" : ""}`}
+      className={`flip-card ${variant} ${flipped ? "flipped" : ""}`}
       type="button"
       onClick={onFlip}
       aria-pressed={flipped}
@@ -49,6 +56,11 @@ Card.propTypes = {
   }).isRequired,
   flipped: PropTypes.bool.isRequired,
   onFlip: PropTypes.func.isRequired,
+  variant: PropTypes.oneOf(["default", "full"]),
+};
+
+Card.defaultProps = {
+  variant: "default",
 };
 
 export default Card;

@@ -7,6 +7,7 @@ import Header from "./components/home/header";
 import Library from "./pages/library/library_page";
 import NavBar from "./components/home/bottom_nav";
 import FlashCardPage from "./pages/flashcard/flashcard_page";
+import FlashCardFlip from "./pages/flashcard/flashcards_flip";
 import FolderPage from "./pages/folder/folder_page";
 import ListSet from "./pages/flashcard/get_sets";
 import CreateSetPage from "./pages/flashcard/create_set";
@@ -88,6 +89,14 @@ function App() {
               element={
                 <PageWrapper>
                   <FlashCardPage />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path="/set/:setId/flashcards"
+              element={
+                <PageWrapper>
+                  <FlashCardFlip/>
                 </PageWrapper>
               }
             />

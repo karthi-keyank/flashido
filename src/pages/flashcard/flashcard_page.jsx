@@ -5,14 +5,20 @@ import FlashcardPageHeader from "../../components/flashcard/flashcard_page_heade
 import "../../styles/pages/flashcard_page.css";
 import { useAppData } from "../../context/app_data";
 import { FiBookOpen, FiCpu, FiFileText } from "react-icons/fi";
+import { useMemo } from "react";
 
 function FlashCardPage() {
   const { id: setId } = useParams();
   const { user, username } = useAuth();
   const { sets } = useAppData();
-  const currentSet = sets.find((set) => set.id === setId);
-  const termCount = currentSet?.termCount ?? 0;
   const navigate = useNavigate();
+
+  const currentSet = useMemo(
+    () => sets.find((set) => set.id === setId),
+    [sets, setId]
+  );
+
+  const termCount = currentSet?.termCount ?? 0;
 
   return (
     <div className="flashcard-page">
@@ -25,9 +31,10 @@ function FlashCardPage() {
 
         {/* Set info */}
         <section className="set-info">
-          <h2 className="set-title">{setId}</h2>
+          <h2 className="set-title">{currentSet?.title ?? "Untitled Set"}</h2>
+          <p className="set-desc">{currentSet?.description ?? "No description"}</p>
           <div className="set-meta">
-            <span className="username">{username}</span>
+            <span className="username">{username ?? "Unknown User"}</span>
             <span className="divider">|</span>
             <span className="term-count">{termCount} terms</span>
           </div>
@@ -35,17 +42,26 @@ function FlashCardPage() {
 
         {/* Study mode buttons */}
         <section className="study-modes">
-          <button className="study-mode">
+          <button
+            className="study-mode"
+            onClick={() => navigate(`/set/${setId}/flashcards`)}
+          >
             <FiBookOpen className="icon" />
             <span>Flashcards</span>
           </button>
 
-          <button className="study-mode">
+          <button
+            className="study-mode"
+            onClick={() => navigate(`/set/${setId}/learn`)}
+          >
             <FiCpu className="icon" />
             <span>Learn</span>
           </button>
 
-          <button className="study-mode">
+          <button
+            className="study-mode"
+            onClick={() => navigate(`/set/${setId}/test`)}
+          >
             <FiFileText className="icon" />
             <span>Test</span>
           </button>

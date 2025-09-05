@@ -1,0 +1,93 @@
+/* ========================= */
+/* Header */
+/* ========================= */
+.flashcard-flip-header {
+  position: relative;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* X left, counter center, settings right */
+  background: #0a0730; /* dark navy bg */
+}
+
+/* Close & Settings Buttons */
+.flashcard-flip-header .close-btn{
+  font-size: 27px;
+  color: #fff;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.flashcard-flip-header .settings-btn {
+  font-size: 24px;
+  color: #fff;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+/* Counter (center aligned always) */
+.flashcard-flip-header .progress-counter {
+  flex: 1; /* occupy center space */
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+}
+
+/* Progress Bar */
+.progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: #2a2a4a;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4753ff, #6f76ff);
+  transition: width 0.3s ease;
+}
+
+/* ========================= */
+/* Bottom Navigation */
+/* ========================= */
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding: 0 24px;
+}
+
+.nav-btn {
+  padding: 10px 18px;
+  background: #202140;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px; /* spacing between icon & text */
+  transition: background 0.2s ease;
+}
+
+.nav-btn:hover {
+  background: #33335a;
+}
+
+.nav-icon {
+  font-size: 18px;
+}

@@ -55,6 +55,7 @@ function CardList({ setId }) {
             card={card}
             flipped={flipped[card.id] || false}
             onFlip={() => handleFlip(card.id)}
+            // variant = "full"
           />
         ))}
       </div>

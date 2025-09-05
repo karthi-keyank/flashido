@@ -11,6 +11,17 @@ import AddCardButton from "../../components/buttons/AddCardButton";
 import "../../styles/pages/create_set.css";
 import LoadingSpinner from "../../components/loading_spinner";
 
+// 🔑 make Firestore safe ID from title
+const slugify = (text) => {
+  return text
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, "-") // spaces → dash
+    .replace(/[^a-z0-9-]/g, "") // remove special chars
+    .replace(/-+/g, "-"); // collapse multiple dashes
+};
+
 function CreateSetPage() {
   const { setId } = useParams();
   const { user } = useAuth();
@@ -25,6 +36,7 @@ function CreateSetPage() {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
+  // 🔄 Load existing set
   useEffect(() => {
     if (!userId) return;
 
@@ -69,7 +81,7 @@ function CreateSetPage() {
     loadSet();
   }, [setId, userId]);
 
-  // Auto-dismiss toasts
+  // Auto-dismiss toast messages
   useEffect(() => {
     if (errorMessage || successMessage) {
       const timer = setTimeout(() => {
@@ -80,12 +92,12 @@ function CreateSetPage() {
     }
   }, [errorMessage, successMessage]);
 
-  // ▶️ ADD CARD with smooth scroll-to-new & autofocus (CardInput already handles focus via autoFocus)
+  // ➕ Add new card
   const handleAddCard = () => {
     setCards((prev) => {
       const newCards = [...prev, { id: uuidv4(), term: "", definition: "" }];
 
-      // wait till DOM updates, then scroll to the new card
+      // scroll to new card
       requestAnimationFrame(() => {
         const targetId = `card-${newCards.length - 1}`;
         const newCardEl = document.getElementById(targetId);
@@ -110,6 +122,7 @@ function CreateSetPage() {
     setCards((prev) => prev.filter((_, i) => i !== index));
   };
 
+  // 💾 Save Set (Create or Update)
   const handleSave = async () => {
     if (!userId) {
       setErrorMessage("⚠️ User not identified. Please re-login.");
@@ -120,9 +133,7 @@ function CreateSetPage() {
       return;
     }
 
-    const newSetId = setId || title.trim().replace(/\s+/g, "_").toLowerCase();
-    const docRef = doc(db, `users/${userId}/flashcardSets/${newSetId}`);
-
+    // prepare card data
     const cardMap = {};
     cards.forEach((card, index) => {
       cardMap[`card${index + 1}`] = {
@@ -132,6 +143,9 @@ function CreateSetPage() {
     });
 
     try {
+      const titleSlug = slugify(title); // use title as ID
+      const docRef = doc(db, `users/${userId}/flashcardSets/${titleSlug}`);
+
       await setDoc(docRef, {
         title,
         description,
@@ -140,8 +154,9 @@ function CreateSetPage() {
         updatedAt: serverTimestamp(),
       });
 
+      console.log("✅ Set saved with ID:", titleSlug);
       setSuccessMessage("✅ Set saved successfully!");
-      setTimeout(() => navigate("/Library"), 1500);
+      setTimeout(() => navigate(`/set/${titleSlug}`), 1500);
     } catch (error) {
       console.error("Error saving set:", error);
       setErrorMessage("❌ Failed to save set. Try again.");

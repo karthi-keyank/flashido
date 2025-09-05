@@ -1,19 +1,22 @@
-.folder-page {
-  background-color: #08062b;
-  color: white;
-  min-height: 100vh;
-  width: 100%;
-  box-sizing: border-box;
-}
+/* ✅ Folder page styles for Mobile + Tablet only */
+@media (max-width: 1024px) {
+  .folder-page {
+    background-color: #08062b;
+    color: white;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+  }
 
-.flashcard__list{
+  .flashcard__list {
     padding: 1rem;
-}
+  }
 
-.folder-page__loading,
-.folder-page__error {
-  color: white;
-  text-align: center;
-  margin-top: 2rem;
-  font-size: 1rem;
+  .folder-page__loading,
+  .folder-page__error {
+    color: white;
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 1rem;
+  }
 }
