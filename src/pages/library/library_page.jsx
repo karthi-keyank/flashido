@@ -22,12 +22,14 @@ const tabVariants = {
 function Library() {
   const navigate = useNavigate();
 
-  // Always start with Flashcards
-  const [activeTab, setActiveTab] = useState(TAB_FLASHCARDS);
+  // ✅ Use saved tab from localStorage, default to Flashcards
+  const [activeTab, setActiveTab] = useState(() => {
+    return localStorage.getItem("libraryActiveTab") || TAB_FLASHCARDS;
+  });
 
   const [showFolderModal, setShowFolderModal] = useState(false);
 
-  // Update localStorage when tab changes
+  // Save current tab to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem("libraryActiveTab", activeTab);
   }, [activeTab]);
