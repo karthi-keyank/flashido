@@ -8,13 +8,13 @@ import {
 
 // ✅ Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyB04B8upn1zroCEGucbvXdZXsCcJpRXMDk",
-  authDomain: "practice-a98e2.firebaseapp.com",
-  projectId: "practice-a98e2",
-  storageBucket: "practice-a98e2.firebasestorage.app",
-  messagingSenderId: "713682975812",
-  appId: "1:713682975812:web:42086f941f23bf76495011",
-  measurementId: "G-HF5L5ZLMMC"
+  apiKey: "AIzaSyDxjCcD8YTMjuVsbUksFQfbsF0PhHY5dxQ",
+  authDomain: "flashido-ef5a3.firebaseapp.com",
+  projectId: "flashido-ef5a3",
+  storageBucket: "flashido-ef5a3.firebasestorage.app",
+  messagingSenderId: "170531034245",
+  appId: "1:170531034245:web:5a32f2f673d11984bf45ec",
+  measurementId: "G-ZT6FXWDB1N"
 };
 
 // ✅ Initialize Firebase
