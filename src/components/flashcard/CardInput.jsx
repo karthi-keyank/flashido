@@ -36,7 +36,7 @@ function CardInput({ index, term, definition, updateCard, deleteCard, autoFocus 
         >
           <FaTrash />
         </button>
-      </div>
+      </div> 
 
       {/* Preview Mode */}
       {showPreview ? (
