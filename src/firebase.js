@@ -6,7 +6,6 @@ import {
   persistentLocalCache
 } from 'firebase/firestore';
 
-// ✅ Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDxjCcD8YTMjuVsbUksFQfbsF0PhHY5dxQ",
   authDomain: "flashido-ef5a3.firebaseapp.com",
