@@ -1,4 +1,3 @@
-// src/pages/home/home_folder_list.jsx
 import React, { useMemo, useState } from "react";
 import { useAppData } from "../../context/app_data";
 import { FiFolder } from "react-icons/fi";
@@ -13,6 +12,7 @@ function HomeFolderList() {
   // ✅ state to control CreateFolder modal
   const [isCreateOpen, setIsCreateOpen] = useState(false);
 
+  // Normalize folders (recent first) and count sets safely
   const normalized = useMemo(() => {
     const arr = Array.isArray(folders) ? folders : [];
     const toMillis = (ts) => {
@@ -24,14 +24,19 @@ function HomeFolderList() {
     };
     const copy = [...arr];
     copy.sort((a, b) => toMillis(b.createdAt) - toMillis(a.createdAt));
-    return copy.map((folder) => ({
-      id: folder.id,
-      name: folder.title ?? "Untitled",
-      description: folder.description?.trim() || "No description",
-      setsCount: Array.isArray(folder.Sets) ? folder.Sets.length : 0,
-    }));
+
+    return copy.map((folder) => {
+      const setsCount = folder.Sets ? Object.keys(folder.Sets).length : 0; // ✅ safe counting
+      return {
+        id: folder.id,
+        name: folder.title ?? "Untitled",
+        description: folder.description?.trim() || "No description",
+        setsCount,
+      };
+    });
   }, [folders]);
 
+  // Loading state
   if (loading) {
     return (
       <div aria-busy="true" className="folder-row folder-row--loading">
@@ -45,6 +50,7 @@ function HomeFolderList() {
     );
   }
 
+  // Error state
   if (error) {
     return (
       <div role="alert" className="folder-row__error">
@@ -53,23 +59,28 @@ function HomeFolderList() {
     );
   }
 
+  // Empty state
   if (!normalized.length) {
     return (
       <div className="folder-list-empty">
         <p>Organise your flashcards sets by subject, topic, etc.</p>
         <button
           className="folder-list__create-btn"
-          onClick={() => setIsCreateOpen(true)} // ✅ open modal
+          onClick={() => setIsCreateOpen(true)}
         >
           Create a Folder
         </button>
 
         {/* ✅ Render CreateFolder modal */}
-        <CreateFolder isOpen={isCreateOpen} onClose={() => setIsCreateOpen(false)} />
+        <CreateFolder
+          isOpen={isCreateOpen}
+          onClose={() => setIsCreateOpen(false)}
+        />
       </div>
     );
   }
 
+  // Normal state
   return (
     <div className="home-folder-section">
       <h3 className="folder-row__heading">Recent folders</h3>
@@ -83,7 +94,8 @@ function HomeFolderList() {
             role="button"
             tabIndex={0}
             onKeyPress={(e) => {
-              if (e.key === "Enter") navigate(`/library/folder/${folder.id}`);
+              if (e.key === "Enter")
+                navigate(`/library/folder/${folder.id}`);
             }}
           >
             <div className="folder-card__icon">
@@ -92,7 +104,10 @@ function HomeFolderList() {
             <div className="folder-card__meta">
               <div className="folder-card__title">{folder.name}</div>
               <div className="folder-card__desc">{folder.description}</div>
-              <div className="folder-card__stats">{folder.setsCount} sets</div>
+              <div className="folder-card__stats">
+                {folder.setsCount} {folder.setsCount === 1 ? "set" : "sets"}{" "}
+                {/* ✅ singular/plural */}
+              </div>
             </div>
           </li>
         ))}

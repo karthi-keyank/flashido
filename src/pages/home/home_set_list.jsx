@@ -20,12 +20,14 @@ function HomeSetList() {
     };
     const copy = [...arr];
     copy.sort((a, b) => toMillis(b.updatedAt) - toMillis(a.updatedAt));
-    return copy.map((set) => ({
-      id: set.id,
-      title: set.title ?? "Untitled Set",
-      description: set.description?.trim() || "No description",
-      cardCount: Array.isArray(set.cards) ? set.cards.length : 0,
-    }));
+    return copy.map((set) => {
+      return {
+        id: set.id,
+        title: set.title ?? "Untitled Set",
+        description: set.description?.trim() || "No description",
+        termCount: set.termCount, // ✅ fixed
+      };
+    });
   }, [sets]);
 
   if (loading) {
@@ -43,19 +45,18 @@ function HomeSetList() {
 
   if (!normalized.length) {
     return (
-    <div className="set-list-empty">
-      <p>
-        <span>Take the first step towards better marks.</span>
-
-      </p>
-      <button
-        className="set-list__create-btn"
-        onClick={() => navigate("/library/createSet")}
-      >
-        Create a set
-      </button>
-    </div>
-  );
+      <div className="set-list-empty">
+        <p>
+          <span>Take the first step towards better marks.</span>
+        </p>
+        <button
+          className="set-list__create-btn"
+          onClick={() => navigate("/library/createSet")}
+        >
+          Create a set
+        </button>
+      </div>
+    );
   }
 
   return (
@@ -80,7 +81,7 @@ function HomeSetList() {
             <div className="set-card__meta">
               <div className="set-card__title">{set.title}</div>
               <div className="set-card__desc">{set.description}</div>
-              <div className="set-card__stats">{set.cardCount} cards</div>
+              <div className="set-card__stats">{set.termCount} terms</div>
             </div>
           </li>
         ))}
