@@ -11,6 +11,10 @@
   background: transparent;
 }
 
+.card-container::-webkit-scrollbar {
+  display: none; /* hide scrollbar for cleaner UI */
+}
+
 /* Remove outline flicker */
 .flip-card.full:focus {
   outline: none;
