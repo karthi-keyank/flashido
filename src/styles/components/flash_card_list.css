@@ -43,16 +43,39 @@
   opacity: 0.9;
 }
 
+
 /* --- Grid and empty state --- */
 .flashcard-list__grid {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
-
 .flashcard-list__empty {
-  font-size: 1rem;
-  color: #9999aa;
   text-align: center;
-  padding: 2rem 0;
+  margin-top: 8rem;
+}
+
+.flashcard-list__empty p {
+  align-items: center;
+  justify-content: center;
+  font-size: large;
+  padding: 0px 50px;
+  font-weight: 700;
+}
+
+.flashcard-list__create-btn {
+  background: #4355ff; /* Tailwind blue-600 vibe */
+  color: #fff;
+  font-size: 1rem;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 25px;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.flashcard-list__create-btn:hover {
+  background: #1d4ed8; /* darker hover */
 }

@@ -26,3 +26,33 @@
   font-size: 0.9rem;
   opacity: 0.9;
 }
+
+.folder-list__empty {
+  text-align: center;
+  margin-top: 8rem;
+}
+
+.folder-list__empty p {
+  align-items: center;
+  justify-content: center;
+  font-size: large;
+  padding: 0px 50px;
+  font-weight: 700;
+}
+
+.folder-list__create-btn {
+  background: #4355ff; /* Tailwind blue-600 vibe */
+  color: #fff;
+  font-size: 1rem;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 25px;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.folder-list__create-btn:hover {
+  background: #1d4ed8; /* darker hover */
+}

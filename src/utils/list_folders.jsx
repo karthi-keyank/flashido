@@ -1,17 +1,18 @@
 import React, { useState, useMemo, useEffect } from "react";
 import FolderGrid from "../components/folder/folder_grid";
+import CreateFolder from "../components/folder/CreateFolder"; // ✅ import your modal
 import { useAppData } from "../context/app_data";
-import { FaSortAlphaDown } from "react-icons/fa"; // ✅ Font Awesome
-import { FiClock } from "react-icons/fi";         // ✅ Feather (exists)
+import { FaSortAlphaDown } from "react-icons/fa";
+import { FiClock } from "react-icons/fi";
 import "../styles/components/list_folders.css";
 
 function FolderList() {
   const { folders, loading } = useAppData();
-
-  // restore last preference (default = "alpha")
   const [sortBy, setSortBy] = useState(() => {
-    return localStorage.getItem("folderSortBy") || "alpha"; // "alpha" | "time"
+    return localStorage.getItem("folderSortBy") || "alpha";
   });
+
+  const [isCreateOpen, setIsCreateOpen] = useState(false); // ✅ new state
 
   useEffect(() => {
     localStorage.setItem("folderSortBy", sortBy);
@@ -21,16 +22,14 @@ function FolderList() {
     setSortBy((prev) => (prev === "alpha" ? "time" : "alpha"));
   };
 
-  // robust date → ms helper (handles Firestore Timestamp, string, number, Date)
   const toDateMs = (val) => {
     if (!val) return 0;
     if (val instanceof Date) return val.getTime();
-    if (typeof val === "number") return val; // already ms
+    if (typeof val === "number") return val;
     if (typeof val === "string") {
       const t = Date.parse(val);
       return Number.isNaN(t) ? 0 : t;
     }
-    // Firestore: { seconds, nanoseconds } or {_seconds, _nanoseconds}
     if (typeof val === "object") {
       if (typeof val.seconds === "number") return val.seconds * 1000;
       if (typeof val._seconds === "number") return val._seconds * 1000;
@@ -38,13 +37,12 @@ function FolderList() {
     return 0;
   };
 
-  // memoized sorting
   const sortedFolders = useMemo(() => {
     const list = Array.isArray(folders) ? [...folders] : [];
     if (sortBy === "alpha") {
       list.sort((a, b) => (a.title || "").localeCompare(b.title || ""));
     } else {
-      list.sort((a, b) => toDateMs(b.createdAt) - toDateMs(a.createdAt)); // newest first
+      list.sort((a, b) => toDateMs(b.createdAt) - toDateMs(a.createdAt));
     }
     return list;
   }, [folders, sortBy]);
@@ -81,8 +79,22 @@ function FolderList() {
           />
         ))
       ) : (
-        <p className="folder-list__empty">No folders found.</p>
+        <div className="folder-list__empty">
+          <p>Organise your flashcards sets by subject, topic, etc.</p>
+          <button
+            className="folder-list__create-btn"
+            onClick={() => setIsCreateOpen(true)} // ✅ open modal
+          >
+            Create a Folder
+          </button>
+        </div>
       )}
+
+      {/* Modal Component */}
+      <CreateFolder
+        isOpen={isCreateOpen}
+        onClose={() => setIsCreateOpen(false)} // ✅ close modal
+      />
     </div>
   );
 }

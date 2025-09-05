@@ -1,15 +1,17 @@
 // src/pages/home/home_folder_list.jsx
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { useAppData } from "../../context/app_data";
 import { FiFolder } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import CreateFolder from "../../components/folder/CreateFolder";
 import "../../styles/components/folder_list_horizontal.css";
 
 function HomeFolderList() {
   const { folders, loading, error } = useAppData();
-
   const navigate = useNavigate();
 
+  // ✅ state to control CreateFolder modal
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
 
   const normalized = useMemo(() => {
     const arr = Array.isArray(folders) ? folders : [];
@@ -52,7 +54,20 @@ function HomeFolderList() {
   }
 
   if (!normalized.length) {
-    return <p className="folder-row__empty">No folders found.</p>;
+    return (
+      <div className="folder-list__empty">
+        <p>Organise your flashcards sets by subject, topic, etc.</p>
+        <button
+          className="folder-list__create-btn"
+          onClick={() => setIsCreateOpen(true)} // ✅ open modal
+        >
+          Create a Folder
+        </button>
+
+        {/* ✅ Render CreateFolder modal */}
+        <CreateFolder isOpen={isCreateOpen} onClose={() => setIsCreateOpen(false)} />
+      </div>
+    );
   }
 
   return (
@@ -82,6 +97,10 @@ function HomeFolderList() {
           </li>
         ))}
       </ul>
+
+      {/* Optional: floating create button even if folders exist */}
+      {/* <button className="fab-create" onClick={() => setIsCreateOpen(true)}>＋</button>
+      <CreateFolder isOpen={isCreateOpen} onClose={() => setIsCreateOpen(false)} /> */}
     </div>
   );
 }

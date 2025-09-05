@@ -42,7 +42,20 @@ function HomeSetList() {
   }
 
   if (!normalized.length) {
-    return <p className="set-row__empty">No sets found.</p>;
+    return (
+    <div className="flashcard-list__empty">
+      <p>
+        <span>Take the first step towards better marks.</span> <br />
+        <span>Create a flashcard set</span>
+      </p>
+      <button
+        className="flashcard-list__create-btn"
+        onClick={() => navigate("/library/createSet")}
+      >
+        Create a set
+      </button>
+    </div>
+  );
   }
 
   return (
