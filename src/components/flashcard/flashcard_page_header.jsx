@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { FiArrowLeft, FiTrash2, FiEdit3 } from "react-icons/fi";
 import { deleteSetFromDatabase } from "../../utils/deleteSetFromDatabase";
-import ClipLoader from "react-spinners/ClipLoader"; 
+import ClipLoader from "react-spinners/ClipLoader";
 import "../../styles/components/flashcard_page_header.css";
 
 function FlashcardPageHeader({ navigate, user, setId }) {
@@ -25,19 +25,26 @@ function FlashcardPageHeader({ navigate, user, setId }) {
       return;
     }
 
-    setConfirmAction(() => async () => {
-      try {
-        setLoadingDelete(true);
-        await deleteSetFromDatabase(user.uid, setId);
-        showMessage("✅ Set deleted successfully!");
-        navigate(-1);
-      } catch (error) {
-        console.error("❌ Failed to delete set:", error);
-        showMessage("❌ Could not delete set.", "error");
-      } finally {
-        setLoadingDelete(false);
-        setConfirmAction(null);
-      }
+    setConfirmAction(() => () => {
+      // ✅ Close modal immediately
+      setConfirmAction(null);
+      setLoadingDelete(true);
+
+      // Navigate first so user feels fast
+      navigate(-1);
+
+      // Perform deletion in background
+      (async () => {
+        try {
+          await deleteSetFromDatabase(user.uid, setId);
+          // Optional: can show toast on previous page if using context or global toast
+          console.log("✅ Set deleted successfully!");
+        } catch (error) {
+          console.error("❌ Failed to delete set:", error);
+        } finally {
+          setLoadingDelete(false);
+        }
+      })();
     });
   };
 
@@ -60,7 +67,11 @@ function FlashcardPageHeader({ navigate, user, setId }) {
             title="Delete"
             disabled={loadingDelete}
           >
-            {loadingDelete ? <ClipLoader size={18} color="#000" /> : <FiTrash2 />}
+            {loadingDelete ? (
+              <ClipLoader size={18} color="#000" />
+            ) : (
+              <FiTrash2 />
+            )}
           </button>
           <button
             className="header-btn edit-btn"
@@ -74,9 +85,7 @@ function FlashcardPageHeader({ navigate, user, setId }) {
 
       {/* ✅ Toast message */}
       {message && (
-        <div className={`popup-message ${messageType}`}>
-          {message}
-        </div>
+        <div className={`popup-message ${messageType}`}>{message}</div>
       )}
 
       {/* ✅ Confirmation modal */}
@@ -85,8 +94,15 @@ function FlashcardPageHeader({ navigate, user, setId }) {
           <div className="confirm-box">
             <p>Are you sure?</p>
             <div className="confirm-buttons">
-              <button onClick={confirmAction} className="confirm-yes">Yes</button>
-              <button onClick={() => setConfirmAction(null)} className="confirm-no">No</button>
+              <button onClick={confirmAction} className="confirm-yes">
+                Yes
+              </button>
+              <button
+                onClick={() => setConfirmAction(null)}
+                className="confirm-no"
+              >
+                No
+              </button>
             </div>
           </div>
         </div>
