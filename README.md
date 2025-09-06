@@ -24,9 +24,13 @@ With smart **flashcards**, **folders**, and powerful study features, Flashido he
 
 ## 🖼️ Screenshots / Demo
 
-<img src="./assets/flashido-demo.png" alt="Flashido Demo" width="600"/>
+## 🖼️ Screenshots / Demo
 
-*(Add more screenshots or GIFs here if needed)*
+<img src="./src/assets/1.jpg" alt="Flashido Demo 1" width="300"/>  
+<img src="./src/assets/2.jpg" alt="Flashido Demo 2" width="300"/>  
+<img src="./src/assets/3.jpg" alt="Flashido Demo 3" width="300"/>  
+<img src="./src/assets/4.jpg" alt="Flashido Demo 4" width="300"/>  
+<img src="./src/assets/5.jpg" alt="Flashido Demo 5" width="300"/> 
 
 ---
 
@@ -51,20 +55,138 @@ With smart **flashcards**, **folders**, and powerful study features, Flashido he
 
 ## 📂 Project Structure
 
-```bash
-flashido/
- ├── src/
- │   ├── components/    # Reusable UI components
- │   ├── context/       # Global state management
- │   ├── pages/         # App pages (Home, Flashcards, Folders, etc.)
- │   ├── styles/        # Global styles
- │   ├── utils/         # Helper functions
- │   └── firebase.js    # Firebase config
- ├── public/            # Static assets
- ├── assets/            # Screenshots, images, gifs
- ├── package.json
- ├── vite.config.js
- └── README.md
+```
+└── 📁src
+    └── 📁assets
+        ├── image.png
+        ├── logo.svg
+        ├── react.svg
+    └── 📁components
+        └── 📁buttons
+            ├── AddCardButton.jsx
+            ├── plus_floating_btn.jsx
+            ├── PopupModal.jsx
+            ├── toggle_btn.jsx
+        └── 📁flashcard
+            ├── card_grid.jsx
+            ├── Card.jsx
+            ├── CardInput.jsx
+            ├── flashcard_page_header.jsx
+            ├── TermDefinitionList.jsx
+            ├── TitleInput.jsx
+            ├── TopBar.jsx
+        └── 📁folder
+            ├── CreateFolder.jsx
+            ├── folder_grid.jsx
+            ├── folder_page_header.jsx
+            ├── ThreeDotMenu.jsx
+        └── 📁home
+            ├── bottom_nav.jsx
+            ├── bottom_sheet.jsx
+            ├── header.jsx
+            ├── log_out.jsx
+        └── 📁library
+            ├── Library_header.jsx
+            ├── search_bar.jsx
+            ├── SearchInput.jsx
+        ├── create.jsx
+        ├── flashcards.jsx
+        ├── folders.jsx
+        ├── loading_spinner.jsx
+        ├── progress.jsx
+    └── 📁context
+        ├── app_data.jsx
+        ├── auth_context.jsx
+    └── 📁features
+        ├── auto_equations.jsx
+    └── 📁pages
+        └── 📁flashcard
+            ├── create_set.jsx
+            ├── flashcard_page.jsx
+            ├── flashcards_flip.jsx
+            ├── get_sets.jsx
+            ├── learn.jsx
+        └── 📁folder
+            ├── folder_page.jsx
+        └── 📁home
+            ├── home_folder_list.jsx
+            ├── home_page.jsx
+            ├── home_set_list.jsx
+        └── 📁library
+            ├── classes.jsx
+            ├── library_page.jsx
+        └── 📁user
+            ├── login_page.jsx
+            ├── signup_page.jsx
+            ├── username_page.jsx.back
+            ├── username_popup.jsx
+        ├── test.jsx
+    └── 📁services
+        ├── flashcards.service.js
+        ├── folders.services.js
+        ├── private_route.jsx
+        ├── storage.service.js
+    └── 📁styles
+        └── 📁components
+            ├── AddCardButton.css
+            ├── bottom_navbar.css
+            ├── bottom_sheet.css
+            ├── card_grid.css
+            ├── CardInput.css
+            ├── create_folder.css
+            ├── flash_card_list.css
+            ├── flashcard_page_header.css
+            ├── flip_card.css
+            ├── folder_grid.css
+            ├── folder_list_horizontal.css
+            ├── folder_page_header.css
+            ├── full_flip_card.css
+            ├── header.css
+            ├── library_header.css
+            ├── list_cards.css
+            ├── list_folders.css
+            ├── loading_spinner.css
+            ├── popup.css
+            ├── search_bar.css
+            ├── set_list_horizontal.css
+            ├── TermDefinitionList.css
+            ├── TitleInput.css
+            ├── toggle_btn.css
+            ├── TopBar.css
+        └── 📁pages
+            ├── create_folder.css
+            ├── create_set.css
+            ├── flashcard_page.css
+            ├── flashcard.css
+            ├── flashcards_flip.css
+            ├── folder_page.css
+            ├── get_sets.css
+            ├── home_page.css
+            ├── library_page.css
+            ├── login_page.css
+            ├── username_popup.css
+    └── 📁utils
+        ├── add_delete_sets_from_folder.js
+        ├── delete_folder.jsx
+        ├── deleteSetFromDatabase.js
+        ├── fetch_cards.jsx
+        ├── fetch_public_sets.js
+        ├── fetch_public_sets.jsx
+        ├── FlashcardList.jsx
+        ├── list_cards.jsx
+        ├── list_folders.jsx
+        ├── PageWrapper.jsx
+        ├── pushToPublic.jsx
+        ├── RandomQuotes.jsx
+    ├── App copy.css
+    ├── App copy.jsx
+    ├── App.css
+    ├── App.jsx
+    ├── firebase.js
+    ├── index copy.css
+    ├── index.css
+    ├── main copy.jsx
+    └── main.jsx
 ```
 
 ---
