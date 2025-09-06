@@ -25,7 +25,7 @@ With smart **flashcards**, **folders**, and powerful study features, Flashido he
 
 ---
 
-## 🚀 Motive to build (About)
+## Motive to build (About)
 
 Studying should be **easy, accessible, and stress-free** 📚✨  
 But most good study apps lock their best features behind a **premium paywall** 💸, and the **ads are so distracting** 😖 that it ruins your focus.  
@@ -36,7 +36,7 @@ With smart **flashcards** 🔄, organized **folders** 📂, **Markdown & LaTeX s
 
 ---
 
-## ✨ Features
+## Features
 
 - 🧮 **Markdown + LaTeX Support** – Write equations, formulas, and notes beautifully.  
 - 🌍 **Language Learning Friendly** – Practice vocabularies, phrases, and meanings.  
@@ -48,7 +48,7 @@ With smart **flashcards** 🔄, organized **folders** 📂, **Markdown & LaTeX s
 
 ---
 
-## 🖼️ Screenshots
+## Screenshots
 
 <table>
 <tr>
@@ -62,7 +62,7 @@ With smart **flashcards** 🔄, organized **folders** 📂, **Markdown & LaTeX s
 
 ---
 
-## 📖 Use Cases
+## Use Cases
 
 - ✍️ Write math/science **equations with LaTeX**  
 - 🌍 Learn new words in **Spanish, French, Japanese, etc.**  
@@ -71,7 +71,7 @@ With smart **flashcards** 🔄, organized **folders** 📂, **Markdown & LaTeX s
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Frontend:** React + Vite  
 - **Backend:** Firebase Firestore  
@@ -80,7 +80,7 @@ With smart **flashcards** 🔄, organized **folders** 📂, **Markdown & LaTeX s
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 └── 📁src
@@ -218,7 +218,7 @@ With smart **flashcards** 🔄, organized **folders** 📂, **Markdown & LaTeX s
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 1. Clone the repo
 ```
 git clone https://github.com/your-username/flashido.git
@@ -247,7 +247,7 @@ npm run dev
 ---
 
 
-## 🛣️ Future Plans
+## Future Plans
 
 - 📚 GCR (Google Classroom) Integration – Sync class notes & assignments.
 
@@ -260,7 +260,7 @@ npm run dev
 - 💡 Smart Study Recommendations – Suggest flashcards based on your performance.
 
 
-## 🛣️ Roadmap  
+## Roadmap
 
 - [ ] GCR (Google Classroom) Integration  
 - [ ] To-Do List & Journal  
@@ -270,7 +270,7 @@ npm run dev
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 - Fork the project
 
