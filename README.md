@@ -1,5 +1,6 @@
 # 📘 Flashido – Learn Smarter, Anywhere 🚀
 
+[🌐 Visit the live app](https://flashido.netlify.app) 
 > Are you struggling to **remember complex formulas**? 🤯  
 > Are you a **language learner**?  
 > Want to **practice new languages** without carrying bulky notes? 🌍  
