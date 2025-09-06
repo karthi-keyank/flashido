@@ -10,6 +10,17 @@ With smart **flashcards**, **folders**, and powerful study features, Flashido he
 
 ---
 
+## 🚀 Motive to build (About)
+
+Studying should be **easy, accessible, and stress-free** 📚✨  
+But most good study apps lock their best features behind a **premium paywall** 💸, and the **ads are so distracting** 😖 that it ruins your focus.  
+
+That’s why I built **Flashido** — a **free, lightweight, and distraction-free study app** 🎉  
+With smart **flashcards** 🔄, organized **folders** 📂, **Markdown & LaTeX support** 📝➗, and **auto-flip cards** 🔁, Flashido helps you **learn smarter, faster, and anywhere** 🌍💡 — without paying a single rupee 💰.
+
+
+---
+
 ## ✨ Features
 
 - 🧮 **Markdown + LaTeX Support** – Write equations, formulas, and notes beautifully.  
@@ -22,15 +33,17 @@ With smart **flashcards**, **folders**, and powerful study features, Flashido he
 
 ---
 
-## 🖼️ Screenshots / Demo
+## 🖼️ Screenshots
 
-## 🖼️ Screenshots / Demo
-
-<img src="./src/assets/1.jpg" alt="Flashido Demo 1" width="300"/>  
-<img src="./src/assets/2.jpg" alt="Flashido Demo 2" width="300"/>  
-<img src="./src/assets/3.jpg" alt="Flashido Demo 3" width="300"/>  
-<img src="./src/assets/4.jpg" alt="Flashido Demo 4" width="300"/>  
-<img src="./src/assets/5.jpg" alt="Flashido Demo 5" width="300"/> 
+<table>
+<tr>
+  <td><img src="./src/assets/1.jpg" alt="Demo 1" width="120"/></td>
+  <td><img src="./src/assets/2.jpg" alt="Demo 2" width="120"/></td>
+  <td><img src="./src/assets/3.jpg" alt="Demo 3" width="120"/></td>
+  <td><img src="./src/assets/4.jpg" alt="Demo 4" width="120"/></td>
+  <td><img src="./src/assets/5.jpg" alt="Demo 5" width="120"/></td>
+</tr>
+</table>
 
 ---
 
@@ -47,7 +60,6 @@ With smart **flashcards**, **folders**, and powerful study features, Flashido he
 
 - **Frontend:** React + Vite  
 - **Backend:** Firebase Firestore  
-- **UI/UX:** TailwindCSS + shadcn/ui + lucide-react  
 - **State Management:** React Context API  
 - **Hosting:** Firebase Hosting / Vercel  
 
@@ -220,7 +232,7 @@ npm run dev
 ---
 
 
-## 🛣️ Future Plans / Roadmap
+## 🛣️ Future Plans
 
 - 📚 GCR (Google Classroom) Integration – Sync class notes & assignments.
 
@@ -232,6 +244,14 @@ npm run dev
 
 - 💡 Smart Study Recommendations – Suggest flashcards based on your performance.
 
+
+## 🛣️ Roadmap  
+
+- [ ] GCR (Google Classroom) Integration  
+- [ ] To-Do List & Journal  
+- [ ] Notifications & Reminders  
+- [ ] Multi-language Support  
+- [ ] Smart Study Recommendations
 
 ---
 
