@@ -6,38 +6,53 @@ import SearchInput from "../../components/library/SearchInput";
 import ToggleButton from "../../components/buttons/toggle_btn";
 import { FaArrowLeft } from "react-icons/fa";
 import { FiLayers } from "react-icons/fi";
-import ClipLoader from "react-spinners/ClipLoader"; // Add this import
+import ClipLoader from "react-spinners/ClipLoader";
 import "../../styles/pages/get_sets.css";
+
 // ✅ Flashcard set list UI component
 function SetList({ sets, folderId }) {
-  if (!sets.length) return <p>No flashcard sets found.</p>;
+  const navigate = useNavigate();
+
+  if (!sets.length)
+    return (
+      <div>
+        <div className="set-no-found">
+        <p>
+          <span>🎯 Take the first step towards better marks.</span>
+        </p>
+        <button
+          className="set-list__create-btn"
+          onClick={() => navigate("/library/createSet")}
+        >
+          Create a set
+        </button>
+      </div>
+      </div>
+    );
 
   return (
-  <div className="page__wrapper">
     <div className="list-sets__container">
       {sets.map((set) => (
         <div key={set.id} className="list-set__card">
           <div className="list-set__icon">
-            <FiLayers className="FiLayer-icon"/>
+            <FiLayers className="FiLayer-icon" />
           </div>
           <div className="list-set__content">
             <h4 className="list-set__title">{set.title}</h4>
             <p className="list-set__desc">
-              Flashcard set &bull; {set.termCount || 0} terms
+              Flashcard set • {set.termCount || 0} terms
             </p>
           </div>
           <ToggleButton setId={set.id} folderId={folderId} />
         </div>
       ))}
     </div>
-  </div>
-);
-
+  );
 }
 
 SetList.propTypes = {
   sets: PropTypes.array.isRequired,
-  folderId: PropTypes.string.isRequired,
+  folderId: PropTypes.string, // made optional
 };
 
 // ✅ Main component for listing sets
@@ -52,10 +67,11 @@ function ListSets() {
   );
 
   return (
-    <div className="page__wrapper" >
+    <div className="page__wrapper">
       <button className="back-button" onClick={() => navigate(-1)}>
         <FaArrowLeft size={14} style={{ marginRight: "8px" }} />
       </button>
+
       <SearchInput
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
@@ -68,7 +84,7 @@ function ListSets() {
         </div>
       ) : (
         <div className="list_wrapper">
-        <SetList sets={filteredSets} folderId={folderId} />
+          <SetList sets={filteredSets} folderId={folderId} />
         </div>
       )}
     </div>

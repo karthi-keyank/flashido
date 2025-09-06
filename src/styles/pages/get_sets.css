@@ -89,3 +89,46 @@
   background-color: #1c1c5a;
   border-color: #4a54e1;
 }
+
+.set-no-found {
+  display: flex; /* Needed for flex properties to work */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center; /* Center text inside <p> */
+  margin: 200px 15px;
+  padding: 40px 20px; /* Slightly more balanced padding */
+  border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.06);
+  background: linear-gradient(
+    145deg,
+    #202140,
+    #2a2a50
+  ); /* subtle gradient for depth */
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* soft shadow for depth */
+}
+
+.set-no-found p {
+  font-size: 1.25rem; /* slightly bigger */
+  font-weight: 700;
+  margin-bottom: 25px; /* spacing before button */
+}
+
+.set-no-found button {
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #4355ff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.set-no-found button:hover {
+  background-color: #3a54d1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(75, 110, 252, 0.4);
+}
