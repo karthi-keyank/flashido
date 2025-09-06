@@ -6,9 +6,16 @@ import ClipLoader from "react-spinners/ClipLoader";
 function RandomQuote() {
   const [quote, setQuote] = useState("");
   const [loading, setLoading] = useState(true);
-  const lastIndexRef = useRef(null); // store last index to avoid repeat
+  const lastIndexRef = useRef(null);
 
   useEffect(() => {
+    const cachedQuote = localStorage.getItem("randomQuote");
+
+    if (cachedQuote) {
+      setQuote(cachedQuote);
+      setLoading(false); // show instantly from cache
+    }
+
     const fetchQuotes = async () => {
       try {
         const docRef = doc(db, "quotes", "q1");
@@ -19,29 +26,31 @@ function RandomQuote() {
 
           if (Array.isArray(quotes) && quotes.length > 0) {
             let randomIndex;
-
-            // Ensure the same quote is not picked consecutively
             do {
               randomIndex = Math.floor(Math.random() * quotes.length);
             } while (randomIndex === lastIndexRef.current && quotes.length > 1);
 
             lastIndexRef.current = randomIndex;
-            setQuote(quotes[randomIndex]);
-          } else {
-            setQuote("No quotes available.");
+            const newQuote = quotes[randomIndex];
+            setQuote(newQuote);
+            localStorage.setItem("randomQuote", newQuote); // save for next time
           }
-        } else {
-          setQuote("Quotes not found.");
         }
       } catch (error) {
         console.error("Error fetching quote:", error);
-        setQuote("Error loading quote.");
+        if (!quote) setQuote("Error loading quote.");
       } finally {
         setLoading(false);
       }
     };
 
-    fetchQuotes();
+    // if no cache, then load
+    if (!cachedQuote) {
+      fetchQuotes();
+    } else {
+      // still refresh in background for next visit
+      fetchQuotes();
+    }
   }, []);
 
   return (
