@@ -1,8 +1,9 @@
 ```
 └── 📁src
     └── 📁assets
+        ├── image.png
+        ├── logo.svg
         ├── react.svg
-    └── 📁assets copy
     └── 📁components
         └── 📁buttons
             ├── AddCardButton.jsx
@@ -18,12 +19,13 @@
             ├── TitleInput.jsx
             ├── TopBar.jsx
         └── 📁folder
-            ├── CreateFolderModal.jsx
+            ├── CreateFolder.jsx
             ├── folder_grid.jsx
             ├── folder_page_header.jsx
             ├── ThreeDotMenu.jsx
         └── 📁home
             ├── bottom_nav.jsx
+            ├── bottom_sheet.jsx
             ├── header.jsx
             ├── log_out.jsx
         └── 📁library
@@ -35,35 +37,33 @@
         ├── folders.jsx
         ├── loading_spinner.jsx
         ├── progress.jsx
-        ├── term_defination.jsx
-    └── 📁constants
     └── 📁context
         ├── app_data.jsx
         ├── auth_context.jsx
     └── 📁features
         ├── auto_equations.jsx
-    └── 📁hooks
     └── 📁pages
         └── 📁flashcard
             ├── create_set.jsx
             ├── flashcard_page.jsx
-            ├── flashcards_sets.jsx
+            ├── flashcards_flip.jsx
             ├── get_sets.jsx
             ├── learn.jsx
         └── 📁folder
             ├── folder_page.jsx
         └── 📁home
+            ├── home_folder_list.jsx
             ├── home_page.jsx
-            ├── public_flashcards.jsx
+            ├── home_set_list.jsx
         └── 📁library
             ├── classes.jsx
             ├── library_page.jsx
         └── 📁user
             ├── login_page.jsx
             ├── signup_page.jsx
-            ├── username_page.jsx
+            ├── username_page.jsx.back
+            ├── username_popup.jsx
         ├── test.jsx
-    └── 📁routes
     └── 📁services
         ├── flashcards.service.js
         ├── folders.services.js
@@ -73,44 +73,54 @@
         └── 📁components
             ├── AddCardButton.css
             ├── bottom_navbar.css
+            ├── bottom_sheet.css
             ├── card_grid.css
             ├── CardInput.css
-            ├── create_folder_model.css
+            ├── create_folder.css
             ├── flash_card_list.css
             ├── flashcard_page_header.css
             ├── flip_card.css
             ├── folder_grid.css
+            ├── folder_list_horizontal.css
             ├── folder_page_header.css
+            ├── full_flip_card.css
             ├── header.css
             ├── library_header.css
+            ├── list_cards.css
+            ├── list_folders.css
             ├── loading_spinner.css
             ├── popup.css
             ├── search_bar.css
+            ├── set_list_horizontal.css
             ├── TermDefinitionList.css
             ├── TitleInput.css
             ├── toggle_btn.css
             ├── TopBar.css
-        └── 📁features
         └── 📁pages
             ├── create_folder.css
             ├── create_set.css
             ├── flashcard_page.css
+            ├── flashcard.css
+            ├── flashcards_flip.css
             ├── folder_page.css
             ├── get_sets.css
             ├── home_page.css
             ├── library_page.css
             ├── login_page.css
-            ├── username_page.css
+            ├── username_popup.css
     └── 📁utils
         ├── add_delete_sets_from_folder.js
         ├── delete_folder.jsx
         ├── deleteSetFromDatabase.js
         ├── fetch_cards.jsx
+        ├── fetch_public_sets.js
         ├── fetch_public_sets.jsx
         ├── FlashcardList.jsx
         ├── list_cards.jsx
         ├── list_folders.jsx
+        ├── PageWrapper.jsx
         ├── pushToPublic.jsx
+        ├── RandomQuotes.jsx
     ├── App copy.css
     ├── App copy.jsx
     ├── App.css
