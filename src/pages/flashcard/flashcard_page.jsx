@@ -52,7 +52,7 @@ function FlashCardPage() {
 
           <button
             className="study-mode"
-            onClick={() => navigate(`/set/${setId}/learn`)}
+            onClick={() => navigate(`/set/${setId}/flashcards`)}
           >
             <FiCpu className="icon" />
             <span>Learn</span>
@@ -60,7 +60,7 @@ function FlashCardPage() {
 
           <button
             className="study-mode"
-            onClick={() => navigate(`/set/${setId}/test`)}
+            onClick={() => navigate(`/set/${setId}/flashcards`)}
           >
             <FiFileText className="icon" />
             <span>Test</span>
