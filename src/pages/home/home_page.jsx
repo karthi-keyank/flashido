@@ -11,8 +11,8 @@ function Home() {
         <RandomQuote />
       </section>
       <div className="recents">
-        <HomeFolderList />
         <HomeSetList />
+        <HomeFolderList />
       </div>
     </main>
   );
