@@ -44,7 +44,7 @@ With smart **flashcards** 🔄, organized **folders** 📂, **Markdown & LaTeX s
 - 🔄 **Auto-Flip Cards** – Cards flip automatically and move to the next card.  
 - 📂 **Organize Flashcards** – Group sets into folders for easy navigation.  
 - 🎯 **Quick Revision** – Perfect for last-minute exam prep.  
-- 🔥 **Infinite Scroll** – Flip through cards seamlessly.  
+- 🔥 **Scroll** – Flip through cards seamlessly.  
 - ⚡ **More Features to Explore** – Random quotes, smart sorting, and more.  
 
 ---
