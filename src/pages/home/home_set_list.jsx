@@ -47,7 +47,7 @@ function HomeSetList() {
     return (
       <div className="set-list-empty">
         <p>
-          <span>Take the first step towards better marks.</span>
+          <span>🎯 Take the first step towards better marks.</span>
         </p>
         <button
           className="set-list__create-btn"

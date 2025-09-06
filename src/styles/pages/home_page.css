@@ -29,7 +29,8 @@
 
 /* ---------- Title ---------- */
 .home-quote {
-  font-size: 1.05rem;
+  font-size: clamp(1rem, 2vw, 1.3rem); /* scales smartly */
+  line-height: 1.4;
   margin-bottom: 0;
   letter-spacing: 0.6px;
   width: 100%;
@@ -47,27 +48,29 @@
   /* For Firefox */
   background-clip: text;
   color: transparent;
+
+   animation: fadeIn 1.2s ease-out;
 }
 
-/* Optional underline */
-.home-quote::after {
-  content: "";
-  display: block;
-  margin: 18px auto 0 auto;
-  width: 80px;
-  height: 3px;
-  border-radius: 2px;
-  background: #4f8cff;
-  opacity: 0.85;
-}
 
 /* ---------- Recents (your list columns) ---------- */
 .recents {
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   gap: 20px;
   padding: 0px 12px 80px;
   box-sizing: border-box;
+}
+
+.recents::before {
+  content: "";
+  display: block;
+  width: 60%;
+  height: 2px;
+  margin: 0 auto 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
 }
 
 /* mobile adjustments */
@@ -84,8 +87,14 @@
     box-sizing: border-box;
   }
   .home-quote {
-    font-size: 0.95rem;
+    font-size: clamp(1rem, 2vw, 1.3rem); /* scales smartly */
+    line-height: 1.4;
     width: 100%;
     padding: 0 8px;
   }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
