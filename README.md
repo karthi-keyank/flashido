@@ -266,3 +266,11 @@ npm run dev
 - Push to the branch (git push origin feature/AmazingFeature)
 
 - Open a Pull Request
+
+---
+
+## License
+
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+This project is licensed under the [MIT License](./LICENSE) 📝
+
