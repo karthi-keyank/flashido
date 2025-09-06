@@ -11,16 +11,17 @@ With smart **flashcards**, **folders**, and powerful study features, Flashido he
 ---
 
 ## Table of Contents
-- [Motive](#-motive-to-build-about)
-- [Features](#-features)
-- [Screenshots](#-screenshots)
-- [Use Cases](#-use-cases)
-- [Tech Stack](#-tech-stack)
-- [Project Structure](#-project-structure)
-- [Getting Started](#-getting-started)
-- [Future Plans](#-future-plans)
-- [Contributing](#-contributing)
+- [Motive](#motive-to-build-about)
+- [Features](#features)
+- [Screenshots](#screenshots)
+- [Use Cases](#use-cases)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+- [Future Plans](#future-plans)
+- [Contributing](#contributing)
 - [License](#license)
+
 
 ---
 
