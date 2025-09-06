@@ -22,15 +22,17 @@ With smart **flashcards**, **folders**, and powerful study features, Flashido he
 
 ---
 
-## 🖼️ Screenshots / Demo
+## 🖼️ Screenshots
 
-## 🖼️ Screenshots / Demo
-
-<img src="./src/assets/1.jpg" alt="Flashido Demo 1" width="300"/>  
-<img src="./src/assets/2.jpg" alt="Flashido Demo 2" width="300"/>  
-<img src="./src/assets/3.jpg" alt="Flashido Demo 3" width="300"/>  
-<img src="./src/assets/4.jpg" alt="Flashido Demo 4" width="300"/>  
-<img src="./src/assets/5.jpg" alt="Flashido Demo 5" width="300"/> 
+<table>
+<tr>
+  <td><img src="./src/assets/1.jpg" alt="Demo 1" width="120"/></td>
+  <td><img src="./src/assets/2.jpg" alt="Demo 2" width="120"/></td>
+  <td><img src="./src/assets/3.jpg" alt="Demo 3" width="120"/></td>
+  <td><img src="./src/assets/4.jpg" alt="Demo 4" width="120"/></td>
+  <td><img src="./src/assets/5.jpg" alt="Demo 5" width="120"/></td>
+</tr>
+</table>
 
 ---
 
