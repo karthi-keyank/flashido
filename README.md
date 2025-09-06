@@ -10,6 +10,20 @@ With smart **flashcards**, **folders**, and powerful study features, Flashido he
 
 ---
 
+## Table of Contents
+- [Motive](#-motive-to-build-about)
+- [Features](#-features)
+- [Screenshots](#-screenshots)
+- [Use Cases](#-use-cases)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+- [Future Plans](#-future-plans)
+- [Contributing](#-contributing)
+- [License](#license)
+
+---
+
 ## 🚀 Motive to build (About)
 
 Studying should be **easy, accessible, and stress-free** 📚✨  
@@ -61,7 +75,7 @@ With smart **flashcards** 🔄, organized **folders** 📂, **Markdown & LaTeX s
 - **Frontend:** React + Vite  
 - **Backend:** Firebase Firestore  
 - **State Management:** React Context API  
-- **Hosting:** Firebase Hosting / Vercel  
+- **Hosting:** Netlify
 
 ---
 
@@ -224,7 +238,7 @@ npm install
 
 - Copy config into src/firebase.js
 
-- 4. Run the app
+4. Run the app
 ```
 npm run dev
 ```
