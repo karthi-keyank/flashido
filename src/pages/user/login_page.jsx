@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useAuth } from "../../context/auth_context";
 import { FiUser, FiLock, FiMail } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
-import ErrorPopup from "../../components/home/error_popup"
+import ErrorPopup from "../../components/home/error_popup";
 import "../../styles/pages/login_page.css";
 
 function LoginPage() {
@@ -23,7 +23,7 @@ function LoginPage() {
       }
     } catch (err) {
       console.error("❌ Email auth error:", err);
-      setError(err.message);  // ✅ show popup
+      setError(err.message); // ✅ show popup
     }
   };
 
@@ -39,17 +39,29 @@ function LoginPage() {
   return (
     <div className="login-page">
       <div className="login-card">
-        <h2 className="login-card__title">{mode === "login" ? "Login" : "Register"}</h2>
-
+        <h2 className="login-card__title">
+          {mode === "login" ? "Login" : "Register"}
+        </h2>
+        <p className="note">
+          ⚠️ If you are using the Android app, please login using <b>Email</b>.
+        </p>
         {/* Inputs */}
         <div className="input-group">
-          <input type="email" placeholder="Email" value={email}
-            onChange={(e) => setEmail(e.target.value)} />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <FiUser className="icon" />
         </div>
         <div className="input-group">
-          <input type="password" placeholder="Password" value={password}
-            onChange={(e) => setPassword(e.target.value)} />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
           <FiLock className="icon" />
         </div>
 
@@ -72,13 +84,15 @@ function LoginPage() {
         {/* Switch mode */}
         <p className="switch-mode">
           {mode === "login" ? (
-            <>Don’t have an account?{" "}
+            <>
+              Don’t have an account?{" "}
               <button type="button" onClick={() => setMode("signup")}>
                 Register
               </button>
             </>
           ) : (
-            <>Already have an account?{" "}
+            <>
+              Already have an account?{" "}
               <button type="button" onClick={() => setMode("login")}>
                 Login
               </button>

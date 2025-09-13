@@ -141,9 +141,19 @@
   font-size: 1.2rem;
 }
 
+.note {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #facc15; /* yellowish warning */
+  background: #1f2937;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-align: center;
+}
+
 /* Hide Google button below 768px (mobile) */
-@media (max-width: 768px) {
-  .google-login-btn {
+@media (min-width: 768px) {
+  .note{
     display: none;
   }
 }
