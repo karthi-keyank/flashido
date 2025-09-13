@@ -24,6 +24,7 @@ a:hover {
 
 body {
 font-family: "Inter", "Roboto", "Segoe UI", Arial, sans-serif;
+  padding-top: 20px;
   margin: 0;
   min-width: 320px;
   min-height: 100vh;

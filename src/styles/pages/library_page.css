@@ -59,8 +59,7 @@
   position: relative;
   box-shadow: 0 4px 24px 0 #08062b44;
   padding: 2rem 1.5rem 2.5rem 1.5rem;
-  border-top: 2px solid #2d3253;
-  margin: 0.8rem 0; 
+  margin: 0.5rem 0; 
   min-height: 220px;         
   width: 100%;
   box-sizing: border-box;
@@ -103,8 +102,7 @@
   }
 
   .library-tabs {
-    gap: 0.5rem;
-    margin: 1.2rem 0 1rem 0;
+    gap: 0.6rem;
   }
 
   .library-tab-button {
@@ -113,6 +111,6 @@
   }
 
   .library-search {
-    margin: 6px 0 12px 0;   /* tighter spacing on small screens */
+    margin: 0 0 12px 0;   
   }
 }
