@@ -131,3 +131,6 @@
     ├── main copy.jsx
     └── main.jsx
 ```
+
+keytool -list -v -keystore flashido-keystore.jks -alias flashido_key
+
